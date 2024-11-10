@@ -14,12 +14,15 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserMapper userMapper;
-
+	
+	
 	@Override
+	// 관리자 페이지
 	public HashMap<String, Object> getUser(HashMap<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<>();
 		List<UserModel> testList = userMapper.getUser(resultMap);
-		resultMap.put("result", testList);
+		resultMap.put("userList", testList);
+		System.out.println("유저 리스트 : "+testList);
 		return resultMap;
 	}
 	

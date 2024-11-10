@@ -11,12 +11,21 @@
 </head>
 
 <body>
-    <div id="main">
-        <div id="app">
-            <div id="container">
-                adminMain
-            </div>
-        </div>
+    <div id="app">
+        <table>
+            <tr>
+                <th>사용자 아이디</th>
+                <th>사용자 성명</th>
+                <th>닉네임</th>
+                <th>전화번호</th>
+            </tr>
+            <tr v-for="item in list">
+                <td>{item.userId}</td>
+                <td>{item.userName}</td>
+                <td>{item.nickName}</td>
+                <td>{item.pNumber}</td>
+            </tr>
+        </table>
     </div>
 </body>
 
@@ -26,14 +35,26 @@
     const app = Vue.createApp({
         data() {
             return {
-                
+                list : []
             };
         },
         methods: {
-            
+            GetUser() {
+                var paramap = {};
+                $.ajax({
+                    url : "getUser.dox",
+                    dataType : "json",
+                    type : "POST",
+                    data : [],
+                    success : (data) => {
+                        console.log("유저 리스트 > ", data);
+                        this.list = data.userList;
+                    },
+                });
+            },
         },
         mounted() {
-
+            this.GetUser();
         },
     });
     app.mount("#app");
