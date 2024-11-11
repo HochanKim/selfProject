@@ -13,18 +13,23 @@
 <body>
     <div id="app">
         <table>
-            <tr>
-                <th>사용자 아이디</th>
-                <th>사용자 성명</th>
-                <th>닉네임</th>
-                <th>전화번호</th>
-            </tr>
-            <tr v-for="item in list">
-                <td>{item.userId}</td>
-                <td>{item.userName}</td>
-                <td>{item.nickName}</td>
-                <td>{item.pNumber}</td>
-            </tr>
+			<tr>
+			    <th>사용자 아이디</th>
+			    <th>사용자 성명</th>
+			    <th>닉네임</th>
+			    <th>전화번호</th>
+			</tr>
+			<tr v-for="item in list">
+				<!--
+					중괄호 {{}} 표시에 관한 오류 발생
+					오류) {item.xxx}
+						=> 해결 {{item.xxx}}  
+				-->
+			    <td>{{item.userId}}</td>
+			    <td>{{item.userName}}</td>
+			    <td>{{item.nickName}}</td>
+			    <td>{{item.pNumber}}</td>
+			</tr>
         </table>
     </div>
 </body>
@@ -47,7 +52,7 @@
                     type : "POST",
                     data : [],
                     success : (data) => {
-                        console.log("유저 리스트 > ", data);
+                        console.log("유저 리스트 : ", data.userList);
                         this.list = data.userList;
                     },
                 });

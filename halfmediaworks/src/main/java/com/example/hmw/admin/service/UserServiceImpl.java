@@ -22,7 +22,6 @@ public class UserServiceImpl implements UserService{
 		HashMap<String, Object> resultMap = new HashMap<>();
 		List<UserModel> testList = userMapper.getUser(resultMap);
 		resultMap.put("userList", testList);
-		System.out.println("유저 리스트 : "+testList);
 		return resultMap;
 	}
 	

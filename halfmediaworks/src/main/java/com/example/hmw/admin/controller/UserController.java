@@ -27,7 +27,6 @@ public class UserController {
 		try {
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
 			resultMap = userService.getUser(map);
-			System.out.println("결과값 : "+resultMap);
 			return new Gson().toJson(resultMap);
 	    } catch (Exception e) {
 	        e.printStackTrace();  // 구체적인 오류 로그 확인
