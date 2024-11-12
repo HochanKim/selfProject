@@ -12,6 +12,7 @@
 
 <body>
     <div id="app">
+        <h1>HMW 관리자 페이지</h1>
         <table>
 			<tr>
 			    <th>사용자 아이디</th>
