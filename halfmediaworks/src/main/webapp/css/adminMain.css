@@ -8,10 +8,6 @@
     text-decoration: none;
 }
 
-/* 공통 CSS */
-#app {
-    width : 80%;
-}
 
 /* 테이블 CSS */
 table, tr, th, td {

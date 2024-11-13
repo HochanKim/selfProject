@@ -1,0 +1,38 @@
+/* 전역 css 초기화 */
+* {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+#app {
+    border: 1px solid #333;
+    height:50vh;
+    padding:40px 0;
+}
+
+/* 로그인 페이지 CSS */
+form {
+    text-align: center;
+    width:100%;
+}
+
+label {
+    display: inline-block;
+    width:120px;
+}
+.input {
+    margin:14px 0;
+}
+.input input {
+    width:240px;
+    height:28px;
+}
+.submitButton button {
+    width:120px;
+    height:28px;
+    margin:8px 0;
+}
+/* 회원가입 페이지 CSS */
