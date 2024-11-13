@@ -1,4 +1,4 @@
-package com.example.hmw.admin.controller;
+package com.example.hmw.main.controller;
 
 import java.util.HashMap;
 
@@ -7,26 +7,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.hmw.admin.service.UserService;
+import com.example.hmw.main.service.MainService;
 import com.google.gson.Gson;
 
 @Controller
-public class UserController {
+public class MainController {
 	@Autowired
-	UserService userService;
+	MainService mainService;
 
-	@RequestMapping("admin/adminPage.do")
+	@RequestMapping("main/login.do")
 	public String admin(Model model) throws Exception{
-		return "admin/adminMain";
+		return "main/login";
 	}
 	
-	// 관리자 페이지 사용자 데이터
-	@RequestMapping(value = "admin/getUser.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	// 로그인 허용
+	@RequestMapping(value = "main/login.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getUserInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+	public String loginPass(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
 		try {
 			HashMap<String, Object> resultMap = new HashMap<String, Object>();
-			resultMap = userService.getUserList(map);
+			resultMap = mainService.acceptUserLogin(map);
 			return new Gson().toJson(resultMap);
 	    } catch (Exception e) {
 	        e.printStackTrace();  // 구체적인 오류 로그 확인

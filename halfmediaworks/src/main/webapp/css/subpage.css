@@ -1,0 +1,38 @@
+form {
+    width:500px;
+    border:1px solid #000;
+    margin:100px;
+    padding:40px;
+    box-sizing: border-box;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    margin:20px 0;
+}
+form div {
+    display: inline-block;
+    width:100%;
+    margin:16px 0;
+}
+
+form div span {
+    font-weight: bold;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+form button {
+    background-color:#333;
+    color:#fff;
+    border-radius:30px;
+    font-weight:bold;
+    font-size:14px;
+	width:90px;
+	height:28px;
+    cursor:pointer;
+    margin-top:40px;
+    margin-right:16px;
+}

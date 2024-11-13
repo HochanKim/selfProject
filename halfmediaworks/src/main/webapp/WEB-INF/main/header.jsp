@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halfmedia Works</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/project/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/project/css/common.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/reset.css">
 </head>
 <body>
 <!-- 'index.jsp'와 연동  -->
@@ -23,31 +23,18 @@
             <div class="float-right">
             	<form name="session" class="session">
             		<div class="login">
-		            	<%
-							if(session.getAttribute("userId") == null && session.getAttribute("staffYN") == null){
-								// 세션값이 존재하지 않을때
-						%>
-								<a href="javascript::">
-		            				<span class="log-in">로그인</span>
-		            			</a>
-								<a href="javascript::">
-		            				<span class="join">회원가입</span>
-		            			</a>
-						<%
-							} else {
-								// 세션값이 존재하는 경우
-								String userId = (String) session.getAttribute("userId"); 	// 세션으로 가져온 'userId'를 문자열 변수 'userId'에 저장 
-								String staff = (String) session.getAttribute("staffYN");	// 세션으로 가져온 'staffYN'을 문자열 변수 'staff'에 저장
-						%>
-								<a href="javascript::">
-									<span class="logout">로그아웃</span>
-								</a>
-								<a href="javascript::" onclick="fnInfo('<%= userId %>')">	<!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
-									<span class="memberinfo">회원정보</span>
-								</a>
-						<%
-							}
-						%>
+						<a href="javascript::">
+							<span class="log-in">로그인</span>
+						</a>
+						<a href="javascript::">
+							<span class="join">회원가입</span>
+						</a>
+						<a href="javascript::">
+							<span class="logout">로그아웃</span>
+						</a>
+						<a href="javascript::" onclick="fnInfo('<%= userId %>')">	<!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
+							<span class="memberinfo">회원정보</span>
+						</a>
             		</div>
             	</form>
             	<div class="hmw-menu-btn">

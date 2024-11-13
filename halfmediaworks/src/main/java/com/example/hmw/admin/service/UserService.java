@@ -4,6 +4,6 @@ import java.util.HashMap;
 
 public interface UserService {	
 	// 관리자 페이지
-	HashMap<String, Object> getUser(HashMap<String, Object> map);
+	HashMap<String, Object> getUserList(HashMap<String, Object> map);
 
 }

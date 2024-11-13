@@ -9,5 +9,7 @@ import com.example.hmw.admin.model.UserModel;
 
 @Mapper
 public interface UserMapper {
-    List<UserModel> getUser(HashMap<String, Object> map);	
+	// 관리자 페이지
+	// 사용자 가져오기
+    List<UserModel> getUserList(HashMap<String, Object> map);	
 }
