@@ -8,9 +8,8 @@
 }
 
 #app {
-    border: 1px solid #333;
-    height:50vh;
-    padding:40px 0;
+    height:45vh;
+    padding-top:40px;
 }
 
 /* 로그인 페이지 CSS */
@@ -21,18 +20,33 @@ form {
 
 label {
     display: inline-block;
-    width:120px;
+    width:100px;
+    text-align: left;
 }
+
 .input {
-    margin:14px 0;
+    margin:20px 0;
 }
 .input input {
     width:240px;
     height:28px;
 }
+
 .submitButton button {
-    width:120px;
-    height:28px;
+    width:150px;
+    height:32px;
     margin:8px 0;
+    border-radius: 50px;
+    cursor: pointer;
+    background-color: #999;
+    color:#fff;
+    border: none;
 }
+.submitButton button:hover {
+    background-color: #333;
+    font-weight: bold;
+    transition: 0.75s;
+}
+
+
 /* 회원가입 페이지 CSS */
