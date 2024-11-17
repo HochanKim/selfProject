@@ -7,112 +7,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halfmedia Works</title>
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 </head>
 <body>
 <!-- 'index.jsp'와 연동  -->
-    <!-- 헤더 영역 -->
-    <header id="header">
-        <div class="wrap">
-            <div class="logo-img">
-                <a href="index.jsp">
-                    <img src="image/logo_colorchange.png" rel="로고">
-                </a>
-            </div>
-            <div class="float-right">
-            	<form name="session" class="session">
-            		<div class="login">
-						<a href="javascript::">
-							<span class="log-in">로그인</span>
-						</a>
-						<a href="javascript::">
-							<span class="join">회원가입</span>
-						</a>
-						<a href="javascript::">
-							<span class="logout">로그아웃</span>
-						</a>
-						<a href="javascript::" onclick="fnInfo('<%= userId %>')">	<!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
-							<span class="memberinfo">회원정보</span>
-						</a>
-            		</div>
-            	</form>
-            	<div class="hmw-menu-btn">
-                	<span class="line"></span>
-                	<span class="line"></span>
-                	<span class="line"></span>
-            	</div>
-            </div>
-        </div>
-    </header>
-
-    <!-- 서브 메뉴 -->
-    <nav class="sub-menu">
-        <ul>
-            <li><a href="#">about us</a></li>
-            <li><a href="#">our works</a></li>
-            <li><a href="#cont">contacts</a></li>
-            <li><a href="#">notice</a></li>
-        </ul>
-        <p class="kind">photo, promotion video, music video, drone shot</p>
-        <address>
-            <div class="fowd">
-                <p>Tel</p>
-                <p>Email</p>
-                <p>Address</p>
-            </div>
-            <div class="behind">
-                <p>070-7700-9308</p>
-                <p>halfmediaworks@naver.com</p>       
-                <p>경기도 시흥시 서울대학로264번길35, 425호</p>
-            </div>
-        </address>
-    </nav>
-    <script src="js/jquery-3.7.1.min.js"></script>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<div id="fixHeader">
+		<!-- 헤더 영역 -->
+		<header id="header">
+			<div class="wrap">
+				<div class="logo-img">
+					<a href="index.jsp">
+						<img src="/image/logo_colorchange.png" rel="로고">
+					</a>
+				</div>
+				<div class="float-right">
+					<form name="session" class="session">
+						<div class="login">
+							<template>
+								<a href="/WEB-INF/main/login.jsp">
+									<span class="log-in">로그인</span>
+								</a>
+								<a href="javascript::">
+									<span class="join">회원가입</span>
+								</a>
+							</template>
+							<template>
+								<a href="javascript::">
+									<span class="logout">로그아웃</span>
+								</a>
+								<a href="javascript::" @click="fnInfo(userId)">	 <!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
+									<span class="memberinfo">회원정보</span>
+								</a>
+							</template>
+						</div>
+					</form>
+					<div id="hmw-menu-btn" :class="{open : isOpened}" @click="fnToggle">
+						<span class="line"></span>
+						<span class="line"></span>
+						<span class="line"></span>
+					</div>
+				</div>
+			</div>
+		</header>
+	
+		<!-- 서브 메뉴 -->
+		<nav :class="{subMenu1 : !isOpened}" @change="fnToggle">
+			<ul>
+				<li><a href="#">about us</a></li>
+				<li><a href="#">our works</a></li>
+				<li><a href="#cont">contacts</a></li>
+				<li><a href="#">notice</a></li>
+			</ul>
+			<p class="kind">photo, promotion video, music video, drone shot</p>
+			<address>
+				<div class="fowd">
+					<p>Tel</p>
+					<p>Email</p>
+					<p>Address</p>
+				</div>
+				<div class="behind">
+					<p>070-7700-9308</p>
+					<p>halfmediaworks@naver.com</p>       
+					<p>경기도 시흥시 서울대학로264번길35, 425호</p>
+				</div>
+			</address>
+		</nav>
+	</div>
     <script>
-	//서브메뉴
-		var menu = document.querySelector(".hmw-menu-btn");
-		var hide = document.querySelector(".sub-menu");
-		$(menu).on("click", () => {
-		    if(menu.classList.contains('open')){
-		        menu.classList.remove('open');
-		        $(hide).on("click").css("top", "-100vh");
-				document.querySelector("#header").style.zIndex=0;
-				document.querySelector("#cont").style.zIndex=0;
-		    } else {
-		        menu.classList.add('open');
-		        $(hide).on("click").css("top", "0");
-				document.querySelector("#header").style.zIndex=1;
-				document.querySelector("#cont").style.zIndex=-1;
-		    };
+		const header = Vue.createApp({
+			data() {
+				return {
+					isOpened : false,
+					subMenu01 : 'subMenu1',
+					subMenu02 : 'subMenu2'
+				};
+			},
+			methods: {
+				fnToggle(){
+					this.isOpened = !this.isOpened
+					if(this.isOpened == false){
+						this.subMenu02;
+					} 
+				},
+			},
+			mounted() {
+				
+			},
 		});
-		
-	// 로그인
-	var logIn = document.querySelector(".log-in");
-	$(logIn).on("click", () => {
-		window.open("login.jsp", "PopupWin", "width=600, height=600, top=150, left=250");
-	});
-	
-	// 회원가입
-	var join = document.querySelector(".join");
-	$(join).on("click", () => {
-		window.open("join.jsp", "PopupWin", "width=700, height=800, top=100, left=250");
-	});
-	
-	// 로그아웃
-	var logOut = document.querySelector(".logout");
-	var form = document.session;
-	$(logOut).on("click", () => {
-		form.action = "logout.jsp"; 	// 'logout.jsp'로 전달하여 세션 종료
-        form.submit();					// 제출
-		alert("로그아웃하였습니다.");
-	});
-	
-	// 회원정보
-	function fnInfo(userId) {	
-		location.href="memberinfo.jsp?userId="+userId;	
-	}
+		header.mount("#fixHeader");
 	</script>
 </body>
 </html>
