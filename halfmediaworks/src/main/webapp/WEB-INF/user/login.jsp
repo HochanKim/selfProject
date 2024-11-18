@@ -20,14 +20,17 @@
             <h1>로그인</h1>
             <div class="input">
                 <label>아이디</label>
-                <input type="text" placeholder="아이디" v-model="userId">
+                <input type="text" placeholder="아이디" v-model="userId" @keyup.enter="fnLogin">
             </div>
             <div class="input">
                 <label>비밀번호</label>
-                <input type="password" placeholder="비밀번호" v-model="pwd">
+                <input type="password" placeholder="비밀번호" v-model="pwd" @keyup.enter="fnLogin">
             </div>
             <div class="submitButton">
                 <button type="button" @click="fnLogin">로그인</button>
+            </div>
+            <div class="submitButton">
+                <button type="button" @click="goReset">아이디/비밀번호 찾기</button>
             </div>
             <div class="submitButton">
                 <button type="button" @click="goJoin">회원가입</button>
@@ -68,8 +71,21 @@
                     data : paramap,
                     success : (data) => {
                         this.login = data.login;
+                        console.log(data);
+                        if(data.code == 400){
+                            console.log(data.code);
+                            alert(data.message);
+                        } else {
+                            // location.href = "/main/joinPage.do";
+                            console.log(data.code);
+                            alert(data.message);
+                        }
+
                     },
                 });
+            },
+            goReset(){
+                location.href = "/main/resetPwd.do";
             },
             goJoin(){
                 location.href = "/main/joinPage.do";

@@ -22,23 +22,31 @@
 						<img src="/image/logo_colorchange.png" rel="로고">
 					</a>
 				</div>
-				<div class="float-right">
+				<div class="float-right" @change="getHeader">
 					<form name="session" class="session">
 						<div class="login">
-							<template>
-								<a href="/WEB-INF/main/login.jsp">
+							<template v-if="sessionId == ''">
+								<a href="/WEB-INF/user/login.jsp">
 									<span class="log-in">로그인</span>
 								</a>
-								<a href="javascript::">
+								<a href="/WEB-INF/user/joinPage.jsp">
 									<span class="join">회원가입</span>
 								</a>
 							</template>
-							<template>
+							<template v-if="sessionId !== '' && sessionStatus == ''">
 								<a href="javascript::">
 									<span class="logout">로그아웃</span>
 								</a>
 								<a href="javascript::" @click="fnInfo(userId)">	 <!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
 									<span class="memberinfo">회원정보</span>
+								</a>
+							</template>
+							<template v-if="sessionId !== '' && sessionStatus !== ''"> 
+								<a href="javascript::" @click="logOut">
+									<span class="logout">로그아웃</span>
+								</a>
+								<a href="/WEB-INF/admin/adminMain.jsp" @click="fnInfo(userId)">	 <!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
+									<span class="memberinfo">관리자</span>
 								</a>
 							</template>
 						</div>
@@ -81,7 +89,9 @@
 				return {
 					isOpened : false,
 					subMenu01 : 'subMenu1',
-					subMenu02 : 'subMenu2'
+					subMenu02 : 'subMenu2',
+					sessionId : '',
+					sessionStatus : ''
 				};
 			},
 			methods: {
@@ -91,9 +101,32 @@
 						this.subMenu02;
 					} 
 				},
+				getHeader(){
+					$.ajax({
+                    url: '/api/session',
+                    type: 'GET',
+						success: (data) => {
+							// 세션 데이터를 Vue 인스턴스에 저장
+							this.sessionId = data.sessionId;
+							this.sessionStatus = data.sessionStatus;
+							console.log("세션 데이터 : "+data);
+						},
+						error: (err) => {
+							console.error('세션 정보를 가져오는 중 오류 발생:', err);
+						}
+                	});
+				},
+				logOut() {
+					// 로그아웃 처리
+					console.log('로그아웃 처리');
+				},
+				fnInfo(sessionId) {
+					// 회원정보 페이지로 이동
+					console.log('회원정보 페이지로 이동, 사용자 ID:', sessionId);
+				}
 			},
 			mounted() {
-				
+				this.getHeader();
 			},
 		});
 		header.mount("#fixHeader");

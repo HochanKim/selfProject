@@ -8,11 +8,26 @@
     text-decoration: none;
 }
 
+#app {
+    height:60vh;
+    padding-top:40px;
+}
+
+h1 {
+    text-align: center;
+}
 
 /* 테이블 CSS */
+table {
+    margin-top:40px;
+}
+
 table, tr, th, td {
     border: 1px solid #333;
     border-collapse: collapse;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 10px 0;
 }
 
 th {

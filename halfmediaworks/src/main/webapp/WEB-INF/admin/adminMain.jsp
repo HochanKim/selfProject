@@ -5,12 +5,16 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="/css/adminMain.css" />
+    <link rel="stylesheet" href="/css/common.css" />
     <script src="../../js/jquery.js"></script>
     <script src="../../js/vue.js"></script>
-    <title>첫번째 페이지</title>
+    <title>관리자 페이지</title>
 </head>
 
 <body>
+    <header>
+        <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/header.jsp" flush="false" />
+    </header>
     <div id="app">
         <h1>HMW 관리자 페이지</h1>
         <table>
@@ -33,6 +37,7 @@
 			</tr>
         </table>
     </div>
+    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/footer.jsp" flush="false" />
 </body>
 
 </html>
