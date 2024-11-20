@@ -27,6 +27,7 @@ public class MainController {
 	@RequestMapping("user/login.do")
 	public String admin(Model model, HttpServletRequest request, HttpSession session) throws Exception{
 		// 세션 가져오기
+		// 'Service'단에서 Object 형태로 담긴 세션 저장 아이디와 상태(직원유무)를 'String'으로 다운 캐스팅하고 가져옴
 		String inUserId = (String) session.getAttribute("sessionId");
 		String inUserStatus = (String) session.getAttribute("sessionStatus");
 		
