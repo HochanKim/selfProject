@@ -30,6 +30,7 @@ public class MainServiceImpl implements MainService{
 			// 아이디-비밀번호 일치여부 (불일치시 데이터 null)
 			MainModel idPwd = mainMapper.userLogin(map);
 			System.out.println("로그인 : "+idPwd);
+			
 			if(idPwd == null) {	
 				// 아이디나 비밀번호가 맞지 않다
 				resultMap.put("code", 400);
@@ -44,11 +45,16 @@ public class MainServiceImpl implements MainService{
 				}
 			} else {
 				// 로그인 성공
-				resultMap.put("code", 100);
+				resultMap.put("code", 200);
 				resultMap.put("message", "로그인에 성공하였습니다.");
+				
+				// 세션에 저장
 				session.setAttribute("sessionId", idPwd.getUserId());
 				session.setAttribute("sessionStatus", idPwd.getStatus());
+				System.out.println("세션 저장 아이디 : "+idPwd.getUserId());
+				System.out.println("세션 저장 직원유무 : "+idPwd.getStatus());
 			}
+			
 		} catch(Exception e) {
 			resultMap.put("result", "fail");
 			resultMap.put("message", "db조회 오류");

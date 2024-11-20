@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.hmw.main.service.MainService;
 import com.google.gson.Gson;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -22,27 +23,22 @@ public class MainController {
 	@Autowired
 	HttpSession session;
 	
-	// 세션을 전달해주는 API 설정
-    @GetMapping("/api/session")
-    public Map<String, Object> getSession(HttpSession session) {
-        String sessionId = (String) session.getAttribute("sessionId");
-        String sessionStatus = (String) session.getAttribute("sessionStatus");
-
-        Map<String, Object> sessionData = new HashMap<>();
-        sessionData.put("sessionId", sessionId);
-        sessionData.put("sessionStatus", sessionStatus);
-
-        return sessionData; // JSON 형태로 반환
-    }
-	
-
-	// 로그인 페이지
+	// 로그인 페이지 + 세션 불러오기
 	@RequestMapping("user/login.do")
-	public String admin(Model model) throws Exception{
-		model.addAttribute("userId", session.getAttribute("sessionId"));
-		model.addAttribute("status", session.getAttribute("sessionStatus"));
+	public String admin(Model model, HttpServletRequest request, HttpSession session) throws Exception{
+		// 세션 가져오기
+		String inUserId = (String) session.getAttribute("sessionId");
+		String inUserStatus = (String) session.getAttribute("sessionStatus");
+		
+		System.out.println("세션 저장 아이디(서버 컨트롤러) : "+inUserId);
+		System.out.println("세션 저장 직원유무(서버 컨트롤러) : "+inUserStatus);
+		
 		return "user/login";
 	}
+	
+	// 로그아웃 
+
+
 	
 	
 	// 'view'로 전달

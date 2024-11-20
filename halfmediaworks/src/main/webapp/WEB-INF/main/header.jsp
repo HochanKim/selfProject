@@ -34,7 +34,7 @@
 								</a>
 							</template>
 							<template v-if="sessionId !== '' && sessionStatus == ''">
-								<a href="javascript::">
+								<a href="javascript::" @click="logOut(userId)">
 									<span class="logout">로그아웃</span>
 								</a>
 								<a href="javascript::" @click="fnInfo(userId)">	 <!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
@@ -42,7 +42,7 @@
 								</a>
 							</template>
 							<template v-if="sessionId !== '' && sessionStatus !== ''"> 
-								<a href="javascript::" @click="logOut">
+								<a href="javascript::" @click="logOut(userId)">
 									<span class="logout">로그아웃</span>
 								</a>
 								<a href="/WEB-INF/admin/adminMain.jsp" @click="fnInfo(userId)">	 <!-- 세션값을 담은 변수 userId를 파라미터로 전달 -->
@@ -103,8 +103,8 @@
 				},
 				getHeader(){
 					$.ajax({
-                    url: '/api/session',
-                    type: 'GET',
+                    url: "login.dox",
+                    type: 'POST',
 						success: (data) => {
 							// 세션 데이터를 Vue 인스턴스에 저장
 							this.sessionId = data.sessionId;
@@ -116,7 +116,7 @@
 						}
                 	});
 				},
-				logOut() {
+				logOut(sessionId) {
 					// 로그아웃 처리
 					console.log('로그아웃 처리');
 				},
