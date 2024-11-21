@@ -13,7 +13,7 @@
 
 <body>
     <header>
-        <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/header.jsp" flush="false" />
+        <jsp:include page="/WEB-INF/main/header.jsp" flush="false" />
     </header>
     <div id="app">
         <form>
@@ -37,7 +37,7 @@
             </div>
         </form>
     </div>
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/footer.jsp" flush="false" />
+    <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
 </body>
 
 </html>
@@ -47,7 +47,9 @@
         data() {
             return {
                 userId : "",
-                pwd : ""
+                pwd : "",
+                sessionId : '${sessionId}',
+				sessionStatus : '${sessionStatus}'
             };
         },
         methods: {
@@ -79,8 +81,8 @@
                             // location.href = "/main/joinPage.do";
                             console.log(data.code);
                             alert(data.message);
+                            location.reload();
                         }
-
                     },
                 });
             },
