@@ -9,8 +9,8 @@
 }
 
 #app {
-    height:60vh;
-    padding-top:40px;
+    height:70vh;
+    padding-top:20px;
 }
 
 h1 {
@@ -19,7 +19,7 @@ h1 {
 
 /* 테이블 CSS */
 table {
-    margin-top:40px;
+    margin-top:24px;
 }
 
 table, tr, th, td {
@@ -35,4 +35,31 @@ th {
     height:25px;
     padding:10px;
     box-sizing: border-box;
+}
+
+/* 탭 CSS */
+.tab {
+    text-align: center;
+    margin-top:20px;
+}
+
+.tab button {
+    margin:0 10px;
+    width:120px;
+    height:32px; 
+    color:#333;
+    font-size:20px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.tab button:hover {
+    background-color: #333;
+    color:#fff;
+    transition: 0.3s;
+    font-weight: bold;
+}
+.tab .active {
+    font-weight: bolder;
+    color: #fff;
+    background: #000;
 }

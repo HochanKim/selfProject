@@ -26,10 +26,10 @@
 						<form name="session" class="session">
 							<div class="login">
 								<template v-if="!sessionId">
-									<a href="login.do">
+									<a href="../user/login.do">
 										<span class="log-in">로그인</span>
 									</a>
-									<a href="joinPage.do">
+									<a href="../user/joinPage.do">
 										<span class="join">회원가입</span>
 									</a>
 								</template>
@@ -116,8 +116,8 @@
 						});
 					},
 					logOut() {
-						$.ajax({
-							url: "logout.dox",
+						$.ajax({	
+							url: "/logout.dox",		// 공통 url로 변경
 							dataType: "json",
 							type: "POST",
 							data: {},

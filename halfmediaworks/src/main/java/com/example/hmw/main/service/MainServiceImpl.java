@@ -67,7 +67,6 @@ public class MainServiceImpl implements MainService{
 	public HashMap<String, Object> userLogout(HashMap<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		// 세션 삭제
-		session.removeAttribute("sessionId");
 		session.invalidate();
 		resultMap.put("message", "로그아웃되었습니다.");
 		System.out.println("로그아웃 이후 세션 : "+session);

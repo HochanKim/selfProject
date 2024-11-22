@@ -41,6 +41,7 @@ public class MainController {
 		return "user/login";
 	}
 	
+	// 세션 처리
 	@RequestMapping("/api/session")
     @ResponseBody
     public SessionInfo getSessionInfo(HttpSession session) {
@@ -75,7 +76,7 @@ public class MainController {
 	}
 	
 	// 로그아웃
-	@RequestMapping(value = "user/logout.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/logout.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String logout(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
 		try {

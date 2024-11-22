@@ -11,5 +11,8 @@ import com.example.hmw.admin.model.UserModel;
 public interface UserMapper {
 	// 관리자 페이지
 	// 사용자 가져오기
-    List<UserModel> getUserList(HashMap<String, Object> map);	
+    List<UserModel> getUserList(HashMap<String, Object> map);
+    
+    // 요청 의뢰 가져오기
+    List<UserModel> getRequests(HashMap<String, Object> map);
 }

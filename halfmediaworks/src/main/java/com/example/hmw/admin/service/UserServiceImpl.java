@@ -18,12 +18,20 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	// 관리자 페이지
+	// 유저 목록
 	public HashMap<String, Object> getUserList(HashMap<String, Object> map) {
-		HashMap<String, Object> resultMap = new HashMap<>();
-		List<UserModel> testList = userMapper.getUserList(resultMap);
-		resultMap.put("userList", testList);
-		return resultMap;
+		HashMap<String, Object> userMap = new HashMap<>();
+		List<UserModel> membersList = userMapper.getUserList(userMap);
+		userMap.put("userList", membersList);
+		return userMap;
 	}
-	
 
+	// 의뢰 목록
+	@Override
+	public HashMap<String, Object> getRequests(HashMap<String, Object> map) {
+		HashMap<String, Object> reqMap = new HashMap<>();
+		List<UserModel> requestList = userMapper.getRequests(reqMap);
+		reqMap.put("requestList", requestList);
+		return reqMap;
+	}	
 }

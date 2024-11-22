@@ -11,7 +11,7 @@
 </head>
 <body>
     <!-- 푸터 영역­ -->
-    <footer>
+    <footer id="footer">
         <address class="wrap">
             <div class="fowd">
                 <p>Address</p>
