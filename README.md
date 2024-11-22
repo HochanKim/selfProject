@@ -13,7 +13,7 @@
 
 ## <img src="https://github.com/user-attachments/assets/a5e2f4b7-b8ff-4a10-8dbf-16bf16e267fd" width="30" height="30" /> 개발 기간
 
-+  2024.08.12 ~ 2024.08.20 (이후에도 추가적으로 작업할 예정)
++  2024.11.09 ~ 2024.00.00
 
 
 
@@ -31,4 +31,4 @@
 
 
 ## 프로젝트 링크
-<https://github.com/HochanKim/jsp/tree/main/jspEx1/src/main/webapp/project>
+<https://github.com/HochanKim/selfProject>
