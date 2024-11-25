@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login&join.css">
+    <link rel="stylesheet" href="../../css/login&join.css">
     <script src="${pageContext.request.contextPath}/js/vue.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     <title>HMW 로그인</title>
@@ -16,11 +16,11 @@
         <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/header.jsp" flush="false" />
     </header>
     <div id="app">
-        <form name="user" class="new-join" method="post">	
+        <section class="joinForm">
             <div>
                 <label>아이디<span>*</span></label>
                 <input type="text" placeholder="아이디" v-model="userId">
-                <button type="button" @click="idCheck()">중복체크</button>	
+                <button type="button" @click="joinIdCheck" class="checkButton">중복체크</button>	
             </div>
             <div>
                 <label>비밀번호<span>*</span></label>
@@ -33,7 +33,7 @@
             <div>
                 <label>닉네임<span>*</span></label>
                 <input type="text" placeholder="닉네임" v-model="nickName">
-                <button type="button" @click="nickCheck()">중복체크</button>	
+                <button type="button" @click="joinNickCheck" class="checkButton">중복체크</button>	
             </div>
             <div>
                 <label>이름<span>*</span></label>
@@ -47,8 +47,10 @@
                 <label>가입목적</label>
                 <textarea cols="60" rows="15" v-model="reason"></textarea>
             </div>
-            <button type="button" @click="fnInsert()" class="insert">가입하기</button>	
-        </form>
+            <div class="button">
+                <button type="button" @click="fnInsert()" class="insertButton">가입하기</button>	
+            </div>
+        </section>
     </div>
     <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/footer.jsp" flush="false" />
 </body>
@@ -71,46 +73,84 @@
             };
         },
         methods: {
-            idCheck() {
+            joinIdCheck() {
+                if(this.userId == ''){
+                    alert("사용할 아이디를 입력해주세요");
+                    return;
+                }
                 var paramap = {
                     userId : this.userId
                 };
                 $.ajax({
-                    url : "login.dox",
+                    url : "idExist.dox",
                     dataType : "json",
                     type : "POST",
                     data : paramap,
                     success : (data) => {
                         this.idCheck = true;
-                        alert("사용할 수 있는 아이디입니다.");
+                        alert(data.message);
                     },
                 });
             },
-            nickCheck() {
+            joinNickCheck() {
+                if(this.nickName == ''){
+                    alert("사용할 닉네임을 입력해주세요");
+                    return;
+                }
                 var paramap = {
-
+                    nickName : this.nickName
                 };
                 $.ajax({
-                    url : "newJoin.dox",
+                    url : "nickExist.dox",
                     dataType : "json",
                     type : "POST",
                     data : paramap,
                     success : (data) => {
                         this.nickCheck = true;
-                        alert("사용할 수 있는 닉네임입니다.");
+                        alert(data.message);
                     },
                 });
             },
             fnInsert() {
-                if(this.idCheck == false){
+                // 아이디
+                if(this.userId == ''){
+                    alert("사용할 아이디를 입력해주세요");
+                    return;
+                } else if(this.idCheck == false){
                     alert("아이디 중복을 확인해주세요");
+                    return;
                 }
-                if(this.nickCheck == false){
-                    alert("닉네임 중복을 확인해주세요");
-                }
-                if(this.pwd != this.pwdCheck || !this.pwdCheck){
+
+                // 비밀번호
+                if(this.pwd == ''){
+                    alert("사용할 비밀번호를 입력해주세요");
+                    return;
+                } else if(this.pwd != this.pwdCheck || !this.pwdCheck){
                     alert("비밀번호 확인을 해주세요");
+                    return;
                 }
+
+                // 닉네임
+                if(this.nickName == ''){
+                    alert("사용할 닉네임을 입력해주세요");
+                    return;
+                } else if(this.nickCheck == false){
+                    alert("닉네임 중복을 확인해주세요");
+                    return;
+                }
+
+                // 이름
+                if(this.userName == ''){
+                    alert("이름을 입력해주세요");
+                    return;
+                }
+
+                // 전화번호
+                if(this.phone == ''){
+                    alert("전화번호를 입력해주세요");
+                    return;
+                }
+                
                 var paramap = {
                     userId : this.userId,
                     pwd : this.pwd,
@@ -125,7 +165,7 @@
                     type : "POST",
                     data : paramap,
                     success : (data) => {
-                        
+                        alert(data.message);
                     },
                 });
             },

@@ -87,10 +87,10 @@
                 });
             },
             goReset(){
-                location.href = "/main/resetPwd.do";
+                location.href = "/user/resetPwd.do";
             },
             goJoin(){
-                location.href = "/main/joinPage.do";
+                location.href = "/user/joinPage.do";
             }
         },
         mounted() {

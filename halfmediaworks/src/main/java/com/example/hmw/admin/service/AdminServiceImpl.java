@@ -13,7 +13,7 @@ import com.example.hmw.admin.model.AdminModel;
 public class AdminServiceImpl implements AdminService{
 
 	@Autowired
-	AdminMapper userMapper;
+	AdminMapper adminMapper;
 	
 	
 	@Override
@@ -21,7 +21,7 @@ public class AdminServiceImpl implements AdminService{
 	// 유저 목록
 	public HashMap<String, Object> getUserList(HashMap<String, Object> map) {
 		HashMap<String, Object> userMap = new HashMap<>();
-		List<AdminModel> membersList = userMapper.getUserList(userMap);
+		List<AdminModel> membersList = adminMapper.getUserList(userMap);
 		userMap.put("userList", membersList);
 		return userMap;
 	}
@@ -30,7 +30,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public HashMap<String, Object> getRequests(HashMap<String, Object> map) {
 		HashMap<String, Object> reqMap = new HashMap<>();
-		List<AdminModel> requestList = userMapper.getRequests(reqMap);
+		List<AdminModel> requestList = adminMapper.getRequests(reqMap);
 		reqMap.put("requestList", requestList);
 		return reqMap;
 	}	

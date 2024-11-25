@@ -10,4 +10,8 @@ public interface MainService {
 	
 	// 회원가입 폼 양식 데이터
 	HashMap<String, Object> intoNewMember(HashMap<String, Object> map);
+	// 아이디 중복체크
+	HashMap<String, Object> idExistCheck(HashMap<String, Object> map);
+	// 닉네임 중복체크
+	HashMap<String, Object> nickExistCheck(HashMap<String, Object> map);
 }

@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class AdminController {
 	@Autowired
-	AdminService userService;
+	AdminService adminService;
 	
 	@Autowired
 	HttpSession session;
@@ -31,10 +31,10 @@ public class AdminController {
 	// 관리자 페이지 사용자 데이터
 	@RequestMapping(value = "admin/getUser.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getUserInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+	public String getUserList(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
 		try {
 			HashMap<String, Object> userMap = new HashMap<String, Object>();
-			userMap = userService.getUserList(map);
+			userMap = adminService.getUserList(map);
 			return new Gson().toJson(userMap);
 	    } catch (Exception e) {
 	        e.printStackTrace();  // 구체적인 오류 로그 확인
@@ -48,7 +48,7 @@ public class AdminController {
 	public String getRequest(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
 		try {
 			HashMap<String, Object> reqMap = new HashMap<String, Object>();
-			reqMap = userService.getRequests(map);
+			reqMap = adminService.getRequests(map);
 			return new Gson().toJson(reqMap);
 		} catch (Exception e) {
 			e.printStackTrace();  // 구체적인 오류 로그 확인

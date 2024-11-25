@@ -34,7 +34,7 @@ public class MainServiceImpl implements MainService{
 			if(idPwd == null) {	
 				// 아이디나 비밀번호가 맞지 않다
 				resultMap.put("code", 400);
-				int idCheck = mainMapper.inputId(map); 
+				int idCheck = mainMapper.inputId(); 
 				if(idCheck == 0) {	
 					// 맞지 않은 아이디 or 존재하지 않은 아이디
 					resultMap.put("message", "아이디가 다르거나 존재하지 않습니다.");
@@ -92,6 +92,42 @@ public class MainServiceImpl implements MainService{
 		}
 		return resultMap;
 	}
+
+	// 아이디 중복체크
+	@Override
+	public HashMap<String, Object> idExistCheck(HashMap<String, Object> map) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		// 아이디 중복 체크
+		int idCheck = mainMapper.inputId();
+		if(idCheck == 1) {	
+			// 중복 아이디
+			resultMap.put("message", "이미 존재하는 아이디입니다.");
+		} else {
+			resultMap.put("message", "사용 가능한 아이디입니다.");
+			resultMap.put("newId", idCheck);
+		}
+		System.out.println("아이디 : "+idCheck);
+		return resultMap;
+	}
 	
+	// 닉네임 중복체크
+	@Override
+	public HashMap<String, Object> nickExistCheck(HashMap<String, Object> map) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		// 닉네임 중복 체크
+		int checkNick = mainMapper.checkNick();
+		if(checkNick == 1) {
+			// 중복 닉네임
+			resultMap.put("message", "닉네임이 이미 존재합니다.");
+		} else {
+			resultMap.put("message", "사용 가능한 닉네임입니다.");
+			resultMap.put("newNick", checkNick);
+		}
+		System.out.println("닉네임 : "+checkNick);
+		return resultMap;
+	}
+
+
+
 
 }

@@ -102,6 +102,7 @@ public class MainController {
 		try {
 			HashMap<String, Object> inputNew = new HashMap<String, Object>();
 			inputNew = mainService.intoNewMember(map);
+			System.out.println("회원가입 데이터 : "+inputNew);
 			return new Gson().toJson(inputNew);
 		} catch (Exception e) {
 			e.printStackTrace();  // 구체적인 오류 로그 확인
@@ -109,6 +110,34 @@ public class MainController {
 		}
 	}
 	
+	// 아이디 중복체크
+	@RequestMapping(value = "user/idExist.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String idExistCheck(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {
+			HashMap<String, Object> idExistCheck = new HashMap<String, Object>();
+			idExistCheck = mainService.idExistCheck(map);
+			System.out.println("아디 중복 : "+idExistCheck);
+			return new Gson().toJson(idExistCheck);
+		} catch (Exception e) {
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
+	}
+	
 	// 닉네임 중복체크
+	@RequestMapping(value = "user/nickExist.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String nickExistCheck(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {			
+			HashMap<String, Object> nickExistCheck = new HashMap<String, Object>();
+			nickExistCheck = mainService.nickExistCheck(map);
+			System.out.println("닉 중복 : "+nickExistCheck);
+			return new Gson().toJson(nickExistCheck);
+		} catch (Exception e) {
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
+	}
 
 }

@@ -36,7 +36,7 @@ label {
     margin:10px 0;
 }
 
-.submitButton button {
+.submitButton button, .joinForm .button button {
     width:150px;
     height:32px;
     margin:8px 0;
@@ -46,7 +46,7 @@ label {
     color:#fff;
     border: none;
 }
-.submitButton button:hover {
+.submitButton button:hover, .joinForm .button button:hover {
     background-color: #333;
     font-weight: bold;
     transition: 0.75s;
@@ -54,38 +54,31 @@ label {
 
 
 /* 회원가입 폼 양식 */
-.new-join div label {
-    font-size:20px;
-    font-weight: bold;
-    margin:0;
+.joinForm {
+    margin:0 auto;
+    width:40%;
+}
+.joinForm div {
+    margin-bottom: 15px;
 }
 
-.new-join {
-    width:560px;
-    border: 1px solid black;
-    margin:40px;
-    box-sizing: border-box;
-    padding:20px;
+.joinForm .button {
+    text-align: center;
 }
-.new-join div {
-    margin:24px;
-    line-height:20px;
+
+.joinForm label {
+    width:150px;
+    font-weight: bold;
 }
-.new-join div label {
-	display:inline-block;
-	width:140px;
+
+.joinForm label span {
+    color: red;
 }
-.new-join div input {
-	height:22px;
+
+.checkButton {
+    margin-left:10px;
 }
-.new-join div textarea {
-	margin-top:20px;
-}
-.new-join button.insert {
-    background-color:#333;
-    color:#fff;
-    border-radius:30px;
-    font-weight:bold;
-    transition: 0.5s;
-    cursor:pointer;
+
+.joinForm button .insertButton {
+    width:200px;
 }
