@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import com.example.hmw.admin.model.AdminModel;
 import com.example.hmw.main.mapper.MainMapper;
 import com.example.hmw.main.model.MainModel;
 
@@ -66,10 +66,30 @@ public class MainServiceImpl implements MainService{
 	@Override
 	public HashMap<String, Object> userLogout(HashMap<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		// 세션 삭제
-		session.invalidate();
-		resultMap.put("message", "로그아웃되었습니다.");
-		System.out.println("로그아웃 이후 세션 : "+session);
+		try {
+			// 세션 삭제
+			session.invalidate();
+			resultMap.put("message", "로그아웃되었습니다.");
+			System.out.println("로그아웃 이후 세션 : "+session);
+		} catch(Exception e) {
+			resultMap.put("result", "fail");
+			resultMap.put("message", "로그아웃 처리 중 문제가 발생했습니다.");
+		}
+		return resultMap;
+	}
+
+	// 회원가입
+	@Override
+	public HashMap<String, Object> intoNewMember(HashMap<String, Object> map) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			List<MainModel> newMember = mainMapper.intoNewMember(resultMap);
+			resultMap.put("userInfo", newMember);
+			resultMap.put("message", "정상적으로 가입되었습니다.");
+		} catch(Exception e) {
+			resultMap.put("result", "fail");
+			resultMap.put("message", "회원가입 과정 중 문제가 발생했습니다.");
+		}
 		return resultMap;
 	}
 	

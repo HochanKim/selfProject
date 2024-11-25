@@ -7,15 +7,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.hmw.admin.service.UserService;
+import com.example.hmw.admin.service.AdminService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-public class UserController {
+public class AdminController {
 	@Autowired
-	UserService userService;
+	AdminService userService;
 	
 	@Autowired
 	HttpSession session;

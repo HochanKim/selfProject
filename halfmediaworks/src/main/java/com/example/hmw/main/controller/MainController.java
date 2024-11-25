@@ -57,6 +57,12 @@ public class MainController {
 
         return sessionInfo;
     }
+	
+	// 회원가입
+	@RequestMapping("user/joinPage.do")
+	public String userJoin(Model model) throws Exception {
+		return "user/joinPage";
+	}
 
 	
 	
@@ -88,5 +94,21 @@ public class MainController {
 	        return "error";       // 오류 발생 시 반환 값
 	    }
 	}
+	
+	// 회원가입
+	@RequestMapping(value = "user/newJoin.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String newJoin(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {
+			HashMap<String, Object> inputNew = new HashMap<String, Object>();
+			inputNew = mainService.intoNewMember(map);
+			return new Gson().toJson(inputNew);
+		} catch (Exception e) {
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
+	}
+	
+	// 닉네임 중복체크
 
 }

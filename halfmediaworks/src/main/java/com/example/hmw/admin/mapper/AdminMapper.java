@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import com.example.hmw.admin.model.UserModel;
+import com.example.hmw.admin.model.AdminModel;
 
 
 @Mapper
-public interface UserMapper {
+public interface AdminMapper {
 	// 관리자 페이지
 	// 사용자 가져오기
-    List<UserModel> getUserList(HashMap<String, Object> map);
+    List<AdminModel> getUserList(HashMap<String, Object> map);
     
     // 요청 의뢰 가져오기
-    List<UserModel> getRequests(HashMap<String, Object> map);
+    List<AdminModel> getRequests(HashMap<String, Object> map);
 }

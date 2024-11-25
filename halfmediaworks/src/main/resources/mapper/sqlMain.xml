@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.hmw.main.mapper.MainMapper">	
+<mapper namespace="com.example.hmw.main.mapper.MainMapper">
+	<!-- user/login.do -->
 	<!-- 로그인 쿼리문 -->
 	<select id="userLogin" parameterType="hashmap" resultType="com.example.hmw.main.model.MainModel">	
 		<!-- 'resultType'에 잘못된 작성으로 오류가 발생했음 -->
@@ -11,11 +12,26 @@
 		WHERE userId = #{userId} and pwd = #{pwd}
 	</select>
 	
-	<!-- 아이디 존재여부(중복체크) -->
+	<!-- 아이디 존재여부 -->
 	<select id="inputId" parameterType="hashmap" resultType="Integer">	
 		SELECT COUNT(userId)
 		FROM HMW_USER
 		WHERE userId = #{userId}
 	</select>
 	
+	<!-- user/joinPage.do -->
+	<!-- 회원가입 -->
+	<insert id="intoNewMember" parameterType="hashmap">
+		INSERT INTO HMW_USER
+			(userId, pwd, nickName, userName, p_number, reason, status)
+		VALUES
+			(#{userId}, #{pwd}, #{nickName}, #{userName}, #{pNumber}, #{reason}, 'N')
+	</insert>
+	
+	<!-- 닉네임 중복체크 -->
+	<select id="checkNick" parameterType="hashmap" resultType="Integer">	
+		SELECT COUNT(nickName)
+		FROM HMW_USER
+		WHERE nickName = #{nickName}
+	</select>
 </mapper>

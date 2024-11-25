@@ -7,4 +7,7 @@ public interface MainService {
 	HashMap<String, Object> acceptLogin(HashMap<String, Object> map);
 	// 로그아웃
 	HashMap<String, Object> userLogout(HashMap<String, Object> map);
+	
+	// 회원가입 폼 양식 데이터
+	HashMap<String, Object> intoNewMember(HashMap<String, Object> map);
 }

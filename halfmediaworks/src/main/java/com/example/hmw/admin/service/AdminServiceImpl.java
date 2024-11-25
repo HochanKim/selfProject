@@ -6,14 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.hmw.admin.mapper.UserMapper;
-import com.example.hmw.admin.model.UserModel;
+import com.example.hmw.admin.mapper.AdminMapper;
+import com.example.hmw.admin.model.AdminModel;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class AdminServiceImpl implements AdminService{
 
 	@Autowired
-	UserMapper userMapper;
+	AdminMapper userMapper;
 	
 	
 	@Override
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
 	// 유저 목록
 	public HashMap<String, Object> getUserList(HashMap<String, Object> map) {
 		HashMap<String, Object> userMap = new HashMap<>();
-		List<UserModel> membersList = userMapper.getUserList(userMap);
+		List<AdminModel> membersList = userMapper.getUserList(userMap);
 		userMap.put("userList", membersList);
 		return userMap;
 	}
@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public HashMap<String, Object> getRequests(HashMap<String, Object> map) {
 		HashMap<String, Object> reqMap = new HashMap<>();
-		List<UserModel> requestList = userMapper.getRequests(reqMap);
+		List<AdminModel> requestList = userMapper.getRequests(reqMap);
 		reqMap.put("requestList", requestList);
 		return reqMap;
 	}	
