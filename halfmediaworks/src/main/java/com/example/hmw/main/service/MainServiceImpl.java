@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.hmw.admin.model.AdminModel;
+
 import com.example.hmw.main.mapper.MainMapper;
 import com.example.hmw.main.model.MainModel;
 
@@ -34,7 +34,7 @@ public class MainServiceImpl implements MainService{
 			if(idPwd == null) {	
 				// 아이디나 비밀번호가 맞지 않다
 				resultMap.put("code", 400);
-				int idCheck = mainMapper.inputId(); 
+				int idCheck = mainMapper.inputId(map); 
 				if(idCheck == 0) {	
 					// 맞지 않은 아이디 or 존재하지 않은 아이디
 					resultMap.put("message", "아이디가 다르거나 존재하지 않습니다.");
@@ -83,11 +83,11 @@ public class MainServiceImpl implements MainService{
 	public HashMap<String, Object> intoNewMember(HashMap<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		try {
-			List<MainModel> newMember = mainMapper.intoNewMember(resultMap);
-			resultMap.put("userInfo", newMember);
+			mainMapper.intoNewMember(map);		// 'insert문'은 리턴타입이 없음
+			System.out.println("가입 : "+map);
 			resultMap.put("message", "정상적으로 가입되었습니다.");
 		} catch(Exception e) {
-			resultMap.put("result", "fail");
+			System.out.println("에러 : "+e);
 			resultMap.put("message", "회원가입 과정 중 문제가 발생했습니다.");
 		}
 		return resultMap;
@@ -98,10 +98,10 @@ public class MainServiceImpl implements MainService{
 	public HashMap<String, Object> idExistCheck(HashMap<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		// 아이디 중복 체크
-		int idCheck = mainMapper.inputId();
+		int idCheck = mainMapper.inputId(map);
 		if(idCheck == 1) {	
 			// 중복 아이디
-			resultMap.put("message", "이미 존재하는 아이디입니다.");
+			resultMap.put("message", "동일한 아이디가 존재합니다.");
 		} else {
 			resultMap.put("message", "사용 가능한 아이디입니다.");
 			resultMap.put("newId", idCheck);
@@ -115,7 +115,7 @@ public class MainServiceImpl implements MainService{
 	public HashMap<String, Object> nickExistCheck(HashMap<String, Object> map) {
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		// 닉네임 중복 체크
-		int checkNick = mainMapper.checkNick();
+		int checkNick = mainMapper.checkNick(map);
 		if(checkNick == 1) {
 			// 중복 닉네임
 			resultMap.put("message", "닉네임이 이미 존재합니다.");

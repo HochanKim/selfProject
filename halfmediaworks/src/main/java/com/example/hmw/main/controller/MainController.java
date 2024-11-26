@@ -1,7 +1,6 @@
 package com.example.hmw.main.controller;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,6 +61,12 @@ public class MainController {
 	@RequestMapping("user/joinPage.do")
 	public String userJoin(Model model) throws Exception {
 		return "user/joinPage";
+	}
+	
+	// 아이디-패스워드 찾기 페이지
+	@RequestMapping("user/resetData.do")
+	public String crossRoads(Model model) throws Exception {
+		return "user/resetData";
 	}
 
 	

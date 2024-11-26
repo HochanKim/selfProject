@@ -1,45 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login&join.css">
+        <script src="${pageContext.request.contextPath}/js/vue.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
+        <title>HMW 로그인</title>
+    </head>
 
-<head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login&join.css">
-    <script src="${pageContext.request.contextPath}/js/vue.js"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-    <title>HMW 로그인</title>
-</head>
-
-<body>
-    <header>
-        <jsp:include page="/WEB-INF/main/header.jsp" flush="false" />
-    </header>
-    <div id="app">
-        <form>
-            <h1>로그인</h1>
-            <div class="input">
-                <label>아이디</label>
-                <input type="text" placeholder="아이디" v-model="userId" @keyup.enter="fnLogin">
-            </div>
-            <div class="input">
-                <label>비밀번호</label>
-                <input type="password" placeholder="비밀번호" v-model="pwd" @keyup.enter="fnLogin">
-            </div>
-            <div class="submitButton">
-                <button type="button" @click="fnLogin">로그인</button>
-            </div>
-            <div class="submitButton">
-                <button type="button" @click="goReset">아이디/비밀번호 찾기</button>
-            </div>
-            <div class="submitButton">
-                <button type="button" @click="goJoin">회원가입</button>
-            </div>
-        </form>
-    </div>
-    <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
-</body>
-
+    <body>
+        <header>
+            <jsp:include page="/WEB-INF/main/header.jsp" flush="false" />
+        </header>
+        <div id="app">
+            <form>
+                <h1>로그인</h1>
+                <div class="input">
+                    <label>아이디</label>
+                    <input type="text" placeholder="아이디" v-model="userId" @keyup.enter="fnLogin">
+                </div>
+                <div class="input">
+                    <label>비밀번호</label>
+                    <input type="password" placeholder="비밀번호" v-model="pwd" @keyup.enter="fnLogin">
+                </div>
+                <div class="submitButton">
+                    <button type="button" @click="fnLogin">로그인</button>
+                </div>
+                <div class="submitButton">
+                    <button type="button" @click="goReset">아이디/비밀번호 찾기</button>
+                </div>
+                <div class="submitButton">
+                    <button type="button" @click="goJoin">회원가입</button>
+                </div>
+            </form>
+        </div>
+        <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
+    </body>
 </html>
 
 <script>
@@ -87,7 +85,7 @@
                 });
             },
             goReset(){
-                location.href = "/user/resetPwd.do";
+                location.href = "/user/resetData.do";
             },
             goJoin(){
                 location.href = "/user/joinPage.do";
