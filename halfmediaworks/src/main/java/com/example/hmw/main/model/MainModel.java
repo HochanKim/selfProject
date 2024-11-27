@@ -14,4 +14,5 @@ public class MainModel {
 	private String userName;		// 고객이름
 	private String reason;		// 가입목적
 	private String pNumber;		// 고객 전화번호
+	private String email;		// 고객 이메일
 }

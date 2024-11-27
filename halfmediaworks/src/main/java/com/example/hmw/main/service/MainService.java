@@ -14,4 +14,10 @@ public interface MainService {
 	HashMap<String, Object> idExistCheck(HashMap<String, Object> map);
 	// 닉네임 중복체크
 	HashMap<String, Object> nickExistCheck(HashMap<String, Object> map);
+	
+	// 아이디 찾기
+	// 닉네임
+	HashMap<String, Object> sendNick(HashMap<String, Object> map);
+	// 이메일
+	HashMap<String, Object> sendEmail(HashMap<String, Object> map);
 }

@@ -20,7 +20,7 @@
         <div class="tab">
             <button @click="membersClick" :class="{ active: members }">회원관리</button>
             <button @click="requestsClick" :class="{ active: requests }">의뢰확인</button>
-          </div>
+        </div>
         <table v-if="members">
 			<tr>
 			    <th>사용자 아이디</th>
@@ -69,9 +69,7 @@
     </div>
     <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/footer.jsp" flush="false" />
 </body>
-
 </html>
-
 <script>
     const app = Vue.createApp({
         data() {

@@ -127,6 +127,28 @@ public class MainServiceImpl implements MainService{
 		return resultMap;
 	}
 
+	// 닉네임으로 아이디 찾기
+	@Override
+	public HashMap<String, Object> sendNick(HashMap<String, Object> map) {
+		HashMap<String, Object> nickMap = new HashMap<String, Object>();
+		// 가져온 아이디
+		List<MainModel> nickWithId = mainMapper.sendNick(map);
+		nickMap.put("getId", nickWithId);
+		System.out.println("닉아디 : "+nickWithId);
+		return nickMap;
+	}
+
+	// 이메일로 아이디 찾기
+	@Override
+	public HashMap<String, Object> sendEmail(HashMap<String, Object> map) {
+		HashMap<String, Object> emailMap = new HashMap<String, Object>();
+		// 가져온 아이디
+		List<MainModel> nickWithEmail = mainMapper.sendEmail(map);
+		emailMap.put("getId", nickWithEmail);
+		System.out.println("이멜아디 : "+nickWithEmail);
+		return emailMap;
+	}
+
 
 
 

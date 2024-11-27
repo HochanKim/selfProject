@@ -68,6 +68,18 @@ public class MainController {
 	public String crossRoads(Model model) throws Exception {
 		return "user/resetData";
 	}
+	
+	// 아이디 찾기
+	@RequestMapping("user/searchId.do")
+	public String searchId(Model model) throws Exception {
+		return "user/searchId";
+	}
+	
+	// 비밀번호 찾기
+	@RequestMapping("user/resetPwd.do")
+	public String resetPwd(Model model) throws Exception {
+		return "user/resetPwd";
+	}
 
 	
 	
@@ -144,5 +156,34 @@ public class MainController {
 			return "error";       // 오류 발생 시 반환 값
 		}
 	}
-
+	
+	// 아이디 찾기 (닉네임)
+	@RequestMapping(value = "user/sendNick.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String recallNickId(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {			
+			HashMap<String, Object> sendNick = new HashMap<String, Object>();
+			sendNick = mainService.sendNick(map);
+			System.out.println("보낸 닉 : "+sendNick);
+			return new Gson().toJson(sendNick);
+		} catch (Exception e) {
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
+	}
+	
+	// 아이디 찾기 (이메일)
+	@RequestMapping(value = "user/sendEmail.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String recallEmailId(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {			
+			HashMap<String, Object> sendEmail = new HashMap<String, Object>();
+			sendEmail = mainService.sendEmail(map);
+			System.out.println("보낸 이멜 : "+sendEmail);
+			return new Gson().toJson(sendEmail);
+		} catch (Exception e) {
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
+	}
 }

@@ -75,6 +75,11 @@ label {
     color: red;
 }
 
+.joinForm input {
+    width:200px;
+    height: 24px;
+}
+
 .checkButton {
     margin-left:10px;
 }

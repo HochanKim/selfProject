@@ -27,6 +27,9 @@
                 <div>
                     <label>비밀번호 확인<span>*</span></label>
                     <input type="password" v-model="pwdCheck">
+                    <!-- 비밀번호 컨펌 문구 -->
+                    <span v-if="pwd.length > 0 && pwdCheck != pwd" style="font-size: 12px; margin-left: 10px; color: crimson;">비밀번호가 다릅니다</span>
+                    <span v-if="pwd.length > 0 && pwdCheck == pwd" style="font-size: 12px; margin-left: 10px; color: green;">맞는 비밀번호입니다</span>
                 </div>
                 <div>
                     <label>닉네임<span>*</span></label>
@@ -42,8 +45,12 @@
                     <input type="text" v-model="phone">
                 </div>
                 <div>
+                    <label>이메일<span>*</span></label>
+                    <input type="email" v-model="email" placeholder="username@example.org">
+                </div>
+                <div>
                     <label>가입목적</label>
-                    <textarea cols="60" rows="15" v-model="reason"></textarea>
+                    <textarea cols="60" rows="10" v-model="reason"></textarea>
                 </div>
                 <div class="button">
                     <button type="button" @click="fnInsert()" class="insertButton">가입하기</button>	
@@ -64,6 +71,7 @@
                 nickName : "",
                 userName : "",
                 phone : "",
+                email : "",
                 reason : "",
                 idCheck : false,
                 nickCheck : false
@@ -71,8 +79,12 @@
         },
         methods: {
             joinIdCheck() {
+                var regId =  /^[a-zA-Z0-9]*$/;   // 아이디 정규표현식
                 if(this.userId == ''){
                     alert("사용할 아이디를 입력해주세요");
+                    return;
+                } else if(!regId.test(this.userId) || this.userId.length < 5){
+                    alert("아이디는 5자 이상의 영문과 숫자로만 생성이 가능합니다.");
                     return;
                 }
                 var paramap = {
@@ -109,6 +121,8 @@
                 });
             },
             fnInsert() {
+                var regPhone = /^(01[016789]|02|0[3-9]{1}[0-9]{1})[-]?\d{3,4}[-]?\d{4}$/; 	// 전화번호 정규표현식 (하이픈 선택적용)
+                var regEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; 			// 이메일 정규표현식
                 // 아이디
                 if(this.userId == ''){
                     alert("사용할 아이디를 입력해주세요");
@@ -116,7 +130,7 @@
                 } else if(this.idCheck == false){
                     alert("아이디 중복을 확인해주세요");
                     return;
-                }
+                } 
 
                 // 비밀번호
                 if(this.pwd == ''){
@@ -146,6 +160,18 @@
                 if(this.phone == ''){
                     alert("전화번호를 입력해주세요");
                     return;
+                } else if (!regPhone.test(this.phone)) {
+                    alert("잘못된 전화번호를 입력했습니다. \n해외 거주자는 이메일 주소 혹은 상세내용란에 메신저, SNS 아이디를 남겨주세요");
+                    return;
+                }
+
+                // 이메일
+                if(this.email == ''){
+                    alert("이메일 주소를 입력해주세요");
+                    return;
+                } else if(!regEmail.test(this.email)) { 	
+                    alert('형식에 맞지 않는 이메일입니다. 다시 입력해 주세요');     
+                    return;
                 }
                 
                 var paramap = {
@@ -154,7 +180,8 @@
                     nickName : this.nickName,
                     userName : this.userName,
                     pNumber : this.phone,
-                    reason : this.reason
+                    reason : this.reason,
+                    email : this.email
                 };
                 $.ajax({
                     url : "newJoin.dox",

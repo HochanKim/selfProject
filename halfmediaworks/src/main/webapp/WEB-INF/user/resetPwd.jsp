@@ -15,22 +15,7 @@
             <jsp:include page="/WEB-INF/main/header.jsp" flush="false" />
         </header>
         <div id="app">
-            <div class="searchingBox">
-                <a href="../user/searchId.do">
-                    <div>
-                        <i class="fa-regular fa-id-card"></i>
-                        <p>아이디 찾기</p>
-                    </div>
-                </a>
-            </div>
-            <div class="searchingBox">
-                <a href="../user/resetPwd.do">
-                    <div>
-                        <i class="fa-solid fa-key"></i>
-                        <p>비밀번호 찾기</p>
-                    </div>
-                </a>
-            </div>
+            
         </div>
         <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
     </body>
