@@ -1,12 +1,8 @@
-# Personal Project 
+# 영상컨텐츠 제작회사의 홈페이지 구성하기 (Spring Boot, Maven)
 
 ## <img src="https://github.com/user-attachments/assets/a5e2f4b7-b8ff-4a10-8dbf-16bf16e267fd" width="30" height="30" /> 어떻게 했는가?
 
-+  jsp를 주로 활용하여 태그를 마크업하고 로그인과 회원가입폼, 그리고 영상제작 회사의 사이트를 가상으로 설정하여 
-
-   이용자들이 영상제작 및 편집 등의 상담을 문의하기 위해 만든 'Contacts.jsp' 폼을 만들어서 이것을 DB를 통해
-
-   관리할수 있도록 하였습니다.
++  Spring 프레임워크에서 MVC 패턴을 활용하여 영상컨텐츠 회사의 웹 화면 구성, MySQL에 저장한 데이터들을 이용하여 CRUD를 적용 
 
 
 
