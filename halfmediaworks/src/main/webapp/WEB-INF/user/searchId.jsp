@@ -29,7 +29,7 @@
                     <div class="sendBtn" @click="searchEmail">전송하기</div>
                 </div>
                 <div v-for="item in getInfo">
-                    <p>{{item.userName}}님의 아이디는 '{{item.userId}}'입니다.</p>
+                    <h4 class="mapOutput">{{item.userName}}님의 아이디는 <span>'{{item.userId}}'</span> 입니다.</h4>
                 </div>
             </section>
         </div>
@@ -87,11 +87,13 @@
                 });
             },
             getNick() {
+                // 닉네임 탭 띄우기
                 this.nickInput = true;
                 this.emailInput = false;
                 this.getInfo = [];  // 탭 변경 시 이전 검색 결과 초기화
             },
             getEmail() {
+                // 이메일 탭 띄우기
                 this.emailInput = true;
                 this.nickInput = false;
                 this.getInfo = [];  // 탭 변경 시 이전 검색 결과 초기화

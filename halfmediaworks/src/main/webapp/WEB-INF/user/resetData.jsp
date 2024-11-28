@@ -27,7 +27,7 @@
                 <a href="../user/resetPwd.do">
                     <div>
                         <i class="fa-solid fa-key"></i>
-                        <p>비밀번호 찾기</p>
+                        <p>비밀번호 재설정</p>
                     </div>
                 </a>
             </div>

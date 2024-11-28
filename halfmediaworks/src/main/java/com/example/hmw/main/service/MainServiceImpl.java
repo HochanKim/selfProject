@@ -29,7 +29,6 @@ public class MainServiceImpl implements MainService{
 		try {
 			// 아이디-비밀번호 일치여부 (불일치시 데이터 null)
 			MainModel idPwd = mainMapper.userLogin(map);
-			System.out.println("로그인 : "+idPwd);
 			
 			if(idPwd == null) {	
 				// 아이디나 비밀번호가 맞지 않다
@@ -40,7 +39,6 @@ public class MainServiceImpl implements MainService{
 					resultMap.put("message", "아이디가 다르거나 존재하지 않습니다.");
 				} else {
 					// 아이디는 있지만 비밀번호가 일치하지 않음
-					System.out.println("아이디 존재 : "+idCheck);
 					resultMap.put("message", "비밀번호가 틀렸습니다");
 				}
 			} else {
@@ -51,8 +49,6 @@ public class MainServiceImpl implements MainService{
 				// 세션에 저장
 				session.setAttribute("sessionId", idPwd.getUserId());
 				session.setAttribute("sessionStatus", idPwd.getStatus());
-				System.out.println("세션 저장 아이디 : "+idPwd.getUserId());
-				System.out.println("세션 저장 직원유무 : "+idPwd.getStatus());
 			}
 			
 		} catch(Exception e) {
@@ -70,7 +66,6 @@ public class MainServiceImpl implements MainService{
 			// 세션 삭제
 			session.invalidate();
 			resultMap.put("message", "로그아웃되었습니다.");
-			System.out.println("로그아웃 이후 세션 : "+session);
 		} catch(Exception e) {
 			resultMap.put("result", "fail");
 			resultMap.put("message", "로그아웃 처리 중 문제가 발생했습니다.");
@@ -84,10 +79,8 @@ public class MainServiceImpl implements MainService{
 		HashMap<String, Object> resultMap = new HashMap<String, Object>();
 		try {
 			mainMapper.intoNewMember(map);		// 'insert문'은 리턴타입이 없음
-			System.out.println("가입 : "+map);
 			resultMap.put("message", "정상적으로 가입되었습니다.");
 		} catch(Exception e) {
-			System.out.println("에러 : "+e);
 			resultMap.put("message", "회원가입 과정 중 문제가 발생했습니다.");
 		}
 		return resultMap;
@@ -106,7 +99,7 @@ public class MainServiceImpl implements MainService{
 			resultMap.put("message", "사용 가능한 아이디입니다.");
 			resultMap.put("newId", idCheck);
 		}
-		System.out.println("아이디 : "+idCheck);
+		
 		return resultMap;
 	}
 	
@@ -123,7 +116,6 @@ public class MainServiceImpl implements MainService{
 			resultMap.put("message", "사용 가능한 닉네임입니다.");
 			resultMap.put("newNick", checkNick);
 		}
-		System.out.println("닉네임 : "+checkNick);
 		return resultMap;
 	}
 
@@ -134,7 +126,6 @@ public class MainServiceImpl implements MainService{
 		// 가져온 아이디
 		List<MainModel> nickWithId = mainMapper.sendNick(map);
 		nickMap.put("getId", nickWithId);
-		System.out.println("닉아디 : "+nickWithId);
 		return nickMap;
 	}
 
@@ -145,7 +136,6 @@ public class MainServiceImpl implements MainService{
 		// 가져온 아이디
 		List<MainModel> nickWithEmail = mainMapper.sendEmail(map);
 		emailMap.put("getId", nickWithEmail);
-		System.out.println("이멜아디 : "+nickWithEmail);
 		return emailMap;
 	}
 

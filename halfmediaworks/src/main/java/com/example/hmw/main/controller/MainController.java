@@ -31,11 +31,9 @@ public class MainController {
 		String inUserId = (String) session.getAttribute("sessionId");
 		String inUserStatus = (String) session.getAttribute("sessionStatus");
 		
+		// 가져온 세션에 밸류명 지정해서 키값으로 저장
 		model.addAttribute("sessionId", inUserId);
 		model.addAttribute("sessionStatus", inUserStatus);
-		
-		System.out.println("세션 저장 아이디(서버 컨트롤러) : "+inUserId);
-		System.out.println("세션 저장 직원유무(서버 컨트롤러) : "+inUserStatus);
 		
 		return "user/login";
 	}
@@ -44,9 +42,10 @@ public class MainController {
 	@RequestMapping("/api/session")
     @ResponseBody
     public SessionInfo getSessionInfo(HttpSession session) {
+		// 클래스(SessionInfo)를 통해 객체 'sessionInfo' 생성
         SessionInfo sessionInfo = new SessionInfo();
 
-        // 세션에서 값을 가져옵니다.
+        // 세션에서 값을 가져오기
         String sessionId = (String) session.getAttribute("sessionId");
         String sessionStatus = (String) session.getAttribute("sessionStatus");
 
@@ -119,7 +118,6 @@ public class MainController {
 		try {
 			HashMap<String, Object> inputNew = new HashMap<String, Object>();
 			inputNew = mainService.intoNewMember(map);
-			System.out.println("회원가입 데이터 : "+inputNew);
 			return new Gson().toJson(inputNew);
 		} catch (Exception e) {
 			e.printStackTrace();  // 구체적인 오류 로그 확인
@@ -134,7 +132,6 @@ public class MainController {
 		try {
 			HashMap<String, Object> idExistCheck = new HashMap<String, Object>();
 			idExistCheck = mainService.idExistCheck(map);
-			System.out.println("아디 중복 : "+idExistCheck);
 			return new Gson().toJson(idExistCheck);
 		} catch (Exception e) {
 			e.printStackTrace();  // 구체적인 오류 로그 확인
@@ -149,7 +146,6 @@ public class MainController {
 		try {			
 			HashMap<String, Object> nickExistCheck = new HashMap<String, Object>();
 			nickExistCheck = mainService.nickExistCheck(map);
-			System.out.println("닉 중복 : "+nickExistCheck);
 			return new Gson().toJson(nickExistCheck);
 		} catch (Exception e) {
 			e.printStackTrace();  // 구체적인 오류 로그 확인
@@ -164,7 +160,6 @@ public class MainController {
 		try {			
 			HashMap<String, Object> sendNick = new HashMap<String, Object>();
 			sendNick = mainService.sendNick(map);
-			System.out.println("보낸 닉 : "+sendNick);
 			return new Gson().toJson(sendNick);
 		} catch (Exception e) {
 			e.printStackTrace();  // 구체적인 오류 로그 확인
@@ -179,11 +174,12 @@ public class MainController {
 		try {			
 			HashMap<String, Object> sendEmail = new HashMap<String, Object>();
 			sendEmail = mainService.sendEmail(map);
-			System.out.println("보낸 이멜 : "+sendEmail);
 			return new Gson().toJson(sendEmail);
 		} catch (Exception e) {
 			e.printStackTrace();  // 구체적인 오류 로그 확인
 			return "error";       // 오류 발생 시 반환 값
 		}
 	}
+	
+	// 비밀번호 재설정
 }

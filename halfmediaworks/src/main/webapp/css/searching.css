@@ -79,7 +79,7 @@ h1 {
 }
 
 .inputBox input {
-    width:240px;
+    width:90%;
     height: 30px;
 }
 
@@ -100,4 +100,24 @@ h1 {
     transition: 0.2s;
 }
 
+.mapOutput {
+    margin-top:15px;
+}
+
+.mapOutput span {
+    color:crimson;
+}
+
+
 /* 비밀번호 찾기 */
+.inputBox h4 {
+    margin-bottom : 15px;
+}
+
+.mailPageBtn {
+    margin:12px 3px 0 3px;
+}
+
+.mail-check-box {
+    margin-top:20px;
+}

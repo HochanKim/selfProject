@@ -22,9 +22,10 @@ public interface MainMapper {
 	int checkNick(HashMap<String, Object> map);
 	// 중복 숫자
 	
-	// 아이디 찾기
+	// 아이디 찾기, 비밀번호 변경
 	// 닉네임
 	List<MainModel> sendNick(HashMap<String, Object> map);
 	// 이메일
 	List<MainModel> sendEmail(HashMap<String, Object> map);
+
 }
