@@ -27,5 +27,7 @@ public interface MainMapper {
 	List<MainModel> sendNick(HashMap<String, Object> map);
 	// 이메일
 	List<MainModel> sendEmail(HashMap<String, Object> map);
+	
+	// 이메일 전송
 
 }

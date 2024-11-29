@@ -35,9 +35,9 @@
     const app = Vue.createApp({
         data() {
             return {
-                emailAddr : '',
+                emailAddr : '',     // 사용자가 입력한 이메일 주소값
                 inputCode : '',
-                recieveCode : '',
+                receiveCode : '',
                 emailInData : false
             };
         },
@@ -68,32 +68,7 @@
                     },
                 });
             },
-            checkEmailAddr() {
-                if(this.emailInData == false){
-                    alert("등록한 이메일 주소를 확인해주세요");
-                } else {
-                    alert("어떻게 하지???");
-                }
-                var paramap = [];
-                $.ajax({
-                    url: "",
-                    type: "post",
-                    dataType: "json",
-                    data: paramap,
-                    success : (data) => {
-                        alert("인증번호 발송");
-                    },
-                });
-            },
-            goResetPwd() {
-                if(this.recieveCode == this.inputCode){
-                    alert("비밀번호를 변경하시기 바랍니다.");
-                    location.href="../user/login.do";
-                } else {
-                    alert("이메일 코드가 맞지 않습니다.");
-                    return;
-                }
-            }  
+             
         },
         mounted() {
 
