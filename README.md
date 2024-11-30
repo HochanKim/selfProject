@@ -25,7 +25,7 @@
 
 <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
 
-<img src="https://img.shields.io/badge/vue.js-00ff0F?style=for-the-badge&logo=vue.jsl&logoColor=white">
+<img src="https://img.shields.io/badge/vue.js-00FF00?style=for-the-badge&logo=vue.jsl&logoColor=white">
 
 
 
