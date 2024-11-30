@@ -60,7 +60,7 @@ public class EmailServiceImpl implements EmailService{
 		MimeMessage message = mailSender.createMimeMessage();
 
 		message.addRecipients(RecipientType.TO, to);// 보내는 대상
-		message.setSubject("GoodJob 회원가입 이메일 인증");// 제목
+		message.setSubject("HMW 회원의 이메일 인증코드 발송");// 제목
 
 		String msgg = "";
 		msgg += "<div style='margin:100px;'>";

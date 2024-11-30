@@ -1,20 +1,12 @@
 package com.example.hmw.main.controller;
 
-import com.example.hmw.main.model.EmailModelDto;
 import com.example.hmw.main.service.EmailService;
 import com.google.gson.Gson;
 
-
 import java.util.HashMap;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,10 +32,15 @@ public class EmailController {
  	@PostMapping("user/mailConfirm.dox")
  	@ResponseBody
  	String mailConfirm(@RequestParam("email") String email) throws Exception {
-
-		String code = registerMail.sendSimpleMessage(email);
-	 	System.out.println("인증코드 : " + code);
-	 	return code;
+ 		try {
+ 			String code = registerMail.sendSimpleMessage(email);
+ 		 	System.out.println("인증코드 : " + code);
+ 		 	return new Gson().toJson(code);
+ 		} catch (Exception e) {
+ 			e.printStackTrace();
+ 			System.out.println("에러 : "+e);
+ 			return "error";
+ 		}
  	}
  	
  	

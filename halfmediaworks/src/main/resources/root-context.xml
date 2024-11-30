@@ -1,9 +1,9 @@
 <!-- 이메일 인증 관련 등록 -->
 <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 	<property name="host" value="smtp.gmail.com"/>
-    <property name="port" value="465"/>
+    <property name="port" value="587"/>
     <property name="username" value="ghckskim@gmail.com"/>
-    <property name="password" value="jrlgjlbzrsojowud"/>
+    <property name="password" value=""/>
     <!-- 보안연결 SSL과 관련된 설정 -->
     <property name="javaMailProperties">
 	    <props>
@@ -12,7 +12,17 @@
 	      <prop key="mail.smtps.checkserveridentity">true</prop>
 	      <prop key="mail.smtps.ssl.trust">*</prop>
 	      <prop key="mail.debug">true</prop>
-	      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+	      <!--<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>-->	<!-- 포트 465일 경우 사용될 코드 -->
+	      <!-- 오류 해결을 위한 추가 코드 -->
+	      <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+		  <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
 	     </props>
      </property>
 </bean>
+<!-- 
+	2024.11.30 이메일 코드 전송 문제 해결함.
+	- Java 17 버전의 SSL 보안 설정이 더욱 더 엄격하게 적용하여 'application.properties' 파일에 아래의 코드를 추가하여 정상적인 이메일 코드 전송 문제를 해결함
+	- 추가한 코드들
+		- spring.mail.properties.mail.smtp.ssl.trust=*
+		- spring.mail.properties.mail.smtp.ssl.checkserveridentity=false 
+-->

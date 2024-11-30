@@ -21,8 +21,8 @@
                     <input type="email" placeholder="이메일 주소를 입력하시오" v-model="emailAddr">
                     <button class="sendBtn mailPageBtn" @click="checkInData">확인하기</button>
                     <button class="sendBtn mailPageBtn" @click="checkEmailAddr">전송하기</button>
-                    <div class="mail-check-box">
-                        <input type="text" placeholder="인증번호 6자리를 입력해주세요!" maxlength="6" v-model="inputCode">
+                    <div class="mail-check-box" v-if="sendEmail == true">
+                        <input type="text" placeholder="인증번호 6자리를 입력해주세요" maxlength="6" v-model="inputCode">
                         <button type="button" @click="goResetPwd" class="sendBtn">확인</button>
                     </div>
                 </div>
@@ -36,9 +36,10 @@
         data() {
             return {
                 emailAddr : '',     // 사용자가 입력한 이메일 주소값
-                inputCode : '',
-                receiveCode : '',
-                emailInData : false
+                inputCode : '',     // 입력한 코드
+                receiveCode : '',   // 전송한 코드
+                emailInData : false,
+                sendEmail : false
             };
         },
         methods: {
@@ -68,7 +69,35 @@
                     },
                 });
             },
-             
+            checkEmailAddr(){
+                if(this.emailInData != true){
+                    alert("등록한 이메일 주소를 확인해주세요");
+                    return;
+                }
+                $.ajax({
+                    url : "mailConfirm.dox",
+                    type : "POST",
+                    dataType : "json",
+                    data : {
+                        email : this.emailAddr
+                    },
+                    success : (data) => {
+                        alert("해당 이메일로 인증번호 발송이 완료됐습니다.");
+                        this.sendEmail = true;
+                        console.log("인증코드 : "+data);
+                        this.receiveCode = data;
+                    }
+                });
+            },
+            goResetPwd(){
+                if(this.receiveCode != this.inputCode){
+                    alert("인증번호가 잘못됐습니다");
+                    return;
+                } else {
+                    alert("인증번호 확인이 완료됐습니다");
+                    // location.href="../user/mailCheck.do";
+                }
+            }   
         },
         mounted() {
 
