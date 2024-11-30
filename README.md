@@ -17,13 +17,15 @@
 
 
 ## <img src="https://github.com/user-attachments/assets/a5e2f4b7-b8ff-4a10-8dbf-16bf16e267fd" width="30" height="30" /> 사용된 언어
-<img alt="Static Badge" src="https://img.shields.io/badge/JSP-3178C6">
+<img src="https://img.shields.io/badge/JSP-3178C6">
 
 <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
 
 <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white">
 
 <img src="https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white">
+
+<img src="https://img.shields.io/badge/vue.js-00000F?style=for-the-badge&logo=vue.jsl&logoColor=white">
 
 
 
