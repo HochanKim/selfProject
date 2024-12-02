@@ -75,12 +75,13 @@ h1 {
 .inputBox {
     border: 1px solid #000;
     width: 99%;
-    padding:80px;
+    padding: 80px;
 }
 
 .inputBox input {
-    width:90%;
+    width: 90%;
     height: 30px;
+    margin:10px 0;
 }
 
 .sendBtn {

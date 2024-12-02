@@ -43,10 +43,24 @@
 		WHERE nickName = #{nickName}
 	</select>
 	
-	<!-- 아이디 찾기 (이메일), 비밀번호 변경용 -->
+	<!-- 아이디 찾기 (이메일) -->
 	<select id="sendEmail" parameterType="hashmap" resultType="com.example.hmw.main.model.MainModel">
 		SELECT userId, userName, email
 		FROM hmw_user
 		WHERE email = #{email}
 	</select>
+	
+	<!-- 비밀번호 변경용 -->
+	<select id="sendEmailAndId" parameterType="hashmap" resultType="com.example.hmw.main.model.MainModel">
+		SELECT userId, userName, email
+		FROM hmw_user
+		WHERE email = #{email} AND userId = #{userId}
+	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="resetPwd" parameterType="hashmap">
+		UPDATE hmw_user
+		SET pwd = #{pwd}
+		WHERE userId = #{userId}
+	</update>
 </mapper>

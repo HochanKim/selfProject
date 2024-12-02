@@ -15,9 +15,11 @@ public interface MainService {
 	// 닉네임 중복체크
 	HashMap<String, Object> nickExistCheck(HashMap<String, Object> map);
 	
-	// 아이디 찾기
+	// 아이디 찾기, 비밀번호 변경
 	// 닉네임
 	HashMap<String, Object> sendNick(HashMap<String, Object> map);
 	// 이메일
 	HashMap<String, Object> sendEmail(HashMap<String, Object> map);
+	// 비밀번호 변경
+	HashMap<String, Object> resetPwd(HashMap<String, Object> map);
 }

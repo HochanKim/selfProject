@@ -18,7 +18,7 @@
 			<header id="header">
 				<div class="wrap">
 					<div class="logo-img">
-						<a href="index.jsp">
+						<a href="../../hmwMainPage.do">
 							<img src="/image/logo_colorchange.png" rel="로고">
 						</a>
 					</div>
@@ -123,7 +123,7 @@
 							data: {},
 							success: (data) => {
 								alert(data.message);
-								location.href = "../user/login.do";
+								location.href = "../../hmwMainPage.do";
 							},
 						});
 					},

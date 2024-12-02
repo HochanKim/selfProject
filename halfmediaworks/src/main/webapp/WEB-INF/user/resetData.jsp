@@ -19,7 +19,7 @@
                 <a href="../user/searchId.do">
                     <div>
                         <i class="fa-regular fa-id-card"></i>
-                        <p>아이디 찾기</p>
+                        <p>아이디를 잊었나요?</p>
                     </div>
                 </a>
             </div>
@@ -27,7 +27,7 @@
                 <a href="../user/resetPwd.do">
                     <div>
                         <i class="fa-solid fa-key"></i>
-                        <p>비밀번호 재설정</p>
+                        <p>비밀번호를 잊었나요?</p>
                     </div>
                 </a>
             </div>

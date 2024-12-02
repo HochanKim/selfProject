@@ -7,23 +7,23 @@
         <link rel="stylesheet" href="../../css/searching.css">
         <script src="${pageContext.request.contextPath}/js/vue.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <title>HMW 로그인</title>
+        <title>HMW 비밀번호 변경</title>
     </head>
     <body>
         <header>
             <jsp:include page="/WEB-INF/main/header.jsp" flush="false" />
         </header>
         <div id="app">
-            <h1>비밀번호 재설정</h1>
+            <h1>비밀번호 변경</h1>
             <section>
                 <div class="inputBox">
                     <h4>아이디</h4>
                     <input type="text" placeholder="아이디를 입력하시오" v-model="sendToId">
-                    <div class="sendBtn" @click="checkId">전송하기</div>
+                    <div class="sendBtn" @click="checkId(userId)">확인하기</div>
                 </div>
             </section>
         </div>
-        <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
+        <jsp:include page="/WEB-INF/main/footer.jsp" flush="false"/>
     </body>
 </html>
 <script>
@@ -35,7 +35,8 @@
             };
         },
         methods: {
-            checkId() {
+            checkId(userId) {
+                userId = this.sendToId;
                 if(this.sendToId == ''){
                     alert("아이디를 입력해주세요");
                     return;
@@ -61,7 +62,7 @@
                             } 
                         }
                         if(this.reqFromId == undefined){
-                            location.href="../user/mailCheck.do";
+                            location.href=`../user/mailCheck.do?\${userId}`;
                         }
                     },
                 });

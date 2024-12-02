@@ -139,7 +139,17 @@ public class MainServiceImpl implements MainService{
 		return emailMap;
 	}
 
-
-
+	// 비밀번호 변경
+	@Override
+	public HashMap<String, Object> resetPwd(HashMap<String, Object> map) {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			mainMapper.resetPwd(map);
+			resultMap.put("message", "정상적으로 비밀번호를 변경하였습니다.");
+		} catch(Exception e) {
+			resultMap.put("message", "문제가 발생했습니다.");
+		}
+		return resultMap;
+	}
 
 }

@@ -123,6 +123,9 @@ header .float-right {
 	color:#fff;
 	transition: 0.5s;
 }
+.login a:nth-child(1){
+  margin-right:10px;
+}
 
 
 /* 메뉴버튼 영역 */
@@ -246,7 +249,6 @@ footer {
   font-style: normal;
   position: relative;
   z-index: -2;
-  margin-top:40px;
 }
 
 

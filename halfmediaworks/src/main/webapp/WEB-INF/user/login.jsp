@@ -76,10 +76,9 @@
                             console.log(data.code);
                             alert(data.message);
                         } else {
-                            // location.href = "/main/joinPage.do";
+                            location.href = "../../hmwMainPage.do";
                             console.log(data.code);
                             alert(data.message);
-                            location.reload();
                         }
                     },
                 });

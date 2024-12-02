@@ -22,6 +22,12 @@ public class MainController {
 	@Autowired
 	HttpSession session;
 	
+	// 메인 페이지
+	@RequestMapping("hmwMainPage.do")
+	public String homePage(Model model) throws Exception {
+		return "main/index";
+	}
+	
 	
 	// 로그인 페이지 + 세션 불러오기
 	@RequestMapping("user/login.do")
@@ -74,12 +80,17 @@ public class MainController {
 		return "user/searchId";
 	}
 	
-	// 비밀번호 찾기
+	// 비밀번호 재설정 (앞)
 	@RequestMapping("user/resetPwd.do")
 	public String resetPwd(Model model) throws Exception {
 		return "user/resetPwd";
 	}
-
+	
+	// 비밀번호 재설정 (최종)
+	@RequestMapping("user/newPassword.do")
+	public String updatePwd(Model model) throws Exception {
+		return "user/newPassword";
+	}
 	
 	
 	// 'view'로 전달
@@ -182,4 +193,16 @@ public class MainController {
 	}
 	
 	// 비밀번호 재설정
+	@RequestMapping(value = "user/updatePassword.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String updatePwd(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {
+			HashMap<String, Object> updatePwd = new HashMap<String, Object>();
+			updatePwd = mainService.resetPwd(map);
+			return new Gson().toJson(updatePwd);
+		} catch (Exception e) {
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
+	}
 }

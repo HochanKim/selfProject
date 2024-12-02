@@ -20,7 +20,7 @@ public class EmailController {
     EmailService emailService;
 	
 	@Autowired
-    RegisterMailService registerMail; // 주입된 서비스 객체
+    RegisterMailService registerMail; 	// 주입된 서비스 객체
     
     // 이메일 전송 페이지
  	@RequestMapping("user/mailCheck.do")
@@ -34,7 +34,6 @@ public class EmailController {
  	String mailConfirm(@RequestParam("email") String email) throws Exception {
  		try {
  			String code = registerMail.sendSimpleMessage(email);
- 		 	System.out.println("인증코드 : " + code);
  		 	return new Gson().toJson(code);
  		} catch (Exception e) {
  			e.printStackTrace();
@@ -51,7 +50,7 @@ public class EmailController {
  	public String sendEmail(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
  		try {
  			HashMap<String, Object> sendEmail = new HashMap<String, Object>();
- 			sendEmail = emailService.sendEmail(map);
+ 			sendEmail = emailService.sendEmailAndId(map);
  			return new Gson().toJson(sendEmail);
  	    } catch (Exception e) {
  	        e.printStackTrace();  // 구체적인 오류 로그 확인

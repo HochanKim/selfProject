@@ -27,7 +27,7 @@ public interface MainMapper {
 	List<MainModel> sendNick(HashMap<String, Object> map);
 	// 이메일
 	List<MainModel> sendEmail(HashMap<String, Object> map);
-	
-	// 이메일 전송
-
+	// 비밀번호 변경
+	List<MainModel> sendEmailAndId(HashMap<String, Object> map);
+	void resetPwd(HashMap<String, Object> map);
 }

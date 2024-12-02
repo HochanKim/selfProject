@@ -7,14 +7,14 @@
         <link rel="stylesheet" href="../../css/searching.css">
         <script src="${pageContext.request.contextPath}/js/vue.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <title>HMW 로그인</title>
+        <title>HMW 비밀번호 변경</title>
     </head>
     <body>
         <header>
             <jsp:include page="/WEB-INF/main/header.jsp" flush="false" />
         </header>
         <div id="app">
-            <h1>비밀번호 재설정</h1>
+            <h1>비밀번호 변경</h1>
             <section>
                 <div class="inputBox">
                     <h4>이메일 인증</h4>
@@ -35,11 +35,11 @@
     const app = Vue.createApp({
         data() {
             return {
-                emailAddr : '',     // 사용자가 입력한 이메일 주소값
-                inputCode : '',     // 입력한 코드
-                receiveCode : '',   // 전송한 코드
-                emailInData : false,
-                sendEmail : false
+                emailAddr : '',         // 사용자가 입력한 이메일 주소값
+                inputCode : '',         // 입력한 코드번호
+                receiveCode : '',       // 이메일 전송코드
+                emailInData : false,    // DB에 등록된 이메일 주소 여부
+                sendEmail : false       // 전송코드 발송 여부
             };
         },
         methods: {
@@ -48,8 +48,10 @@
                     alert("이메일 주소를 입력해주세요");
                     return;
                 }
+                var getParam = location.href.split("?");    // 이전 페이지에서 보낸 파라미터(아이디값) 담기
                 var paramap = {
-                    email : this.emailAddr
+                    email : this.emailAddr,
+                    userId : getParam[1]
                 };
 
                 $.ajax({
@@ -58,9 +60,8 @@
                     dataType: "json",
                     data: paramap,
                     success : (data) => {
-                        console.log(data.selectEmailAddr);
                         if(data.selectEmailAddr.length == 0){
-                            alert("존재하지 않는 이메일 주소입니다. 다시 입력바랍니다");
+                            alert("등록하지 않는 이메일 주소입니다.");
                             return;
                         } else {
                             alert("등록된 이메일 주소입니다.");
@@ -84,18 +85,19 @@
                     success : (data) => {
                         alert("해당 이메일로 인증번호 발송이 완료됐습니다.");
                         this.sendEmail = true;
-                        console.log("인증코드 : "+data);
                         this.receiveCode = data;
                     }
                 });
             },
             goResetPwd(){
+                var getParam = location.href.split("?");    // 이전 페이지에서 보낸 파라미터(아이디값) 담기
+                var userId = getParam[1];
                 if(this.receiveCode != this.inputCode){
                     alert("인증번호가 잘못됐습니다");
                     return;
                 } else {
                     alert("인증번호 확인이 완료됐습니다");
-                    // location.href="../user/mailCheck.do";
+                    location.href=`../user/newPassword.do?\${userId}`;
                 }
             }   
         },

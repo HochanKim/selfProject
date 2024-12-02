@@ -40,10 +40,10 @@ public class EmailServiceImpl implements EmailService{
 
 	// 데이터에 등록된 이메일 주소 확인
 	@Override
-	public HashMap<String, Object> sendEmail(HashMap<String, Object> map) {
+	public HashMap<String, Object> sendEmailAndId(HashMap<String, Object> map) {
 		HashMap<String, Object> emailMap = new HashMap<String, Object>();
 		// 가져온 아이디
-		List<MainModel> email = mainMapper.sendEmail(map);
+		List<MainModel> email = mainMapper.sendEmailAndId(map);
 		emailMap.put("selectEmailAddr", email);
 		return emailMap;
 	}
@@ -90,19 +90,18 @@ public class EmailServiceImpl implements EmailService{
 
 			for (int i = 0; i < 6; i++) { // 인증코드 6자리
 				int index = rnd.nextInt(3); // 0~2 까지 랜덤, 객체 'rnd' 값에 따라서 아래 switch 문이 실행됨
-
 				switch (index) {
-				case 0:
-					key.append((char) ((int) (rnd.nextInt(26)) + 97));
-					// a~z (ex. 1+97=98 => (char)98 = 'b')
-					break;
-				case 1:
-					key.append((char) ((int) (rnd.nextInt(26)) + 65));
-					// A~Z
-					break;
-				case 2:
-					key.append((rnd.nextInt(10)));
-					// 0~9
+					case 0:
+						key.append((char) ((int) (rnd.nextInt(26)) + 97));
+						// a~z (ex. 1+97=98 => (char)98 = 'b')
+						break;
+					case 1:
+						key.append((char) ((int) (rnd.nextInt(26)) + 65));
+						// A~Z
+						break;
+					case 2:
+						key.append((rnd.nextInt(10)));
+						// 0~9
 					break;
 				}
 			}

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../../css/searching.css">
         <script src="${pageContext.request.contextPath}/js/vue.js"></script>
         <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
-        <title>HMW 로그인</title>
+        <title>HMW 아이디 찾기</title>
     </head>
     <body>
         <header>
