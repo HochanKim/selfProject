@@ -55,5 +55,13 @@ public class AdminController {
 			return "error";       // 오류 발생 시 반환 값
 		}
 	}
+	
+	// 페이징
+	@RequestMapping(value = "admin/getTotalList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getTotalNormalSell(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		HashMap<String, Object> result = adminService.getTotalList();
+		return new Gson().toJson(result);
+	}
 
 }

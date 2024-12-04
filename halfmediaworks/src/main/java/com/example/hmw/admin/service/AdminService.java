@@ -9,4 +9,7 @@ public interface AdminService {
 	
 	// 의뢰 목록
 	HashMap<String, Object> getRequests(HashMap<String, Object> map);
+
+	// 리스트 숫자
+	HashMap<String, Object> getTotalList();
 }

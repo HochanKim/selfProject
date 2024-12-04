@@ -61,13 +61,13 @@
 			</tr>
         </table>
         <!-- 페이징 버튼 -->
-        <!-- <div id="pagination">
+        <div id="pagination">
             <div class="pageBtn" @click="fnClickPage(currentPage-1)">이전</div>
             <button v-for="index in totalPages" :class="{active: index == currentPage}" @click="fnClickPage(index)">{{ index }}</button>
             <div class="pageBtn" @click="fnClickPage(currentPage+1)">다음</div>
-        </div> -->
+        </div>
     </div>
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/footer.jsp" flush="false" />
+    
 </body>
 </html>
 <script>
@@ -84,28 +84,34 @@
             };
         },
         methods: {
-            GetUser() {
+            GetUser(start, size) {
                 // DB에 저장된 유저 정보 불러오기
-                var paramap = {};
+                var paramap = {
+                    start : start,
+                    size : size
+                };
                 $.ajax({
                     url : "getUser.dox",
                     dataType : "json",
                     type : "POST",
-                    data : [],
+                    data : paramap,
                     success : (data) => {
                         console.log("유저 리스트 : ", data.userList);
                         this.memberList = data.userList;
                     },
                 });
             },
-            GetRequest(){
+            GetRequest(start, size){
                 // DB에 저장된 의뢰 정보 불러오기
-                var paramap = {};
+                var paramap = {
+                    start : start,
+                    size : size
+                };
                 $.ajax({
                     url : "getRequest.dox",
                     dataType : "json",
                     type : "POST",
-                    data : [],
+                    data : paramap,
                     success : (data) => {
                         console.log("요청 리스트 : ", data.requestList);
                         this.requestList = data.requestList;
@@ -119,11 +125,35 @@
             requestsClick() {
                 this.requests = true;
                 this.members = false;
-            }
+            },
+            fnClickPage(index){     // 페이징 숫자버튼
+                if (index < 0) return;
+                if (index > this.totalPages) return;
+
+                this.currentPage = index;
+
+                var start = (this.currentPage - 1) * this.pageSize;
+                var size  = this.pageSize;
+                this.GetUser(start, size);
+                this.GetRequest(start, size);
+            },
+            fnGetTotalGroupSell() {     // 페이징 메소드
+                $.ajax({	
+                    url:"getTotalList.dox",
+                    dataType:"json",	
+                    type : "POST", 
+                    data : {},
+                    success : (data) => {
+                        var totalGroupSell = data.listNumber;
+                        this.totalPages = Math.ceil(totalGroupSell / this.pageSize);
+                    }
+                });
+            },
         },
         mounted() {
-            this.GetUser();
-            this.GetRequest();
+            this.fnGetTotalGroupSell();
+            this.GetUser(0, this.pageSize);
+            this.GetRequest(0, this.pageSize);
         },
     });
     app.mount("#app");

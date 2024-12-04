@@ -33,5 +33,14 @@ public class AdminServiceImpl implements AdminService{
 		List<AdminModel> requestList = adminMapper.getRequests(reqMap);
 		reqMap.put("requestList", requestList);
 		return reqMap;
+	}
+
+	// 목록 리스트 숫자
+	@Override
+	public HashMap<String, Object> getTotalList() {
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		int getCount = adminMapper.getTotalList();
+		resultMap.put("listNumber", getCount);
+		return resultMap;
 	}	
 }
