@@ -63,3 +63,17 @@ th {
     color: #fff;
     background: #000;
 }
+
+
+/* 페이징 버튼 */
+button {
+    margin:5px;
+    width:30px;
+    height:30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.active {
+    background-color: #333;
+    color:#fff;
+}

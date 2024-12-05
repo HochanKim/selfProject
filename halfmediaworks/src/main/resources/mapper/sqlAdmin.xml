@@ -8,20 +8,27 @@
 		<!-- 'resultType'에 잘못된 작성으로 오류가 발생했음 -->
 		SELECT *
 		FROM HMW_USER
-		<!--LIMIT #{start}, #{size}-->
+		LIMIT 0, 5
 	</select>
+	
 	<!-- 관리자 페이지 요청 리스트 가져오기-->
 	<select id="getRequests" parameterType="hashmap" resultType="com.example.hmw.admin.model.AdminModel">	
 		<!-- 'resultType'에 잘못된 작성으로 오류가 발생했음 -->
 		SELECT *, DATE_FORMAT(cdatetime, '%Y-%m-%d %H:%i:%s') AS DATETIME
 		FROM HMW_CONTACT
 		ORDER BY DATETIME DESC
-		<!--LIMIT #{start}, #{size} -->
+		LIMIT 0, 5 
 	</select>
 	
-	<!-- 페이징 -->
-	<select id="getTotalList" parameterType="hashmap" resultType="Integer">
-		SELECT COUNT (*) 
+	<!-- 페이징(유저 리스트) -->
+	<select id="getTotalUser" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) 
+		FROM HMW_USER
+	</select>
+	
+	<!-- 페이징(요청 리스트) -->
+	<select id="getTotalContact" parameterType="hashmap" resultType="Integer">
+		SELECT COUNT(*) 
 		FROM HMW_CONTACT
 	</select>
 </mapper>

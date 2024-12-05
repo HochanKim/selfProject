@@ -21,8 +21,13 @@ public class AdminServiceImpl implements AdminService{
 	// 유저 목록
 	public HashMap<String, Object> getUserList(HashMap<String, Object> map) {
 		HashMap<String, Object> userMap = new HashMap<>();
-		List<AdminModel> membersList = adminMapper.getUserList(userMap);
-		userMap.put("userList", membersList);
+		try {
+			List<AdminModel> membersList = adminMapper.getUserList(userMap);
+			userMap.put("userList", membersList);
+		} catch (Exception e) {
+			System.out.println("유저 목록 불러오는 중 에러 발생");
+			System.out.println("에러 이유 : "+e);
+		}
 		return userMap;
 	}
 
@@ -30,17 +35,38 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public HashMap<String, Object> getRequests(HashMap<String, Object> map) {
 		HashMap<String, Object> reqMap = new HashMap<>();
-		List<AdminModel> requestList = adminMapper.getRequests(reqMap);
-		reqMap.put("requestList", requestList);
+		try {
+			List<AdminModel> requestList = adminMapper.getRequests(reqMap);
+			reqMap.put("requestList", requestList);
+		} catch (Exception e) {
+			System.out.println("의뢰 목록 불러오는 중 에러 발생");
+			System.out.println("에러 이유 : "+e);
+		}
 		return reqMap;
+	}
+	
+	// 유저 리스트 숫자
+	@Override
+	public int getTotalUser() {
+		try {
+	        int getUserCount = adminMapper.getTotalUser();
+	        return getUserCount;
+	    } catch (Exception e) {
+	        // 로깅 또는 예외 처리
+	        throw new RuntimeException("유저 리스트 숫자를 가져오는 중 오류 발생", e);
+	    }
 	}
 
 	// 목록 리스트 숫자
 	@Override
-	public HashMap<String, Object> getTotalList() {
-		HashMap<String, Object> resultMap = new HashMap<String, Object>();
-		int getCount = adminMapper.getTotalList();
-		resultMap.put("listNumber", getCount);
-		return resultMap;
-	}	
+	public int getTotalContact() {
+	    try {
+	        int getCount = adminMapper.getTotalContact();
+	        return getCount;
+	    } catch (Exception e) {
+	        // 로깅 또는 예외 처리
+	        throw new RuntimeException("목록 리스트 숫자를 가져오는 중 오류 발생", e);
+	    }
+	}
+	
 }

@@ -27,11 +27,10 @@ public class AdminController {
 	}
 
 
-
 	// 관리자 페이지 사용자 데이터
 	@RequestMapping(value = "admin/getUser.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getUserList(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+	public String getUserList(Model model, @RequestParam HashMap<String, Object> map, @RequestParam("start") String start, @RequestParam("size") String size) throws Exception { 
 		try {
 			HashMap<String, Object> userMap = new HashMap<String, Object>();
 			userMap = adminService.getUserList(map);
@@ -56,12 +55,32 @@ public class AdminController {
 		}
 	}
 	
-	// 페이징
-	@RequestMapping(value = "admin/getTotalList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	// 유저 페이징
+	@RequestMapping(value = "admin/getUserList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getTotalNormalSell(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
-		HashMap<String, Object> result = adminService.getTotalList();
-		return new Gson().toJson(result);
+	public String getUserCount(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		try {
+			int userCount = adminService.getTotalUser();
+			return new Gson().toJson(userCount);
+		} catch (Exception e) {
+			System.out.println("페이징 서버에러");
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
+	}
+	
+	// 요청 페이징
+	@RequestMapping(value = "admin/getContactList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getContCount(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		try {
+			int contCount = adminService.getTotalContact(); 
+			return new Gson().toJson(contCount);
+		} catch (Exception e) {
+			System.out.println("페이징 서버에러");
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+			return "error";       // 오류 발생 시 반환 값
+		}
 	}
 
 }

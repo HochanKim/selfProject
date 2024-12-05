@@ -21,25 +21,27 @@
             <button @click="membersClick" :class="{ active: members }">회원관리</button>
             <button @click="requestsClick" :class="{ active: requests }">의뢰확인</button>
         </div>
-        <table v-if="members">
-			<tr>
-			    <th>사용자 아이디</th>
-			    <th>사용자 성명</th>
-			    <th>닉네임</th>
-			    <th>전화번호</th>
-			</tr>
-			<tr v-for="item in memberList">
-				<!--
-					중괄호 {{}} 표시에 관한 오류 발생
-					오류) {item.xxx}
-						=> 해결 {{item.xxx}}  
-				-->
-			    <td>{{item.userId}}</td>
-			    <td>{{item.userName}}</td>
-			    <td>{{item.nickName}}</td>
-			    <td>{{item.pNumber}}</td>
-			</tr>
-        </table>
+        <div>
+            <table v-if="members">
+                <tr>
+                    <th>사용자 아이디</th>
+                    <th>사용자 성명</th>
+                    <th>닉네임</th>
+                    <th>전화번호</th>
+                </tr>
+                <tr v-for="item in memberList">
+                    <!--
+                        중괄호 {{}} 표시에 관한 오류 발생
+                        오류) {item.xxx}
+                            => 해결 {{item.xxx}}  
+                    -->
+                    <td>{{item.userId}}</td>
+                    <td>{{item.userName}}</td>
+                    <td>{{item.nickName}}</td>
+                    <td>{{item.pNumber}}</td>
+                </tr>
+            </table>
+        </div>
         <table v-if="requests">
 			<tr>
 			    <th>의뢰자 성명</th>
@@ -96,6 +98,7 @@
                     type : "POST",
                     data : paramap,
                     success : (data) => {
+                        console.log("start: ", start, ", size: ", size);
                         console.log("유저 리스트 : ", data.userList);
                         this.memberList = data.userList;
                     },
@@ -118,40 +121,67 @@
                     },
                 });
             },
+
             membersClick() {
                 this.members = true;
                 this.requests = false;
+                this.GetUser(0, this.pageSize);     // 회원 관리 테이블 새로 로드
+                this.GetUserListNumber();           // 회원 관리의 전체 페이지 수 다시 계산
             },
+
             requestsClick() {
                 this.requests = true;
                 this.members = false;
+                this.GetRequest(0, this.pageSize);      // 회원 관리 테이블 새로 로드
+                this.GetContactNumber();                // 회원 관리의 전체 페이지 수 다시 계산
             },
-            fnClickPage(index){     // 페이징 숫자버튼
-                if (index < 0) return;
-                if (index > this.totalPages) return;
+
+            fnClickPage(index) {     // 페이징 숫자 버튼 클릭 처리
+                if (index < 1 || index > this.totalPages) return;
 
                 this.currentPage = index;
-
                 var start = (this.currentPage - 1) * this.pageSize;
-                var size  = this.pageSize;
-                this.GetUser(start, size);
-                this.GetRequest(start, size);
+                var size = this.pageSize;
+
+                // members 또는 requests 상태에 따라 적절한 리스트 호출
+                if (this.members == true && this.requests == false) {
+                    this.GetUser(start, size);
+                } 
+                
+                if (this.requests == true && this.members == false) {
+                    this.GetRequest(start, size);
+                }
             },
-            fnGetTotalGroupSell() {     // 페이징 메소드
+
+            GetUserListNumber() {     // 유저 페이징 메소드
                 $.ajax({	
-                    url:"getTotalList.dox",
-                    dataType:"json",	
-                    type : "POST", 
-                    data : {},
-                    success : (data) => {
-                        var totalGroupSell = data.listNumber;
-                        this.totalPages = Math.ceil(totalGroupSell / this.pageSize);
-                    }
+                    url: "getUserList.dox",
+                    dataType: "json",	
+                    type: "POST", 
+                    success: (data) => {
+                        console.log("유저 페이징 : " + data);
+                        var totalGroupSell = data;
+                        this.totalPages = Math.ceil(totalGroupSell / this.pageSize);  // 총 페이지 수 계산
+                    },
+                });
+            },
+
+            GetContactNumber() {     // 요청 페이징 메소드
+                $.ajax({	
+                    url: "getContactList.dox",
+                    dataType: "json",	
+                    type: "POST", 
+                    success: (data) => {
+                        console.log("요청 페이징 : " + data);
+                        var totalGroupSell = data;
+                        this.totalPages = Math.ceil(totalGroupSell / this.pageSize);  // 총 페이지 수 계산
+                    },
                 });
             },
         },
         mounted() {
-            this.fnGetTotalGroupSell();
+            this.GetUserListNumber();
+            this.GetContactNumber();
             this.GetUser(0, this.pageSize);
             this.GetRequest(0, this.pageSize);
         },
