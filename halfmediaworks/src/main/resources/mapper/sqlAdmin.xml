@@ -8,7 +8,7 @@
 		<!-- 'resultType'에 잘못된 작성으로 오류가 발생했음 -->
 		SELECT *
 		FROM HMW_USER
-		LIMIT 0, 5
+		LIMIT #{start}, #{size}
 	</select>
 	
 	<!-- 관리자 페이지 요청 리스트 가져오기-->
@@ -17,7 +17,7 @@
 		SELECT *, DATE_FORMAT(cdatetime, '%Y-%m-%d %H:%i:%s') AS DATETIME
 		FROM HMW_CONTACT
 		ORDER BY DATETIME DESC
-		LIMIT 0, 5 
+		LIMIT #{start}, #{size} 
 	</select>
 	
 	<!-- 페이징(유저 리스트) -->

@@ -98,7 +98,6 @@
                     type : "POST",
                     data : paramap,
                     success : (data) => {
-                        console.log("start: ", start, ", size: ", size);
                         console.log("유저 리스트 : ", data.userList);
                         this.memberList = data.userList;
                     },

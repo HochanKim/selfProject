@@ -31,8 +31,11 @@ public class AdminController {
 	@RequestMapping(value = "admin/getUser.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String getUserList(Model model, @RequestParam HashMap<String, Object> map, @RequestParam("start") String start, @RequestParam("size") String size) throws Exception { 
+		HashMap<String, Object> userMap = new HashMap<String, Object>();
+		// 'map'에 담긴 파라미터들을 정수로 변환 (MySQL 쿼리를 처리할때)
+		map.put("start", Integer.parseInt(start));
+		map.put("size", Integer.parseInt(size));
 		try {
-			HashMap<String, Object> userMap = new HashMap<String, Object>();
 			userMap = adminService.getUserList(map);
 			return new Gson().toJson(userMap);
 	    } catch (Exception e) {
@@ -44,9 +47,12 @@ public class AdminController {
 	// 관리자 페이지 의뢰 데이터
 	@RequestMapping(value = "admin/getRequest.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getRequest(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+	public String getRequest(Model model, @RequestParam HashMap<String, Object> map,  @RequestParam("start") String start, @RequestParam("size") String size) throws Exception {
+		HashMap<String, Object> reqMap = new HashMap<String, Object>();
+		// 'map'에 담긴 파라미터들을 정수로 변환 (MySQL 쿼리를 처리할때)
+		map.put("start", Integer.parseInt(start));
+		map.put("size", Integer.parseInt(size));
 		try {
-			HashMap<String, Object> reqMap = new HashMap<String, Object>();
 			reqMap = adminService.getRequests(map);
 			return new Gson().toJson(reqMap);
 		} catch (Exception e) {
