@@ -1,3 +1,12 @@
+html {
+    overflow: hidden;
+}
+
+body {
+    scroll-behavior:smooth;
+    transition: all 1s cubic-bezier(0.340, -0.600, 0.515, 1.570);
+}
+
 section {
     width:100%;
     height:100vh;
@@ -14,6 +23,7 @@ section {
     width:100%;
     margin-top:-50px;
 }
+
 
 /* 두 번째 섹션 */
 .secondSection {
@@ -34,6 +44,10 @@ section {
     right:0;
 }
 
+.secondSection .wrap {
+    display: flex;
+}
+
 .secondSection .wrap div, .secondSection h1 {
     position: relative;
 }
@@ -41,7 +55,7 @@ section {
 .secondSection .wrap div {
     font-size:32px;
     font-weight: 500;
-    margin-top: 80px;
+    margin-top: 17%;
     color: #eee;
 }
 
@@ -54,12 +68,55 @@ section {
 }
 
 .secondSection h1 {
-    margin-top:60px;
+    margin-top:25px;
     font-size:72px;
     color:#FFA800;
     text-shadow: -4px -4px white;
 }
 
+/* 두 번째 섹션 - 슬라이드 구현 */
+.sliderWrap {
+    width:400px;
+    height:400px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider {
+    display: flex;
+    width:100%;
+    height:100%;
+    transition-property: transform;
+    transition-duration: 0.5s;
+}
+
+.slideImage {
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.slideImage:nth-child(1) {background-color: skyblue;} 
+.slideImage:nth-child(2) {background-color: tomato;}
+.slideImage:nth-child(3) {background-color: yellowgreen;}
+.slideImage:nth-child(4) {background-color: lightsalmon;}
+.slideImage:nth-child(5) {background-color: whitesmoke;}
+
+button, button:active, button:focus {
+    position: absolute;
+    top:45%;
+    transform: translateY(-50%);
+    width:50px;
+    height:20px;
+    border:none;
+    background-color: coral;
+    color:#fff;
+    outline: none;
+}
+.next {
+    right: 0;
+}
 
 
 /* 제안서 CSS (contact.jsp) */
@@ -112,4 +169,67 @@ section {
 .contact div span, .new-join div span {
 	font-weight:bold;
 	color:crimson;
+}
+
+
+/* 스크롤 다운 애니메이션 효과 */
+.scrollAnimation {
+    padding-top: 80px;
+    color:#fff;
+    position: absolute;
+    bottom:30px;
+    right: 50%;
+    font-weight: bold;
+}
+.scrollAnimation span {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-animation: scrollDown 2s infinite;
+    animation: scrollDown 2s infinite;
+    opacity: 0;
+    box-sizing: border-box;
+}
+.scrollAnimation span:nth-of-type(1) {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+.scrollAnimation span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+.scrollAnimation span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+@-webkit-keyframes scrollDown {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes sdb {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
