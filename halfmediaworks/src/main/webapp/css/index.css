@@ -15,11 +15,11 @@ section {
 
 
 /* 메인 배너 섹션 (동영상) */
-.video-sec {
+.videoBannerSection {
     overflow: hidden;
     position:relative;
 }
-.video-sec video {
+.videoBannerSection video {
     width:100%;
     margin-top:-50px;
 }
@@ -74,49 +74,41 @@ section {
     text-shadow: -4px -4px white;
 }
 
-/* 두 번째 섹션 - 슬라이드 구현 */
-.sliderWrap {
-    width:400px;
-    height:400px;
-    overflow: hidden;
+
+/* 세 번째 섹션 */
+.thirdSection {
+    box-sizing: border-box;
+    padding:170px 0;
+    text-align: center;
     position: relative;
+    background-color: #666;
 }
 
-.slider {
-    display: flex;
-    width:100%;
-    height:100%;
-    transition-property: transform;
-    transition-duration: 0.5s;
-}
-
-.slideImage {
-    width:100%;
-    height:100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.slideImage:nth-child(1) {background-color: skyblue;} 
-.slideImage:nth-child(2) {background-color: tomato;}
-.slideImage:nth-child(3) {background-color: yellowgreen;}
-.slideImage:nth-child(4) {background-color: lightsalmon;}
-.slideImage:nth-child(5) {background-color: whitesmoke;}
-
-button, button:active, button:focus {
+.thirdSection::before {
+    content: "";
+    opacity: 0.25;
     position: absolute;
-    top:45%;
-    transform: translateY(-50%);
-    width:50px;
-    height:20px;
-    border:none;
-    background-color: coral;
-    color:#fff;
-    outline: none;
+    top:0;
+    bottom: 0;
+    left:0;
+    right:0;
 }
-.next {
-    right: 0;
+
+.thirdSection h1 {
+    font-size:32px;
+    margin-bottom : 25px;
+    color: #eee;
 }
+
+.thirdSection span {
+    color:#333;
+    font-size:48px;
+    -webkit-text-stroke: 1px #fbff00cb;
+}
+    
+/* 슬라이드 (세 번째 섹션) */
+
+
 
 
 /* 제안서 CSS (contact.jsp) */
