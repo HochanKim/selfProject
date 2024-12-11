@@ -122,3 +122,11 @@ h1 {
 .mail-check-box {
     margin-top:20px;
 }
+
+/* 미디어쿼리 */
+/* 노트북 사이즈 */
+@media (min-width: 1024px) and (max-width: 1540px) {
+    #app section {
+        width:34%;
+    }
+}

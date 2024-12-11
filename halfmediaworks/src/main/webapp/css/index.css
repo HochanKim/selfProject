@@ -96,7 +96,7 @@ section {
 
 .thirdSection h1 {
     font-size:32px;
-    margin-bottom : 25px;
+    margin-bottom : 50px;
     color: #eee;
 }
 
@@ -107,7 +107,65 @@ section {
 }
     
 /* 슬라이드 (세 번째 섹션) */
+.thirdSection .wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    padding-top: 120px;
+}
 
+.slide-content {
+    margin-top:15px;
+}
+
+.thirdSection .wrap .more {
+    color: #fff;
+}
+
+.thirdSection .wrap .thirdSection-slide {
+    display: flex;
+    justify-content: center;
+}
+
+.sliderField img {
+    width: 300px;
+    height: 300px;
+}
+
+.sliderField div {
+    text-align: center;
+    display: flex;     /* 'flex'를 주어서 슬라이드 이미지를 가로로 바꾸기 */
+    width: 100%;
+}
+
+
+.sliderField div a img:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+
+.btn {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-top: 1px solid #f4f4f4;
+    border-right: 1px solid #f4f4f4;
+}
+
+.prev-btn {
+    left: 100px;
+    transform: rotate(-135deg);
+}
+
+.next-btn {
+    right: 100px;
+    transform: rotate(45deg);
+}
 
 
 
@@ -173,6 +231,7 @@ section {
     right: 50%;
     font-weight: bold;
 }
+
 .scrollAnimation span {
     position: absolute;
     top: 0;
@@ -224,4 +283,12 @@ section {
   100% {
     opacity: 0;
   }
+}
+
+/* 미디어쿼리 */
+/* 노트북 사이즈 */
+@media (min-width: 1024px) and (max-width: 1540px) {
+    .scrollAnimation {
+        right : 46%;
+    }
 }
