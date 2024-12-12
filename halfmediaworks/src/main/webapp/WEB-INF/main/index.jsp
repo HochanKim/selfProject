@@ -25,7 +25,7 @@
             <div>
                 <p>경험 (經驗)</p>
                 <p>== 개인이 기억할 수 있는 과거의 모든 것 ==</p>
-                <p>우리는 각자의 그 어떠한 소중하고 가치있는 모든 ‘경험’을 담아냅니다</p>
+                <p>우리는 각자가 가진 소중하고 잊지 못할 모든 ‘경험’을 담아냅니다</p>
                 <h1>HALF MEDIA WORKS</h1>
             </div>
         </div>
@@ -38,7 +38,7 @@
     </section>
     <section class="thirdSection" id="slide">
         <div class="wrap">
-            <h1>우리 삶의 모든 <span>경험(經驗)</span> 들을 정성스럽게 담아드립니다</h1>
+            <h1>우리 삶의 모든 <span>경험(經驗)</span> 들을 <b>카메라</b>에 정성스럽게 담아드립니다</h1>
             <div class="slide-content">
                 <div class="sliderField">
                   <!--슬라이드 효과-->
@@ -70,8 +70,14 @@
                 </div>
             </div>
         </div>
+        <a href="#contact" class="scrollAnimation" id="clickDown">
+          <span></span>
+          <span></span>
+          <span></span>
+          Scroll Down
+        </a>
     </section>
-    <section class="contactSection">
+    <section class="contactSection" id="contact">
         
     </section>
     <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />

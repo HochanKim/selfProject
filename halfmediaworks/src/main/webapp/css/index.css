@@ -28,7 +28,7 @@ section {
 /* 두 번째 섹션 */
 .secondSection {
     position: relative;
-    background-color: #333;
+    background-color: #eee;
 }
 
 .secondSection::before {
@@ -56,7 +56,7 @@ section {
     font-size:32px;
     font-weight: 500;
     margin-top: 17%;
-    color: #eee;
+    color: #333;
 }
 
 .secondSection .wrap div p:nth-child(1) {
@@ -81,12 +81,15 @@ section {
     padding:170px 0;
     text-align: center;
     position: relative;
-    background-color: #666;
+    background-color: #000;
 }
 
 .thirdSection::before {
     content: "";
-    opacity: 0.25;
+    background-image: url('../image/workPics/third_background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.15;
     position: absolute;
     top:0;
     bottom: 0;

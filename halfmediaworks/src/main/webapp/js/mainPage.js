@@ -1,4 +1,4 @@
-// 자동 슬라이드 JS
+
 $(function(){
     // 페이지 스크롤 효과
     var mHtml = $("html");
@@ -25,6 +25,7 @@ $(function(){
         mHtml.animate({scrollTop : posTop});
     });
 
+    // 자동+무한 슬라이드 
     $(".sliderField").slick({
         arrows : false,         // 화살표 사용 여부 (false)
         slidesToShow: 4,        // 보여질 슬라이드 갯수
