@@ -191,6 +191,7 @@
                     data : paramap,
                     success : (data) => {
                         alert(data.message);
+                        location.href=`login.do`;
                     },
                 });
             },

@@ -5,8 +5,6 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/css/common.css">
         <link rel="stylesheet" href="../../css/searching.css">
-        <script src="${pageContext.request.contextPath}/js/vue.js"></script>
-        <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
         <title>HMW 비밀번호 변경</title>
     </head>
     <body>
@@ -33,6 +31,8 @@
             </section>
         </div>
         <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
+        <script src="${pageContext.request.contextPath}/js/vue.js"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
     </body>
 </html>
 <script>

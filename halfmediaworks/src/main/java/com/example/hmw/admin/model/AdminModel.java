@@ -9,6 +9,7 @@ public class AdminModel {
 	private String userName;	// 회원명
 	private String nickName;	// 회원 별명
 	private String pNumber;		// 회원 전화번호
+	private String joinDate; 	// 가입일
 	
 	// 테이블 HMW_COMTACT에서 가져올 데이터 컬럼
 	private String name;				// 의뢰자 성명

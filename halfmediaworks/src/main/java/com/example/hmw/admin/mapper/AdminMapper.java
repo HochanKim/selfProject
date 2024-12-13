@@ -16,8 +16,11 @@ public interface AdminMapper {
     // 요청 의뢰 가져오기
     List<AdminModel> getRequests(HashMap<String, Object> map);
 
-	 // 목록 리스트 숫자
-	 int getTotalUser();
+	// 목록 리스트 숫자
+	int getTotalUser();
     // 목록 리스트 숫자
 	int getTotalContact();
+	
+	// 의뢰서
+	void receiveReq(HashMap<String, Object> map);
 }

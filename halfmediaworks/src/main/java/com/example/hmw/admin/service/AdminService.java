@@ -14,4 +14,7 @@ public interface AdminService {
 	int getTotalUser();
 	// 리스트 숫자
 	int getTotalContact();
+	
+	// 의뢰서
+	HashMap<String, Object> receiveReq(HashMap<String, Object> map);
 }

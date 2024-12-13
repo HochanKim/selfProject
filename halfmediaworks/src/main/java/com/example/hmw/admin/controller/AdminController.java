@@ -25,6 +25,12 @@ public class AdminController {
 	public String admin(Model model) throws Exception {
 		return "admin/adminMain";
 	}
+	
+	// 의뢰서 폼 페이지
+	@RequestMapping("contact/contact.do")
+	public String req(Model model) throws Exception {
+		return "contact/contact";
+	}
 
 
 	// 관리자 페이지 사용자 데이터
@@ -69,7 +75,7 @@ public class AdminController {
 			int userCount = adminService.getTotalUser();
 			return new Gson().toJson(userCount);
 		} catch (Exception e) {
-			System.out.println("페이징 서버에러");
+			System.out.println("페이징 서버 에러");
 			e.printStackTrace();  // 구체적인 오류 로그 확인
 			return "error";       // 오류 발생 시 반환 값
 		}
@@ -83,10 +89,22 @@ public class AdminController {
 			int contCount = adminService.getTotalContact(); 
 			return new Gson().toJson(contCount);
 		} catch (Exception e) {
-			System.out.println("페이징 서버에러");
+			System.out.println("페이징 서버 에러");
 			e.printStackTrace();  // 구체적인 오류 로그 확인
 			return "error";       // 오류 발생 시 반환 값
 		}
 	}
 
+	// 의뢰서 등록
+	@RequestMapping(value = "contact/contact.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String receiveRequest(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		try {
+			adminService.receiveReq(map);
+			return new Gson().toJson(map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
 }

@@ -70,5 +70,18 @@ public class AdminServiceImpl implements AdminService{
 	        throw new RuntimeException("목록 리스트 숫자를 가져오는 중 오류 발생", e);
 	    }
 	}
-	
+
+	// 의뢰서 등록
+	@Override
+	public HashMap<String, Object> receiveReq(HashMap<String, Object> map) {
+		HashMap<String, Object> requestMap = new HashMap<String, Object>();
+		try {
+			adminMapper.receiveReq(map);
+			requestMap.put("receiveReq", requestMap);
+		} catch (Exception e) {
+			requestMap.put("message", "의뢰서 등록 중 문제가 발생했습니다.");
+			throw new RuntimeException("의뢰서 등록 중 문제 발생", e);
+		}
+		return requestMap;
+	}	
 }

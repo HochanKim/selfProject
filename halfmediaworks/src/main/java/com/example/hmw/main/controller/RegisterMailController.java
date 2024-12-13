@@ -9,7 +9,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
-public class RegisterMailService {
+public class RegisterMailController {
 
     @Autowired
     private JavaMailSender javaMailSender;

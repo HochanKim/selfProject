@@ -20,7 +20,7 @@ public class EmailController {
     EmailService emailService;
 	
 	@Autowired
-    RegisterMailService registerMail; 	// 주입된 서비스 객체
+    RegisterMailController registerMail; 	// 주입된 서비스 객체
     
     // 이메일 전송 페이지
  	@RequestMapping("user/mailCheck.do")

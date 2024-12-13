@@ -31,4 +31,12 @@
 		SELECT COUNT(*) 
 		FROM HMW_CONTACT
 	</select>
+	
+	<!-- 의뢰 -->
+	<insert id="receiveReq" parameterType="hashmap">
+		INSERT INTO HMW_CONTACT
+			(name, phone, email, q_Text, classification, purpose)
+		VALUES
+			(#{name}, #{phone}, #{email}, #{qText}, #{classification}, #{purpose})
+	</insert>
 </mapper>
