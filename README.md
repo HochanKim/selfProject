@@ -6,12 +6,14 @@
 
 +  학원에서 배우지 않은 이메일 인증코드 문자발송 기능을 추가로 적용
 
++  메인 페이지 슬라이드 기능을 구현 (Jquary의 라이브러리 기능인 'slick'으로 무한 슬라이드 적용)
+
 
 
 
 ## <img src="https://github.com/user-attachments/assets/a5e2f4b7-b8ff-4a10-8dbf-16bf16e267fd" width="30" height="30" /> 개발 기간
 
-+  2024.11.09 ~ 2024.00.00
++  2024.11.09 ~ 2024.12.13
 
 
 
