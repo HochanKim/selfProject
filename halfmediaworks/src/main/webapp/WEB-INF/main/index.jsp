@@ -78,7 +78,19 @@
         </a>
     </section>
     <section class="contactSection" id="contact">
-      
+      <div class="goToConts">
+        <div class="contsText">
+          <p>Do You Want to</p>
+          <p>Various Contents Experience</p>
+          <p>with Us?</p>
+          <a href="../contact/contact.do">
+            <span class="log-in">Click Me</span>
+          </a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2666.447326157758!2d126.72755263598015!3d37.367167541176656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b773b52291187%3A0xd7ed8efe74ff02e0!2z7ZWY7ZSEIOuvuOuUlOyWtCDsm43siqQ!5e0!3m2!1sko!2skr!4v1734159983014!5m2!1sko!2skr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </section>
     <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>

@@ -69,6 +69,11 @@
 					<li><a href="#">notice</a></li>
 				</ul>
 				<p class="kind">photo, promotion video, music video, drone shot</p>
+				<div class="imgLink">
+					<a href="https://m.blog.naver.com/PostList.naver?blogId=halfmediaworks&tab=1">
+						<img src="../../image/naver-blog.png" alt="네이버블로그">
+					</a>
+				</div>
 				<address>
 					<div class="fowd">
 						<p>Tel</p>

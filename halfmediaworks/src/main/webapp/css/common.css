@@ -185,7 +185,7 @@ nav {
   background-color: rgba(255, 255, 255, 1);
   text-align: center;
   box-sizing: border-box;
-  padding-top:150px;
+  padding-top:145px;
   font-weight: bold;
   display: block;
   position: absolute;
@@ -197,11 +197,15 @@ nav {
   top:-100vh;
 }
 
+.imgLink a img {
+  width:60px;
+  height:60px;
+}
 
 nav ul li {
   color:#333;
-  font-size: 48px;
-  margin-bottom:24px;
+  font-size:36px;
+  margin-bottom:15px;
   text-transform: uppercase;
   position: relative;
   display: inline-block;
@@ -245,7 +249,7 @@ address div p {
 /*푸터*/
 footer {
   width: 100%;
-  height:250px;
+  height: 250px;
   background-color: #333;
   color: #fff;
   padding: 45px 0;

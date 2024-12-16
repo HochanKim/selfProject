@@ -78,7 +78,7 @@ section {
 /* 세 번째 섹션 */
 .thirdSection {
     box-sizing: border-box;
-    padding:170px 0;
+    padding: 170px 0;
     text-align: center;
     position: relative;
     background-color: #000;
@@ -99,7 +99,7 @@ section {
 
 .thirdSection h1 {
     font-size:32px;
-    margin-bottom : 50px;
+    margin-bottom : 40px;
     color: #eee;
 }
 
@@ -115,7 +115,7 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -60%);
-    padding-top: 120px;
+    padding-top: 3%;
 }
 
 .slide-content {
@@ -142,12 +142,10 @@ section {
     width: 100%;
 }
 
-
 .sliderField div a img:hover {
     transform: scale(1.1);
     transition: 0.3s;
 }
-
 
 .btn {
     width: 20px;
@@ -170,6 +168,35 @@ section {
     transform: rotate(45deg);
 }
 
+/* 네 번째 섹션 */
+.contactSection {
+    display: flex;
+    padding-top: 5%;
+    align-items: center;
+}
+
+.goToConts {
+    font-size: 48px;
+}
+
+.goToConts span {
+    font-size: 16px;
+    display:inline-block;
+	width:120px;
+	height:32px;
+	background-color:#000;
+	text-align:center;
+	line-height:28px;
+	color:#fff;
+	border-radius:50px;
+	font-weight:bold;
+}
+
+.goToConts span:hover {
+    background-color: #ddd;
+    color:#333;
+    transition: 0.3s;
+}
 
 
 /* 제안서 CSS (contact.jsp) */
