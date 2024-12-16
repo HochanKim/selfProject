@@ -22,4 +22,10 @@ public interface MainService {
 	HashMap<String, Object> sendEmail(HashMap<String, Object> map);
 	// 비밀번호 변경
 	HashMap<String, Object> resetPwd(HashMap<String, Object> map);
+	
+	// 회원정보
+	HashMap<String, Object> getUserInfo(HashMap<String, Object> map);
+	
+	// 회원탈퇴
+	HashMap<String, Object> exitUser(HashMap<String, Object> map);
 }

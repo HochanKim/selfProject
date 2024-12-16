@@ -12,7 +12,8 @@ public class MainModel {
 	
 	private String nickName;		// 닉네임
 	private String userName;		// 고객이름
-	private String reason;		// 가입목적
-	private String pNumber;		// 고객 전화번호
-	private String email;		// 고객 이메일
+	private String reason;			// 가입목적
+	private String pNumber;			// 고객 전화번호
+	private String email;			// 고객 이메일
+	private String joinDate;		// 고객 이메일
 }

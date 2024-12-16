@@ -28,6 +28,12 @@ public class MainController {
 		return "main/index";
 	}
 	
+	// 회원정보
+	@RequestMapping("user/userInfo.do")
+	public String infomation(Model model) throws Exception {
+		return "user/userInfo";
+	}
+	
 	
 	// 로그인 페이지 + 세션 불러오기
 	@RequestMapping("user/login.do")
@@ -117,8 +123,8 @@ public class MainController {
 			logOutReq = mainService.userLogout(map);
 			return new Gson().toJson(logOutReq);
 	    } catch (Exception e) {
-	        e.printStackTrace();  // 구체적인 오류 로그 확인
-	        return "error";       // 오류 발생 시 반환 값
+	        e.printStackTrace();
+	        return "error";     
 	    }
 	}
 	
@@ -131,8 +137,8 @@ public class MainController {
 			inputNew = mainService.intoNewMember(map);
 			return new Gson().toJson(inputNew);
 		} catch (Exception e) {
-			e.printStackTrace();  // 구체적인 오류 로그 확인
-			return "error";       // 오류 발생 시 반환 값
+			e.printStackTrace();
+			return "error";     
 		}
 	}
 	
@@ -145,8 +151,8 @@ public class MainController {
 			idExistCheck = mainService.idExistCheck(map);
 			return new Gson().toJson(idExistCheck);
 		} catch (Exception e) {
-			e.printStackTrace();  // 구체적인 오류 로그 확인
-			return "error";       // 오류 발생 시 반환 값
+			e.printStackTrace(); 
+			return "error";      
 		}
 	}
 	
@@ -159,8 +165,8 @@ public class MainController {
 			nickExistCheck = mainService.nickExistCheck(map);
 			return new Gson().toJson(nickExistCheck);
 		} catch (Exception e) {
-			e.printStackTrace();  // 구체적인 오류 로그 확인
-			return "error";       // 오류 발생 시 반환 값
+			e.printStackTrace(); 
+			return "error";      
 		}
 	}
 	
@@ -173,8 +179,8 @@ public class MainController {
 			sendNick = mainService.sendNick(map);
 			return new Gson().toJson(sendNick);
 		} catch (Exception e) {
-			e.printStackTrace();  // 구체적인 오류 로그 확인
-			return "error";       // 오류 발생 시 반환 값
+			e.printStackTrace(); 
+			return "error";      
 		}
 	}
 	
@@ -187,8 +193,8 @@ public class MainController {
 			sendEmail = mainService.sendEmail(map);
 			return new Gson().toJson(sendEmail);
 		} catch (Exception e) {
-			e.printStackTrace();  // 구체적인 오류 로그 확인
-			return "error";       // 오류 발생 시 반환 값
+			e.printStackTrace();  
+			return "error";       
 		}
 	}
 	
@@ -201,8 +207,37 @@ public class MainController {
 			updatePwd = mainService.resetPwd(map);
 			return new Gson().toJson(updatePwd);
 		} catch (Exception e) {
-			e.printStackTrace();  // 구체적인 오류 로그 확인
-			return "error";       // 오류 발생 시 반환 값
+			e.printStackTrace();  
+			return "error";       
+		}
+	}
+	
+	// 회원정보
+	@RequestMapping(value = "user/getUserInfo.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getUserInfo(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		try {
+			HashMap<String, Object> getInfo = new HashMap<String, Object>();
+			getInfo = mainService.getUserInfo(map);
+			System.out.println("정보 : "+getInfo);
+			return new Gson().toJson(getInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	// 회원탈퇴
+	@RequestMapping(value = "user/delete.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String delete(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {
+			HashMap<String, Object> delUser = new HashMap<String, Object>();
+			delUser = mainService.exitUser(map);
+			return new Gson().toJson(delUser);
+		} catch (Exception e) {
+			e.printStackTrace();  
+			return "error";       
 		}
 	}
 }

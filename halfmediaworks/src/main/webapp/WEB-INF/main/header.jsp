@@ -91,7 +91,7 @@
 						subMenu01 : 'subMenu1',
 						subMenu02 : 'subMenu2',
 						sessionId : '${sessionId}',
-						sessionStatus : '${sessionStatus}'
+						sessionStatus : '${sessionStatus}',
 					};
 				},
 				methods: {
@@ -127,10 +127,19 @@
 							},
 						});
 					},
-					fnInfo(sessionId) {
+					fnInfo(userId) {
+						userId = this.sessionId;
 						// 회원정보 페이지로 이동
-						console.log('회원정보 페이지로 이동, 사용자 ID:', sessionId);
-					}
+						$.ajax({	
+							url: "../user/getUserInfo.dox",		// 공통 url로 변경
+							dataType: "json",
+							type: "POST",
+							data: { userId : this.sessionId },
+							success: (data) => {
+								location.href = `../user/userInfo.do?id=\${userId}`;
+							},
+						});
+					},
 				},
 				mounted() {
 					this.getHeader();

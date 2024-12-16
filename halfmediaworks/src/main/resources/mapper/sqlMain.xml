@@ -13,7 +13,7 @@
 	</select>
 	
 	<!-- 아이디 존재여부 -->
-	<select id="inputId" parameterType="hashmap" resultType="Integer">	
+	<select id="inputId" parameterType="hashmap" resultType="Integer">
 		SELECT COUNT(userId)
 		FROM HMW_USER
 		WHERE userId = #{userId}
@@ -63,4 +63,17 @@
 		SET pwd = #{pwd}
 		WHERE userId = #{userId}
 	</update>
+	
+	<!-- 회원정보 -->
+	<select id="getUserInfo" parameterType="hashmap" resultType="com.example.hmw.main.model.MainModel">	
+		SELECT *
+		FROM HMW_USER
+		WHERE userId = #{userId}
+	</select>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="exitUser" parameterType="hashmap">
+		DELETE FROM hmw_user
+		WHERE userId = #{userId}
+	</delete>
 </mapper>

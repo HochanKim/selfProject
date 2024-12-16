@@ -78,7 +78,7 @@
         </a>
     </section>
     <section class="contactSection" id="contact">
-        
+      
     </section>
     <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
 <script src="${pageContext.request.contextPath}/js/jquery.js"></script>

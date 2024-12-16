@@ -10,7 +10,7 @@ import com.example.hmw.main.model.*;
 @Mapper
 public interface MainMapper {
 	// 로그인 페이지
-	// 로그인 아이디/비밀번호를 통한 회원 데이터
+	// 로그인 아이디/비밀번호를 통한 회원 데이터, 회원정보
 	MainModel userLogin(HashMap<String, Object> map);
 	// 아이디 존재여부
 	int inputId(HashMap<String, Object> map);
@@ -30,4 +30,10 @@ public interface MainMapper {
 	// 비밀번호 변경
 	List<MainModel> sendEmailAndId(HashMap<String, Object> map);
 	void resetPwd(HashMap<String, Object> map);
+	
+	// 회원정보
+	List<MainModel> getUserInfo(HashMap<String, Object> map);
+	
+	// 회원탈퇴
+	void exitUser(HashMap<String, Object> map);
 }

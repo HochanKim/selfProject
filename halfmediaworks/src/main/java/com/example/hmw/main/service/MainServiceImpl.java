@@ -29,6 +29,8 @@ public class MainServiceImpl implements MainService{
 		try {
 			// 아이디-비밀번호 일치여부 (불일치시 데이터 null)
 			MainModel idPwd = mainMapper.userLogin(map);
+			// 회원 정보
+			MainModel getUserInfo = mainMapper.userLogin(map);
 			
 			if(idPwd == null) {	
 				// 아이디나 비밀번호가 맞지 않다
@@ -43,12 +45,13 @@ public class MainServiceImpl implements MainService{
 				}
 			} else {
 				// 로그인 성공
+				resultMap.put("userInfo", getUserInfo);
 				resultMap.put("code", 200);
 				resultMap.put("message", "로그인에 성공하였습니다.");
 				
 				// 세션에 저장
-				session.setAttribute("sessionId", idPwd.getUserId());
-				session.setAttribute("sessionStatus", idPwd.getStatus());
+				session.setAttribute("sessionId", ((MainModel) idPwd).getUserId());
+				session.setAttribute("sessionStatus", ((MainModel) idPwd).getStatus());
 			}
 			
 		} catch(Exception e) {
@@ -151,5 +154,33 @@ public class MainServiceImpl implements MainService{
 		}
 		return resultMap;
 	}
+	
+	// 회원정보
+	@Override
+	public HashMap<String, Object> getUserInfo(HashMap<String, Object> map) {
+		HashMap<String, Object> getInfo = new HashMap<String, Object>();
+		try {
+			List<MainModel> userInfo = mainMapper.getUserInfo(map);
+			// 불러온 유저 정보
+			getInfo.put("userData", userInfo);
+			System.out.println("유저 정보 : "+userInfo);
 
+		} catch(Exception e) {
+			getInfo.put("message", "문제가 발생했습니다.");
+		}
+		return getInfo;
+	}
+
+	// 회원탈퇴
+	@Override
+	public HashMap<String, Object> exitUser(HashMap<String, Object> map) {
+		HashMap<String, Object> delMap = new HashMap<String, Object>();
+		try {
+			mainMapper.exitUser(map);
+			delMap.put("message", "회원탈퇴를 완료했습니다.");
+		} catch(Exception e) {
+			delMap.put("message", "탈퇴하는 과정 중 문제가 발생했습니다.");
+		}
+		return delMap;
+	}
 }
