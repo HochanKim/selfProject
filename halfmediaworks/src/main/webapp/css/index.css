@@ -99,7 +99,8 @@ section {
 
 .thirdSection h1 {
     font-size:32px;
-    margin-bottom : 40px;
+    margin-bottom: 100px;
+    /* margin-bottom : 40px; */
     color: #eee;
 }
 
@@ -171,7 +172,6 @@ section {
 /* 네 번째 섹션 */
 .contactSection {
     display: flex;
-    padding-top: 5%;
     align-items: center;
 }
 
@@ -179,20 +179,22 @@ section {
     font-size: 48px;
 }
 
-.goToConts span {
+.goToConts button {
     font-size: 16px;
     display:inline-block;
 	width:120px;
 	height:32px;
 	background-color:#000;
 	text-align:center;
-	line-height:28px;
+	line-height:33px;
 	color:#fff;
 	border-radius:50px;
 	font-weight:bold;
+    cursor: pointer;
+    border: none;
 }
 
-.goToConts span:hover {
+.goToConts button:hover {
     background-color: #ddd;
     color:#333;
     transition: 0.3s;
@@ -320,5 +322,9 @@ section {
 @media (min-width: 1024px) and (max-width: 1540px) {
     .scrollAnimation {
         right : 46%;
+    }
+
+    .thirdSection h1 {
+        margin-bottom : 40px;
     }
 }

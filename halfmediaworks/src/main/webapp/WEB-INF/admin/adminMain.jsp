@@ -26,6 +26,7 @@
                     <th>사용자 성명</th>
                     <th>닉네임</th>
                     <th>전화번호</th>
+                    <th>가입일</th>
                 </tr>
                 <tr v-for="item in memberList">
                     <!--
@@ -37,6 +38,7 @@
                     <td>{{item.userName}}</td>
                     <td>{{item.nickName}}</td>
                     <td>{{item.pNumber}}</td>
+                    <td>{{item.joinDate}}</td>
                 </tr>
             </table>
             <!-- 페이징 버튼 (유저탭) -->

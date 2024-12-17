@@ -45,7 +45,7 @@
 									<a href="javascript::" @click="logOut(userId)">
 										<span class="logout">로그아웃</span>
 									</a>
-									<a href="../admin/adminPage.do" @click="fnInfo(userId)">	
+									<a href="../admin/adminPage.do">	
 										<span class="memberinfo">관리자</span>
 									</a>
 								</template>
@@ -64,13 +64,13 @@
 			<nav :class="{subMenu1 : !isOpened}" @change="fnToggle">
 				<ul>
 					<li><a href="#">about us</a></li>
-					<li><a href="#">our works</a></li>
-					<li><a href="#cont">contacts</a></li>
+					<li><a href="#slide">our works</a></li>
+					<li><a href="#contact">contacts</a></li>
 					<li><a href="#">notice</a></li>
 				</ul>
 				<p class="kind">photo, promotion video, music video, drone shot</p>
 				<div class="imgLink">
-					<a href="https://m.blog.naver.com/PostList.naver?blogId=halfmediaworks&tab=1">
+					<a href="https://m.blog.naver.com/PostList.naver?blogId=halfmediaworks&tab=1" target="_blank">
 						<img src="../../image/naver-blog.png" alt="네이버블로그">
 					</a>
 				</div>
@@ -114,6 +114,9 @@
 								// 세션 데이터를 Vue 인스턴스에 저장
 								this.sessionId = data.sessionId;
 								this.sessionStatus = data.sessionStatus;
+
+								// 접속한 아이디를 세션에 저장 (2024.12.17)
+								sessionStorage.setItem('userId', data.sessionId);
 							},
 							error: (err) => {
 								console.error('세션 정보를 가져오는 중 오류 발생:', err);

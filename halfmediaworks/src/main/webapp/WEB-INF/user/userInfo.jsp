@@ -46,15 +46,15 @@
     const app = Vue.createApp({
         data() {
             return {
-                userId : '${userId}',
                 userInfo : []
             };
         },
         methods: {
             getUserInfo(){
-                
+                // 세션에 저장된 아이디 가져오기
+                var logOnId = sessionStorage.getItem('userId');    // 키값 : 'userId'
                 var paramap = {
-                    userId : this.userId,
+                    userId : logOnId,
                 };
                 $.ajax({
                     url : "getUserInfo.dox",
@@ -62,14 +62,32 @@
                     type : "POST",
                     data : paramap,
                     success : (data) => {
-                        this.userInfo = data.userInfo;
-                        console.log("인자값 : "+this.userId);
-                        console.log("아이디 외 정보 : "+ data.userInfo);
+                        this.userInfo = data.userData;
                     }
                 });
             },
             deleteUser(){
+                // 세션에 저장된 아이디 가져오기
+                var logOnId = sessionStorage.getItem('userId');    // 키값 : 'userId'
+                var paramap = {
+                    userId : logOnId,
+                };
 
+                // 컨펌창 띄우기
+                if(!confirm("정말로 회원 탈퇴를 하시겠습니까?")){
+                    return;
+                } 
+                $.ajax({
+                    url : "delete.dox",
+                    dataType : "json",
+                    type : "POST",
+                    data : paramap,
+                    success : (data) => {
+                        alert(data.message);
+                        logOnId = sessionStorage.claer();     // 저장된 세션값 삭제
+                        location.href = "/hmwMainPage.do";
+                    }
+                });
             }
         },
         mounted() {

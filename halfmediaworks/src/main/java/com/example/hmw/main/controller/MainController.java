@@ -219,7 +219,6 @@ public class MainController {
 		try {
 			HashMap<String, Object> getInfo = new HashMap<String, Object>();
 			getInfo = mainService.getUserInfo(map);
-			System.out.println("정보 : "+getInfo);
 			return new Gson().toJson(getInfo);
 		} catch (Exception e) {
 			e.printStackTrace();

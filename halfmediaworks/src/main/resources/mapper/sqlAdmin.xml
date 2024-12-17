@@ -7,7 +7,9 @@
 	<select id="getUserList" parameterType="hashmap" resultType="com.example.hmw.admin.model.AdminModel">	
 		<!-- 'resultType'에 잘못된 작성으로 오류가 발생했음 -->
 		SELECT *
-		FROM HMW_USER
+		FROM hmw_user
+		WHERE STATUS = 'N'
+		ORDER BY JOINDATE DESC
 		LIMIT #{start}, #{size}
 	</select>
 	

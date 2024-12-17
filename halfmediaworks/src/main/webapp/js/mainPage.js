@@ -63,5 +63,22 @@ $(function(){
             },
           },
         ],
-      });
+      });  
 });
+
+
+function comeToConts(){
+  // 세션에 저장된('sessionStorage.setItem('userId', data.sessionId);') 아이디 가져오기
+  var userId = sessionStorage.getItem('userId');    // 키값 : 'userId'
+
+  // 세션 저장 유무로 contact.do 이동하기
+  if(!userId){
+    if(confirm('로그인 후 이용이 가능합니다. 로그인 하시겠습니까?')){
+      location.href='../../user/login.do';
+    } else {
+      return;
+    }  
+  } else {
+    location.href='../../contact/contact.do';
+  }
+}

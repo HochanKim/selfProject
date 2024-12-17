@@ -163,8 +163,6 @@ public class MainServiceImpl implements MainService{
 			List<MainModel> userInfo = mainMapper.getUserInfo(map);
 			// 불러온 유저 정보
 			getInfo.put("userData", userInfo);
-			System.out.println("유저 정보 : "+userInfo);
-
 		} catch(Exception e) {
 			getInfo.put("message", "문제가 발생했습니다.");
 		}

@@ -83,9 +83,7 @@
           <p>Do You Want to</p>
           <p>Various Contents Experience</p>
           <p>with Us?</p>
-          <a href="../contact/contact.do">
-            <span class="log-in">Click Me</span>
-          </a>
+          <button type="button" onClick="comeToConts()" class="comeToConts">Click Me</button>
         </div>
       </div>
       <div class="map">
