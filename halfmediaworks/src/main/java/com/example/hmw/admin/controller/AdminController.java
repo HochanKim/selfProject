@@ -107,4 +107,32 @@ public class AdminController {
 			return "error";
 		}
 	}
+	
+	// 촬영방법
+	@RequestMapping(value = "contact/classfication.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String classfication(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		try {
+			HashMap<String, Object> classCodes = new HashMap<String, Object>();
+			classCodes = adminService.selectClassficationCodes(map);
+			return new Gson().toJson(classCodes);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
+	
+	// 촬영의도
+	@RequestMapping(value = "contact/intension.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String intension(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+		try {
+			HashMap<String, Object> intensionCodes = new HashMap<String, Object>();
+			intensionCodes = adminService.selectIntensionCodes(map);
+			return new Gson().toJson(intensionCodes);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "error";
+		}
+	}
 }

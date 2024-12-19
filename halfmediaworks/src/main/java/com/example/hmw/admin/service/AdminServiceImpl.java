@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.hmw.admin.mapper.AdminMapper;
 import com.example.hmw.admin.model.AdminModel;
+import com.example.hmw.admin.model.CodesModel;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -83,5 +84,33 @@ public class AdminServiceImpl implements AdminService{
 			throw new RuntimeException("의뢰서 등록 중 문제 발생", e);
 		}
 		return requestMap;
+	}
+
+	// 촬영방법
+	@Override
+	public HashMap<String, Object> selectClassficationCodes(HashMap<String, Object> map) {
+		HashMap<String, Object> classfCodes = new HashMap<String, Object>();
+		try {
+			List<CodesModel> codes = adminMapper.selectClassficationCodes(map);
+			classfCodes.put("classfication", codes);
+		} catch (Exception e) {
+			classfCodes.put("message", "코드 불러오는 중 문제가 발생했습니다.");
+			throw new RuntimeException("문제 발생(방법) : ", e);
+		}
+		return classfCodes;
+	}
+
+	// 의뢰의도
+	@Override
+	public HashMap<String, Object> selectIntensionCodes(HashMap<String, Object> map) {
+		HashMap<String, Object> intensionCodes = new HashMap<String, Object>();
+		try {
+			List<CodesModel> codes = adminMapper.selectIntensionCodes(map);
+			intensionCodes.put("intension", codes);
+		} catch (Exception e) {
+			intensionCodes.put("message", "코드 불러오는 중 문제가 발생했습니다.");
+			throw new RuntimeException("문제 발생(의도) : ", e);
+		}
+		return intensionCodes;
 	}	
 }

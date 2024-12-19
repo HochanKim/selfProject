@@ -23,11 +23,19 @@ table {
 }
 
 table, tr, th, td {
-    border: 1px solid #333;
+    /* border: 1px solid #333; */
     border-collapse: collapse;
     text-align: center;
     box-sizing: border-box;
     padding: 10px 0;
+}
+
+td {
+    height:80px;
+}
+
+tr td:nth-child(4), td:last-child {
+    width:250px;
 }
 
 th {

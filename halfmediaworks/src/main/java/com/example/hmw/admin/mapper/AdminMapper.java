@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import com.example.hmw.admin.model.AdminModel;
+import com.example.hmw.admin.model.CodesModel;
 
 
 @Mapper
@@ -23,4 +24,10 @@ public interface AdminMapper {
 	
 	// 의뢰서
 	void receiveReq(HashMap<String, Object> map);
+	
+	// 의뢰 코드리스트
+	// 방법
+	List<CodesModel> selectClassficationCodes(HashMap<String, Object> map);
+	// 목적
+	List<CodesModel> selectIntensionCodes(HashMap<String, Object> map);
 }

@@ -45,7 +45,8 @@
                             <textarea cols="80" rows="15" name="q_text" class="q_text" v-model="sendReq"></textarea>
                         </label>
                     </div>
-                    <div>
+                    <!-- 하드코딩 -->
+                    <!-- <div>
                         <p>제작방식<span>*</span></p>  
                         <label class="radioBtn"><input class="radio" type="radio" v-model="classification" value="picture">사진촬영</label>
                         <label class="radioBtn"><input class="radio" type="radio" v-model="classification" value="allRound">영상제작(종합)</label>
@@ -63,6 +64,24 @@
                         <label class="radioBtn"><input class="radio" type="radio" v-model="purpose" value="viral">유튜브/SNS 바이럴</label>
                         <label class="radioBtn"><input class="radio" type="radio" v-model="purpose" value="sky">항공샷</label>
                         <label class="radioBtn"><input class="radio" type="radio" v-model="purpose" value="etc">기타</label>
+                    </div> -->
+
+                    <!-- DB 활용 -->
+                    <div>
+                        <p>
+                            제작방식<span>*</span>
+                        </p>
+                        <label class="radioBtn" v-for="item in classifiCodes">
+                            <input class="radio" type="radio" v-model="classification" :value="item.method">{{item.methodKorean}}
+                        </label>
+                    </div>
+                    <div>
+                        <p>
+                            제작목적<span>*</span>
+                        </p>
+                        <label class="radioBtn" v-for="item in intensionCodes">
+                            <input class="radio" type="radio" v-model="purpose" :value="item.intension">{{item.intensionKorean}}
+                        </label>
                     </div>
                     <div>
                         <button type="button" @click="fnContact()" class="submit">제출하기</button>
@@ -85,7 +104,9 @@
                 inputEmail : '',            // 이메일
                 sendReq : '',               // 요청내용
                 classification : '',        // 제작방식
-                purpose : ''                // 제작목적
+                purpose : '',               // 제작목적,
+                classifiCodes : [],         // 촬영방식 코드리스트
+                intensionCodes : []         // 촬영의도 코드리스트
             };
         },
         methods: {
@@ -149,10 +170,37 @@
                         location.reload("contact.do");
                     },
                 });
-            }
+            },
+            // 촬영방식 코드리스트 함수
+            classCodes(){
+                $.ajax({
+                    url : "classfication.dox",
+                    type : "POST",
+                    dataType : "json",
+                    data : [],
+                    success : (code) => {
+                        this.classifiCodes = code.classfication;
+                        console.log("방식 : "+this.classifiCodes);
+                    },
+                });
+            },
+            // 촬영의도 코드리스트 함수
+            intesnsion(){
+                $.ajax({
+                    url : "intension.dox",
+                    type : "POST",
+                    dataType : "json",
+                    data : [],
+                    success : (code) => {
+                        this.intensionCodes = code.intension;
+                        console.log("의도 : "+this.intensionCodes);
+                    },
+                });
+            },
         },
         mounted() {
-
+            this.classCodes();      // 촬영방식 코드리스트 함수
+            this.intesnsion();      // 촬영의도 코드리스트 함수
         },
     });
     app.mount("#app");

@@ -19,4 +19,12 @@ public class AdminModel {
 	private String classification;		// 촬영 종류
 	private String purpose;				// 촬영 목적
 	private String dateTime;			// 제안서 제출한 날
+	
+	// 테이블 hmw_classification
+	private String method;				// 의뢰 방법
+	private String methodKorean;		// 한국어
+	
+	// 테이블 hmw_intension
+	private String intension;				// 의뢰 목적
+	private String intensionKorean;		// 한국어
 }
