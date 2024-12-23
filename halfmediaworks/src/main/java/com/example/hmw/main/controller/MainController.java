@@ -34,6 +34,12 @@ public class MainController {
 		return "user/userInfo";
 	}
 	
+	// aboutUs
+	@RequestMapping("main/aboutUs.do")
+	public String aboutUs(Model model) throws Exception {
+		return "main/aboutUs";
+	}
+	
 	
 	// 로그인 페이지 + 세션 불러오기
 	@RequestMapping("user/login.do")
