@@ -65,7 +65,7 @@
                     <td>{{item.email}}</td>
                     <td>{{item.qText}}</td>
                     <td>{{item.classification}}</td>
-                    <td>{{item.purpose}}</td>
+                    <td>{{item.intension}}</td>
                     <td>{{item.dateTime}}</td>
                 </tr>
             </table>
