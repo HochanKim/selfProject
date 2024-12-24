@@ -22,6 +22,7 @@
 							<img src="/image/logo_colorchange.png" rel="로고">
 						</a>
 					</div>
+					<div class="middle-div"></div>
 					<div class="float-right" @change="getHeader">
 						<form name="session" class="session">
 							<div class="login">

@@ -302,6 +302,7 @@ section {
     padding-top: 154px;
     box-sizing: border-box;
     background-color: #999;
+    z-index: -10;
 }
 
 .aboutSection .wrap {
@@ -370,5 +371,21 @@ section {
 
     .thirdSection h1 {
         margin-bottom : 40px;
+    }
+
+    .aboutSection {
+        padding-top: 0;
+        box-sizing: border-box;
+        background-color: #999;
+        z-index: -10;
+    }
+
+    .aboutSection .wrap h1 {
+        font-size:60px;
+        text-align: left;
+    }
+
+    .aboutSection img {
+        height: 510px;
     }
 }

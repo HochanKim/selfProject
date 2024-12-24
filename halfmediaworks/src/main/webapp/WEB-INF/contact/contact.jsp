@@ -17,7 +17,7 @@
     </header>
 <!-- 'index.jsp'와 연동  -->
     <section class="contact-sec">
-        <div id="app">
+        <div id="appConts">
             <div class="wrap">
                 <form name="contact" class="contact">
                     <div>
@@ -72,7 +72,7 @@
                             제작방식<span>*</span>
                         </p>
                         <label class="radioBtn" v-for="item in classifiCodes">
-                            <input class="radio" type="radio" v-model="classification" :value="item.method">{{item.methodKorean}}
+                            <input class="radio" type="radio" name="classification" v-model="classification" :value="item.methodType">{{item.methodKorean}}
                         </label>
                     </div>
                     <div>
@@ -80,7 +80,7 @@
                             제작목적<span>*</span>
                         </p>
                         <label class="radioBtn" v-for="item in intensionCodes">
-                            <input class="radio" type="radio" v-model="purpose" :value="item.intension">{{item.intensionKorean}}
+                            <input class="radio" type="radio" name="intension" v-model="intension" :value="item.intensionType">{{item.intensionKorean}}
                         </label>
                     </div>
                     <div>
@@ -103,8 +103,8 @@
                 inputPhone : '',            // 연락처
                 inputEmail : '',            // 이메일
                 sendReq : '',               // 요청내용
-                classification : '',        // 제작방식
-                purpose : '',               // 제작목적,
+                classification : null,        // 제작방식
+                intension : null,             // 제작목적,
                 classifiCodes : [],         // 촬영방식 코드리스트
                 intensionCodes : []         // 촬영의도 코드리스트
             };
@@ -145,8 +145,8 @@
 
                 // 필수입력 유도 (체크)
                 var classf = this.classification;
-                var purp = this.purpose;
-                if(!classf || !purp) {
+                var intension = this.intension;
+                if(!classf || !intension) {
                     alert("제작방식 및 목적을 선택해주세요");
                     return;
                 }
@@ -157,7 +157,7 @@
                     email : this.inputEmail,
                     qText : this.sendReq,
                     classification : this.classification,
-                    purpose : this.purpose
+                    intension : this.intension
                 };
 
                 $.ajax({
@@ -203,5 +203,5 @@
             this.intesnsion();      // 촬영의도 코드리스트 함수
         },
     });
-    app.mount("#app");
+    app.mount("#appConts");
 </script>

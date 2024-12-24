@@ -15,6 +15,7 @@
         </header>
         <div id="app">
             <section class="joinForm">
+                <h1>회원가입</h1>
                 <div>
                     <label>아이디<span>*</span></label>
                     <input type="text" placeholder="아이디" v-model="userId">

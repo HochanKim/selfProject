@@ -37,9 +37,9 @@
 	<!-- 의뢰 -->
 	<insert id="receiveReq" parameterType="hashmap">
 		INSERT INTO HMW_CONTACT
-			(name, phone, email, q_Text, classification, purpose)
+			(name, phone, email, q_Text, classification, intension)
 		VALUES
-			(#{name}, #{phone}, #{email}, #{qText}, #{classification}, #{purpose})
+			(#{name}, #{phone}, #{email}, #{qText}, #{classification}, #{intension})
 	</insert>
 	
 	<!-- 의뢰 코드리스트 (방법) -->
@@ -52,6 +52,6 @@
 	<select id="selectIntensionCodes" parameterType="hashmap" resultType="com.example.hmw.admin.model.CodesModel">
 		SELECT *
 		FROM hmw_intension
-		ORDER BY intension desc
+		ORDER BY intensionType desc
 	</select>
 </mapper>

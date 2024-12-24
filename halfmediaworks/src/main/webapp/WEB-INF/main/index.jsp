@@ -8,7 +8,7 @@
     <title>Half Media Works</title>
 </head>
 <body>
-    <header>
+    <header style="position: fixed;">
         <jsp:include page="/WEB-INF/main/header.jsp" flush="false" />
     </header>
     <section class="videoBannerSection">

@@ -48,15 +48,20 @@ h2 {
   text-transform: uppercase;
 }
 
-#app {
+#app, #appConts {
   width : 80%;
-  margin: 140px auto 30px auto;
+  margin: 0 auto 60px auto;
   position: relative;
   z-index: -10;
 }
 
 #app form {
   text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom:40px;
 }
 
 
@@ -69,11 +74,11 @@ header {
   top: 0;
   left: 0;
   font-size:22px;
-  position: fixed;
 }
 
 header .wrap {
   height:100%;
+  display: flex;
 }
 
 
@@ -94,11 +99,16 @@ header .wrap {
 	height:100%;
 }
 
+/* middle-div */
+.middle-div {
+  position: relative;
+  z-index: -999;
+}
+
 /* 오른쪽 div */
 header .float-right {
 	width:20%;
 	height:160px;
-	float:right;
 	margin:auto 0;
 }
 
@@ -189,6 +199,7 @@ nav {
   font-weight: bold;
   display: block;
   position: absolute;
+  top:0;
   left:0;
   transition: all 0.75s;
   z-index: -1;
@@ -346,6 +357,24 @@ address {
 
   nav ul li {
     margin-bottom:15px;
+  }
+
+  #app {
+    height: 80vh;
+    padding: 0;
+  }
+
+  #appConts {
+    height : 120vh;
+    padding:0;
+  }
+
+  .contactPage {
+    height: 150vh;
+  }
+
+  textarea {
+    margin-top:20px;
   }
 }
 
