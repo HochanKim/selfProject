@@ -50,7 +50,14 @@ h2 {
 
 #app, #appConts {
   width : 80%;
-  margin: 0 auto 60px auto;
+  margin: 0 auto;
+  position: relative;
+  z-index: -10;
+}
+
+#appJoin {
+  width : 80%;
+  margin:0 auto 70px auto;
   position: relative;
   z-index: -10;
 }

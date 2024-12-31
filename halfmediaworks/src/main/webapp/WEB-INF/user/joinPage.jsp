@@ -13,7 +13,7 @@
         <header>
             <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/header.jsp" flush="false" />
         </header>
-        <div id="app">
+        <div id="appJoin">
             <section class="joinForm">
                 <h1>회원가입</h1>
                 <div>
@@ -58,7 +58,7 @@
                 </div>
             </section>
         </div>
-        <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/footer.jsp" flush="false" />
+        
     </body>
 </html>
 
@@ -202,5 +202,5 @@
             
         },
     });
-    app.mount("#app");
+    app.mount("#appJoin");
 </script>

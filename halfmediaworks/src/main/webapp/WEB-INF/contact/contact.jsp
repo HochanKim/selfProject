@@ -90,7 +90,6 @@
             </div>
         </div>
     </section>
-    <jsp:include page="/WEB-INF/main/footer.jsp" flush="false" />
     <script src="${pageContext.request.contextPath}/js/vue.js"></script>
     <script src="${pageContext.request.contextPath}/js/jquery.js"></script>
 </body>
