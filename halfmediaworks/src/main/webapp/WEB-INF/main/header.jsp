@@ -67,7 +67,7 @@
 					<li><a href="http://localhost:8090/main/aboutUs.do">about us</a></li>
 					<li><a href="#slide">our works</a></li>
 					<li><a href="#contact">contacts</a></li>
-					<li><a href="#">notice & communication</a></li>
+					<li><a href="http://localhost:8090/user/board.do">notice & communication</a></li>
 				</ul>
 				<p class="kind">photo, promotion video, music video, drone shot</p>
 				<div class="imgLink">
