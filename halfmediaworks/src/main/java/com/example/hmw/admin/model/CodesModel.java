@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class CodesModel {
+	// hmw.admin의 DTO
 	// 테이블 hmw_classification
 	private String methodType;				// 의뢰 방법
 	private String methodKorean;		// 한국어		

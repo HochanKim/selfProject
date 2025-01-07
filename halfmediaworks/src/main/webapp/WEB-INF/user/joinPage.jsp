@@ -51,7 +51,7 @@
                 </div>
                 <div>
                     <label>가입목적</label>
-                    <textarea cols="60" rows="10" v-model="reason"></textarea>
+                    <textarea cols="60" rows="5" v-model="reason"></textarea>
                 </div>
                 <div class="button">
                     <button type="button" @click="fnInsert()" class="insertButton">가입하기</button>	

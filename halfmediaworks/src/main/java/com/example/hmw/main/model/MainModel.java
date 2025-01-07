@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class MainModel {
+	// hmw.main의 DTO
 	// 테이블 HMW_USER 컬럼
 	private String userId;		// 회원 아이디
 	private String pwd;			// 회원 비밀번호

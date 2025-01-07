@@ -40,11 +40,6 @@ public class MainController {
 		return "main/aboutUs";
 	}
 	
-	// aboutUs
-	@RequestMapping("user/board.do")
-	public String communication(Model model) throws Exception {
-		return "user/board";
-	}
 	
 	
 	// 로그인 페이지 + 세션 불러오기
