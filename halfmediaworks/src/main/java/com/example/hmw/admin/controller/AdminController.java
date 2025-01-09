@@ -70,7 +70,7 @@ public class AdminController {
 	// 유저 페이징
 	@RequestMapping(value = "admin/getUserList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getUserCount(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String getUserCount(Model model) throws Exception {
 		try {
 			int userCount = adminService.getTotalUser();
 			return new Gson().toJson(userCount);
@@ -84,7 +84,7 @@ public class AdminController {
 	// 요청 페이징
 	@RequestMapping(value = "admin/getContactList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getContCount(Model model, @RequestParam HashMap<String, Object> map) throws Exception {
+	public String getContCount(Model model) throws Exception {
 		try {
 			int contCount = adminService.getTotalContact(); 
 			return new Gson().toJson(contCount);

@@ -1,0 +1,86 @@
+#app > div {
+    width:80%;
+}
+
+/* 게시글 보기 (board.jsp) */
+/* 페이징 버튼 */
+button {
+    margin:5px;
+    width:30px;
+    height:30px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.active {
+    background-color: #333;
+    color:#fff;
+}
+
+/* 테이블 */
+table {
+    border-collapse:collapse;
+}
+  
+/* th */
+th {
+    border-bottom: 3px solid #000;
+    box-sizing: border-box;
+    padding:8px;
+    background-color: #ddd;
+    font-weight: bold;
+}
+th:nth-child(1) {
+    text-align: left;
+}
+
+/* td */
+td {
+    width:180px;
+    text-align: center;
+    box-sizing: border-box;
+    padding:14px 8px;
+    border-bottom: 1px solid #999;
+}
+
+td:nth-child(1) {
+    width:50px;
+    padding:0 10px 0 0;
+}
+td:nth-child(2) {
+    width:400px;
+}
+td:nth-child(3), td:nth-child(6) {
+    width:100px;
+}
+
+.movePost {
+    width:80px;
+    height:32px;
+    margin-top:20px;
+    float: right;
+}
+
+/* 게시글 작성 페이지 (postPage.jsp) */
+.clickCategory {
+    margin-bottom:20px;
+}
+
+input {
+    margin:10px;
+}
+
+.input-text {
+    width:100%;
+    height:32px;
+    margin:10px 0;
+}
+
+.inputSection p {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+textarea {
+    width: 100%;
+}

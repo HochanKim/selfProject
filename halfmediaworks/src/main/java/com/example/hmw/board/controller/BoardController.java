@@ -26,10 +26,27 @@ public class BoardController {
 	public String communication(Model model) throws Exception {
 		return "user/board";
 	}
+	
+	// 게시글 작성
+	@RequestMapping("user/postPage.do")
+	public String postPage(Model model) throws Exception {
+		return "user/postPage";
+	}
+	
+	// 게시글 상세보기
+	@RequestMapping("user/contentView.do")
+	public String contentView(Model model) throws Exception {
+		return "user/contentView";
+	}
+	
 
+	// 게시판 등록 글
 	@RequestMapping(value = "user/getBoard.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
-	public String getBoardConts(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+	public String getBoardConts(Model model, @RequestParam HashMap<String, Object> map, @RequestParam("start") String start, @RequestParam("size") String size) throws Exception { 
+		// 'map'에 담긴 파라미터들을 정수로 변환 (MySQL 구문)
+		map.put("start", Integer.parseInt(start));
+		map.put("size", Integer.parseInt(size));
 		try {
 			HashMap<String, Object> boardLists = new HashMap<String, Object>();
 			boardLists = boardService.getContents(map);
@@ -40,4 +57,42 @@ public class BoardController {
 	    }
 	}
 	
+	// 게시판 페이징 데이터
+	@RequestMapping(value = "user/getBoardPageList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getUserList(Model model) throws Exception { 
+		try {
+			int listCounts = boardService.getTotalBoard();
+			return new Gson().toJson(listCounts);
+	    } catch (Exception e) {
+	        e.printStackTrace();  // 구체적인 오류 로그 확인
+	        return "error";       // 오류 발생 시 반환 값
+	    }
+	}
+	
+	// 게시판 카테고리 코드
+	@RequestMapping(value = "user/getBoardCategory.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getBoardCategory(Model model, @RequestParam HashMap<String, Object> categoryCodeName) throws Exception { 
+		try {
+			HashMap<String, Object> categoryCode = boardService.getBoardCategory(categoryCodeName);
+			return new Gson().toJson(categoryCode);
+	    } catch (Exception e) {
+	        e.printStackTrace();  // 구체적인 오류 로그 확인
+	        return "error";       // 오류 발생 시 반환 값
+	    }
+	}
+	
+	// 게시글 상세보기
+	@RequestMapping(value = "user/contentView.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String getContentView(Model model, @RequestParam HashMap<String, Object> viewMap) throws Exception { 
+		try {
+			HashMap<String, Object> contentView = boardService.getContentView(viewMap);
+			return new Gson().toJson(contentView);
+	    } catch (Exception e) {
+	        e.printStackTrace();  // 구체적인 오류 로그 확인
+	        return "error";       // 오류 발생 시 반환 값
+	    }
+	}
 }

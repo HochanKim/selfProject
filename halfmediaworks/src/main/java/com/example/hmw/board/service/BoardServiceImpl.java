@@ -14,8 +14,8 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardMapper boardMapper;
 
-	@Override
 	// 게시글 호출
+	@Override
 	public HashMap<String, Object> getContents(HashMap<String, Object> map) {
 		HashMap<String, Object> boardMap = new HashMap<>();
 		try {
@@ -25,5 +25,43 @@ public class BoardServiceImpl implements BoardService {
 			System.out.println("불러오는 중 에러 발생, 에러 이유 : "+e);
 		}
 		return boardMap;
+	}
+	
+	// 게시글 리스트 숫자
+	@Override
+	public int getTotalBoard() {
+		try {
+	        int getBoardCount = boardMapper.getTotalBoard();
+	        return getBoardCount;
+	    } catch (Exception e) {
+	        // 로깅 또는 예외 처리
+	        throw new RuntimeException("유저 리스트 숫자를 가져오는 중 오류 발생 : ", e);
+	    }
+	}
+
+	// 게시글 카테고리 코드
+	@Override
+	public HashMap<String, Object> getBoardCategory(HashMap<String, Object> categoryCodeName) {
+		HashMap<String, Object> categoryMap = new HashMap<>();
+		try {
+			List<BoardModelDto> boardCategory = boardMapper.getBoardCategory(categoryCodeName);
+			categoryMap.put("categoryLists", boardCategory);
+		} catch (Exception e) {
+			System.out.println("카테고리 가져오는 중 오류 발생 : "+e);
+		}
+		return categoryMap;
+	}
+
+	// 게시글 상세보기
+	@Override
+	public HashMap<String, Object> getContentView(HashMap<String, Object> viewMap) {
+		HashMap<String, Object> contentView = new HashMap<>();
+		try {
+			List<BoardModelDto> comeView = boardMapper.getContentView(viewMap);
+			contentView.put("comeView", comeView);
+		} catch (Exception e) {
+			System.out.println("불러오는 중 에러 발생, 에러 이유 : "+e);
+		}
+		return contentView;
 	}
 }

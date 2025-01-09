@@ -65,7 +65,7 @@
 			<nav :class="{subMenu1 : !isOpened}" @change="fnToggle">
 				<ul>
 					<li><a href="http://localhost:8090/main/aboutUs.do">about us</a></li>
-					<li><a href="#slide">our works</a></li>
+					<li><a href="http://localhost:8090/hmwMainPage.do#slide">our works</a></li>
 					<li><a href="http://localhost:8090/hmwMainPage.do#contact">contacts</a></li>
 					<li><a href="http://localhost:8090/user/board.do">notice & communication</a></li>
 				</ul>

@@ -3,8 +3,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.hmw.board.mapper.BoardMapper">
+	<!-- 게시글 호출 -->
 	<select id="getContents" parameterType="hashmap" resultType="com.example.hmw.board.model.BoardModelDto">	
 		SELECT *
 		FROM HMW_CONTENTS
+		ORDER BY cdateTime DESC
+		LIMIT #{start}, #{size}
+	</select>
+	
+	<!-- DB 저장 게시글 개수 -->
+	<select id="getTotalBoard" parameterType="hashmap" resultType="Integer">	
+		SELECT COUNT(*)
+		FROM HMW_CONTENTS
+	</select>
+	
+	<!-- 게시글 카테고리 코드 -->
+	<select id="getBoardCategory" parameterType="hashmap" resultType="com.example.hmw.board.model.BoardModelDto">	
+		SELECT *
+		FROM HMW_CONTS_KIND
+	</select>
+	
+	<!-- 게시글 상세보기 페이지 -->
+	<select id="getContentView" parameterType="hashmap" resultType="com.example.hmw.board.model.BoardModelDto">	
+		SELECT *
+		FROM HMW_CONTENTS
+		WHERE contentId = #{contentId}
 	</select>
 </mapper>
