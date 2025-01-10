@@ -29,4 +29,11 @@
 		FROM HMW_CONTENTS
 		WHERE contentId = #{contentId}
 	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="addClickContent" parameterType="hashmap">
+		UPDATE hmw_contents
+		SET cnt = cnt+1
+		WHERE contentId = #{contentId}
+	</update>
 </mapper>

@@ -17,4 +17,7 @@ public interface BoardService {
 	
 	// 게시글 상세보기
 	HashMap<String, Object> getContentView(HashMap<String, Object> viewMap);
+	
+	// 게시글 조회수 증가
+	HashMap<String, Object> addClickContent(HashMap<String, Object> map);
 }

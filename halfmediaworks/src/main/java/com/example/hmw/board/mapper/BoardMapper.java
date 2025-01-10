@@ -20,4 +20,7 @@ public interface BoardMapper {
 	
 	// 게시글 상세보기
 	List<BoardModelDto> getContentView(HashMap<String, Object> viewMap);
+	
+	// 게시글 조회수 증가
+	void addClickContent(HashMap<String, Object> map);
 }

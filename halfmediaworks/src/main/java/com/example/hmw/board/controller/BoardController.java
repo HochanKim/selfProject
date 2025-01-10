@@ -35,7 +35,8 @@ public class BoardController {
 	
 	// 게시글 상세보기
 	@RequestMapping("user/contentView.do")
-	public String contentView(Model model) throws Exception {
+	public String contentView(Model model, @RequestParam String num) throws Exception {
+		model.addAttribute("contentId", num);	// 게시판에서 클릭한 특정 게시글의 번호(contentId)
 		return "user/contentView";
 	}
 	
@@ -90,6 +91,20 @@ public class BoardController {
 		try {
 			HashMap<String, Object> contentView = boardService.getContentView(viewMap);
 			return new Gson().toJson(contentView);
+	    } catch (Exception e) {
+	        e.printStackTrace();  // 구체적인 오류 로그 확인
+	        return "error";       // 오류 발생 시 반환 값
+	    }
+	}
+	
+	// 게시글 조회수 증가
+	@RequestMapping(value = "user/plusCount.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String plusCount(Model model, @RequestParam HashMap<String, Object> map) throws Exception { 
+		try {
+			HashMap<String, Object> plusCount = new HashMap<String, Object>();
+			plusCount =  boardService.addClickContent(map);
+			return new Gson().toJson(plusCount);
 	    } catch (Exception e) {
 	        e.printStackTrace();  // 구체적인 오류 로그 확인
 	        return "error";       // 오류 발생 시 반환 값

@@ -48,12 +48,12 @@
     const app = Vue.createApp({
         data() {
             return {
-                inputName : '',             // 성함(법인명)  
-                inputPhone : '',            // 연락처
-                inputEmail : '',            // 이메일
-                sendReq : '',               // 요청내용
-                selectCategory : null,       // 선택한 카테고리리
-                categoryCodes : [],         // 게시글 카테고리
+                inputName : '',                 // 성함(법인명)  
+                inputPhone : '',                // 연락처
+                inputEmail : '',                // 이메일
+                sendReq : '',                   // 요청내용
+                selectCategory : null,          // 선택한 카테고리
+                categoryCodes : [],             // 게시글 카테고리
             };
         },
         methods: {

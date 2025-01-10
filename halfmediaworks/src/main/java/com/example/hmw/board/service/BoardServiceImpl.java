@@ -64,4 +64,16 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return contentView;
 	}
+
+	// 게시글 조회수 증가
+	@Override
+	public HashMap<String, Object> addClickContent(HashMap<String, Object> map) {
+		HashMap<String, Object> plusCount = new HashMap<String, Object>();
+		try {
+			boardMapper.addClickContent(map);
+		} catch (Exception e) {
+			System.out.println("불러오는 중 에러 발생, 에러 이유 : "+e);
+		}
+		return plusCount;
+	}
 }

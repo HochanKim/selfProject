@@ -29,7 +29,7 @@
                 <tr v-for="item in contents">
                     <td>{{item.contentId}}</td>
                     <td>
-                        <a href="javascript::" @click="comeToView(item.contentId)">
+                        <a href="javascript::" @click="comeToView(item.contentId)" class="comeToView">
                             {{item.title}}
                         </a>
                     </td>
@@ -84,11 +84,11 @@
 
             GetBoardList() {     // 게시판 페이징 메소드
                 $.ajax({	
-                    url: "getBoardPageList.dox",
-                    dataType: "json",	
-                    type: "POST", 
+                    url : "getBoardPageList.dox",
+                    dataType : "json",	
+                    type : "POST",
+                    data : [],
                     success: (data) => {
-                        console.log(data);
                         var totalBoardNumber = data;
                         this.totalContents = Math.ceil(totalBoardNumber / this.pageSize);    // 총 페이지 수 계산
                     },
@@ -117,7 +117,19 @@
             },
 
             comeToView(number){
-                
+                var paramap = {
+                    contentId : number
+                };
+                $.ajax({
+                    url : "plusCount.dox",
+                    dataType : "json",
+                    type : "POST",
+                    data : paramap,
+                    success : (data) => {
+                        var contentId = number;
+                        location.href=`/user/contentView.do?num=\${contentId}`;
+                    } 
+                });
             }
         },
         mounted() {
