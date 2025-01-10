@@ -60,6 +60,11 @@ td:nth-child(3), td:nth-child(6) {
     float: right;
 }
 
+.comeToView {
+    color:#333;
+    font-weight: bold;
+}
+
 /* 게시글 작성 페이지 (postPage.jsp) */
 .clickCategory {
     margin-bottom:20px;
