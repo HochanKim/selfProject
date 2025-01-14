@@ -76,4 +76,16 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return plusCount;
 	}
+
+	// 게시글 등록
+	@Override
+	public HashMap<String, Object> inputContents(HashMap<String, Object> registMap) {
+		HashMap<String, Object> registContent = new HashMap<String, Object>();
+		try {
+			boardMapper.inputContents(registMap);
+		} catch (Exception e) {
+			System.out.println("불러오는 중 에러 발생, 에러 이유 : "+e);
+		}
+		return registContent;
+	}
 }

@@ -72,11 +72,9 @@
                         this.login = data.login;
                         console.log(data);
                         if(data.code == 400){
-                            console.log(data.code);
                             alert(data.message);
                         } else {
                             location.href = "../../hmwMainPage.do";
-                            console.log(data.code);
                             alert(data.message);
                         }
                     },

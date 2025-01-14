@@ -16,10 +16,16 @@
     </header>
     <div id="app">
         <h1>HMW COMMUNITY</h1>
+        <div class="codeSelect">
+            <select v-model="kindName" @change="boardCodeLists">
+                <option value="">:: 전체 ::</option>
+                <option v-for="code in boardCodes" :value="code.kindId">:: {{code.kindName}} ::</option>
+            </select>
+        </div>
         <div>
             <table>
                 <tr>
-                    <th>No.</th>
+                    <th>분류</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>작성시간</th>
@@ -27,7 +33,7 @@
                     <th>조회수</th>
                 </tr>
                 <tr v-for="item in contents">
-                    <td>{{item.contentId}}</td>
+                    <td>[{{item.kindName}}]</td>
                     <td>
                         <a href="javascript::" @click="comeToView(item.contentId)" class="comeToView">
                             {{item.title}}
@@ -57,10 +63,12 @@
     const app = Vue.createApp({
         data() {
             return {
-                contents : [],
+                contents : [],            // 게시글 데이터
+                boardCodes : [],          // 게시글 종류 코드 (가져온 데이터를 List 형태로 저장)
+                kindName : "",            // 게시글 종류 코드 (select 태그)
                 totalContents : 0,       // 게시판의 첫 인덱스
-                pageSize : 5,           // 한 페이지의 호출 리스트 개수
-                currentPage : 1,        // 페이지 첫 호출시 시작 페이지 번호 
+                pageSize : 10,           // 한 페이지의 호출 리스트 개수
+                currentPage : 1,        // 페이지 첫 호출시 시작 페이지 번호
             };
         },
         methods: {
@@ -102,21 +110,21 @@
                     var size = this.pageSize;
             },
 
-            writeContent(){
+            writeContent(){     // 글쓰기 페이지로 이동
                 var userId = sessionStorage.getItem('userId');    // 키값 : 'userId'
                 // 세션 저장 유무로 postPage.do 이동하기
                 if(!userId){
                     if(confirm('로그인 후 이용이 가능합니다. 로그인 하시겠습니까?')){
-                    location.href='../../user/login.do';
+                        location.href='../../user/login.do';
                     } else {
-                    return;
+                        return;
                     }  
                 } else {
                     location.href="/user/postPage.do";
                 }
             },
 
-            comeToView(number){
+            comeToView(number){     // 조회수 증가
                 var paramap = {
                     contentId : number
                 };
@@ -130,11 +138,24 @@
                         location.href=`/user/contentView.do?num=\${contentId}`;
                     } 
                 });
+            },
+
+            boardCodeLists(){       // 카테고리 함수 
+                $.ajax({
+                    url : "getBoardCategory.dox",
+                    dataType : "json",
+                    type : "GET",
+                    data : [],
+                    success : (data) => {
+                        this.boardCodes = data.categoryLists; 
+                    }
+                });
             }
         },
         mounted() {
             this.GetContents(0, this.pageSize);
             this.GetBoardList();
+            this.boardCodeLists();
         },
     });
     app.mount("#app");

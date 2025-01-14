@@ -23,4 +23,7 @@ public interface BoardMapper {
 	
 	// 게시글 조회수 증가
 	void addClickContent(HashMap<String, Object> map);
+	
+	// 게시글 등록
+	void inputContents(HashMap<String, Object> registMap);
 }

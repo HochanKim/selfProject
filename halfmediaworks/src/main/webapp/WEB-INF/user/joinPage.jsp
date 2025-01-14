@@ -99,7 +99,6 @@
                     success : (data) => {
                         this.idCheck = true;
                         alert(data.message);
-                        console.log("아디 존재 : "+data.newId);
                     },
                 });
             },

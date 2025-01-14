@@ -51,7 +51,6 @@
                     data : paramap,
                     success : (data) => {
                         this.reqFromId = data.newId;
-                        console.log(data.newId);
                         if(data.newId == 0){
                             if(!confirm("존재하지 않은 아이디입니다. 새로 가입하시겠습니까?")){
                                 // 취소 클릭

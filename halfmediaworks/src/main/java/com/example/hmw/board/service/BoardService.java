@@ -20,4 +20,7 @@ public interface BoardService {
 	
 	// 게시글 조회수 증가
 	HashMap<String, Object> addClickContent(HashMap<String, Object> map);
+	
+	// 게시글 등록
+	HashMap<String, Object> inputContents(HashMap<String, Object> registMap);
 }

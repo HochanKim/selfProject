@@ -16,7 +16,17 @@ button {
     color:#fff;
 }
 
-/* 테이블 */
+/* 테이블 영역 */
+.codeSelect {
+    margin-bottom:20px;
+    text-align: right;
+}
+
+.codeSelect select {
+    width:115px;
+    text-align: center;
+}
+
 table {
     border-collapse:collapse;
 }
@@ -29,9 +39,6 @@ th {
     background-color: #ddd;
     font-weight: bold;
 }
-th:nth-child(1) {
-    text-align: left;
-}
 
 /* td */
 td {
@@ -43,8 +50,8 @@ td {
 }
 
 td:nth-child(1) {
-    width:50px;
-    padding:0 10px 0 0;
+    width:120px;
+    color:#777;
 }
 td:nth-child(2) {
     width:400px;
@@ -56,7 +63,7 @@ td:nth-child(3), td:nth-child(6) {
 .movePost {
     width:80px;
     height:32px;
-    margin-top:20px;
+    margin:20px 0;
     float: right;
 }
 

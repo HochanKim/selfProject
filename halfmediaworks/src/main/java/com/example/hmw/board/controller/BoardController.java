@@ -11,6 +11,9 @@ import com.example.hmw.board.service.BoardService;
 import com.google.gson.Gson;
 
 import jakarta.servlet.http.HttpSession;
+//import org.springframework.web.bind.annotation.PostMapping;
+//import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class BoardController {
@@ -30,6 +33,16 @@ public class BoardController {
 	// 게시글 작성
 	@RequestMapping("user/postPage.do")
 	public String postPage(Model model) throws Exception {
+		// 세션 가져오기 (회원이 작성한 글 분류)
+		String inUserId = (String) session.getAttribute("sessionId");
+		String inUserStatus = (String) session.getAttribute("sessionStatus");
+		String inUserNick = (String) session.getAttribute("sessionNick");
+		
+		// 저장한 세션값 'view'단으로 보내기
+		model.addAttribute("sessionId", inUserId);
+		model.addAttribute("sessionStatus", inUserStatus);
+		model.addAttribute("sessionNick", inUserNick);
+		
 		return "user/postPage";
 	}
 	
@@ -41,7 +54,7 @@ public class BoardController {
 	}
 	
 
-	// 게시판 등록 글
+	// 게시판 등록된 글 불러오기
 	@RequestMapping(value = "user/getBoard.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String getBoardConts(Model model, @RequestParam HashMap<String, Object> map, @RequestParam("start") String start, @RequestParam("size") String size) throws Exception { 
@@ -72,7 +85,7 @@ public class BoardController {
 	}
 	
 	// 게시판 카테고리 코드
-	@RequestMapping(value = "user/getBoardCategory.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "user/getBoardCategory.dox", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String getBoardCategory(Model model, @RequestParam HashMap<String, Object> categoryCodeName) throws Exception { 
 		try {
@@ -109,5 +122,19 @@ public class BoardController {
 	        e.printStackTrace();  // 구체적인 오류 로그 확인
 	        return "error";       // 오류 발생 시 반환 값
 	    }
+	}
+	
+	// 게시글 작성 및 등록
+	@RequestMapping(value = "user/postPage.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public String inputContents(Model model, @RequestParam HashMap<String, Object> registMap) throws Exception {
+		try {
+			HashMap<String, Object> insertCont = new HashMap<String, Object>();
+			insertCont = boardService.inputContents(registMap);
+			return new Gson().toJson(insertCont);
+		} catch (Exception e) {
+			e.printStackTrace();  // 구체적인 오류 로그 확인
+	        return "error";       // 오류 발생 시 반환 값
+		}
 	}
 }

@@ -6,7 +6,8 @@
 	<!-- 게시글 호출 -->
 	<select id="getContents" parameterType="hashmap" resultType="com.example.hmw.board.model.BoardModelDto">	
 		SELECT *
-		FROM HMW_CONTENTS
+		FROM hmw_contents c
+		INNER JOIN hmw_conts_kind k ON c.kind = k.kindId
 		ORDER BY cdateTime DESC
 		LIMIT #{start}, #{size}
 	</select>
@@ -36,4 +37,23 @@
 		SET cnt = cnt+1
 		WHERE contentId = #{contentId}
 	</update>
+	
+	<!-- 게시글 등록 -->
+	<insert id="inputContents" parameterType="hashmap">
+		INSERT INTO hmw_contents 
+			(contentId, title, cnt, nickName, kind, cdatetime, udatetime, content, userId, STATUS)
+		VALUES
+		(
+			null, 
+			#{title}, 
+			0, 
+			#{nickName}, 
+			#{kind}, 
+			NOW(), 
+			NOW(), 
+			#{content}, 
+			#{userId}, 
+			#{status}
+		)
+	</insert>
 </mapper>
