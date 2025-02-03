@@ -98,6 +98,7 @@
 						subMenu02 : 'subMenu2',
 						sessionId : '${sessionId}',
 						sessionStatus : '${sessionStatus}',
+						sessionNick : '${sessionNick}'
 					};
 				},
 				methods: {
@@ -115,6 +116,7 @@
 								// 세션 데이터를 Vue 인스턴스에 저장
 								this.sessionId = data.sessionId;
 								this.sessionStatus = data.sessionStatus;
+								this.sessionNick = data.sessionNick;
 
 								// 접속한 아이디를 세션에 저장 (2024.12.17)
 								sessionStorage.setItem('userId', data.sessionId);

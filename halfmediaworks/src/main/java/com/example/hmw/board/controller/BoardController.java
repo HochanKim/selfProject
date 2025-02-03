@@ -10,9 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import com.example.hmw.board.service.BoardService;
 import com.google.gson.Gson;
 
-import jakarta.servlet.http.HttpSession;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
@@ -20,9 +17,6 @@ public class BoardController {
 	@Autowired
 	BoardService boardService;
 	
-	// 로그인 성공시, 세션을 저장
-	@Autowired
-	HttpSession session;
 
 	// 게시판
 	@RequestMapping("user/board.do")
@@ -32,17 +26,7 @@ public class BoardController {
 	
 	// 게시글 작성
 	@RequestMapping("user/postPage.do")
-	public String postPage(Model model) throws Exception {
-		// 세션 가져오기 (회원이 작성한 글 분류)
-		String inUserId = (String) session.getAttribute("sessionId");
-		String inUserStatus = (String) session.getAttribute("sessionStatus");
-		String inUserNick = (String) session.getAttribute("sessionNick");
-		
-		// 저장한 세션값 'view'단으로 보내기
-		model.addAttribute("sessionId", inUserId);
-		model.addAttribute("sessionStatus", inUserStatus);
-		model.addAttribute("sessionNick", inUserNick);
-		
+	public String postPage(Model model) throws Exception {	
 		return "user/postPage";
 	}
 	

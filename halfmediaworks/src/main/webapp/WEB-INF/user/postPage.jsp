@@ -35,8 +35,8 @@
             </div>
             <div class="inputSection">
                 <label>
-                    <p>내용</p> 
-                    <div id="editor" style="height: 500px;"></div>
+                    <p>내용</p>
+                    <div id="editor" style="height: 500px;" v-model="content"></div>
                 </label>
             </div>
             <button @click="writeContent" class="movePost">등록하기</button>
@@ -50,10 +50,10 @@
     const app = Vue.createApp({
         data() {
             return {
-                inputName : "",                 // 게시글 제목
-                contents : "",                  // 게시글 내용
-                selectCategory : null,          // 선택한 카테고리
-                categoryCodes : [],             // 게시글 카테고리
+                inputName : "",                          // 게시글 제목
+                content : "",                            // 게시글 내용
+                selectCategory : null,                   // 선택한 카테고리
+                categoryCodes : [],                      // 게시글 카테고리
                 sessionId : "${sessionId}",              // 작성한 회원 아이디
                 sessionStatus : "${sessionStatus}",      // 작성한 회원 권한
                 sessionNick : "${sessionNick}"           // 작성한 회원 닉네임
@@ -84,7 +84,7 @@
                     return;
                 }
                 // 내용 입력
-                if(!this.content) {
+                if(this.contents == "") {
                     alert("게시글 내용을 입력해주세요");
                     return;
                 }
@@ -130,7 +130,11 @@
             // 에디터 내용이 변경될 때, Vue 데이터를 업데이트
             quill.on('text-change', function(){
                 this.contents = quill.root.innerHTML;
-            })
+            });
+
+            console.log(this.sessionId);
+            console.log(this.sessionStatus);
+            console.log(this.sessionNick);
         }
     });
     app.mount("#app");

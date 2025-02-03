@@ -50,8 +50,9 @@ public class MainServiceImpl implements MainService{
 				resultMap.put("message", "로그인에 성공하였습니다.");
 				
 				// 세션에 저장
-				session.setAttribute("sessionId", ((MainModel) idPwd).getUserId());
-				session.setAttribute("sessionStatus", ((MainModel) idPwd).getStatus());
+				session.setAttribute("sessionId", ((MainModel) idPwd).getUserId());			// 아이디
+				session.setAttribute("sessionStatus", ((MainModel) idPwd).getStatus());		// 관리권한
+				session.setAttribute("sessionNick", ((MainModel) idPwd).getNickName());		// 닉네임
 			}
 			
 		} catch(Exception e) {

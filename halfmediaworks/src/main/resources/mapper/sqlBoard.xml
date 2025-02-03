@@ -41,7 +41,18 @@
 	<!-- 게시글 등록 -->
 	<insert id="inputContents" parameterType="hashmap">
 		INSERT INTO hmw_contents 
-			(contentId, title, cnt, nickName, kind, cdatetime, udatetime, content, userId, STATUS)
+			(
+				contentId, 
+				title, 
+				cnt, 
+				nickName, 
+				kind, 
+				cdatetime, 
+				udatetime, 
+				content, 
+				userId, 
+				status
+			)
 		VALUES
 		(
 			null, 

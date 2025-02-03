@@ -49,10 +49,12 @@ public class MainController {
 		// 'Service'단에서 Object 형태로 담긴 세션 저장 아이디와 상태(직원유무)를 'String'으로 다운 캐스팅하고 가져옴
 		String inUserId = (String) session.getAttribute("sessionId");
 		String inUserStatus = (String) session.getAttribute("sessionStatus");
+		String inUserNick = (String) session.getAttribute("sessionNick");
 		
 		// 가져온 세션에 밸류명 지정해서 키값으로 저장
 		model.addAttribute("sessionId", inUserId);
 		model.addAttribute("sessionStatus", inUserStatus);
+		model.addAttribute("sessionNick", inUserNick);
 		
 		return "user/login";
 	}
@@ -67,10 +69,12 @@ public class MainController {
         // 세션에서 값을 가져오기
         String sessionId = (String) session.getAttribute("sessionId");
         String sessionStatus = (String) session.getAttribute("sessionStatus");
+        String sessionNick = (String) session.getAttribute("sessionNick");
 
         // 세션 값이 없을 때 대비한 처리
         sessionInfo.setSessionId(sessionId != null ? sessionId : "");
         sessionInfo.setSessionStatus(sessionStatus != null ? sessionStatus : "N");
+        sessionInfo.setSessionNick(sessionNick != null ? sessionNick : "");
 
         return sessionInfo;
     }
