@@ -61,41 +61,43 @@
         },
         methods: {
             categoryCode() {    // 카테고리 함수
+                var self = this;
                 $.ajax({
                     url : "getBoardCategory.dox",
                     type : "GET",
                     dataType : "json",
                     data : [],
                     success : (code) => {
-                        this.categoryCodes = code.categoryLists;
+                        self.categoryCodes = code.categoryLists;
                     },
                 });
             },
 
             writeContent(){     // 게시글 등록
+                var self = this;
                 // 카테고리 클릭
-                if(this.selectCategory == null) {
+                if(self.selectCategory == null) {
                     alert("카테고리를 선택해주세요");
                     return;
                 }
                 // 제목 입력
-                if(!this.inputName) {
+                if(!self.inputName) {
                     alert("게시글 제목을 입력해주세요");
                     return;
                 }
                 // 내용 입력
-                if(this.contents == "") {
+                if(self.contents == "") {
                     alert("게시글 내용을 입력해주세요");
                     return;
                 }
 
                 var paramap = {
-                    title : this.inputName, 
-                    nickName : this.sessionNick,
-                    kind : this.selectCategory, 
-                    content : this.content, 
-                    userId : this.sessionId, 
-                    status : this.sessionStatus
+                    title : self.inputName, 
+                    nickName : self.sessionNick,
+                    kind : self.selectCategory, 
+                    content : self.content, 
+                    userId : self.sessionId, 
+                    status : self.sessionStatus
                 };
 
                 $.ajax({
@@ -113,6 +115,7 @@
         },
         mounted() {
             this.categoryCode();      // 카테고리 함수
+            var self = this;
             // Quill 에디터 초기화
             var quill = new Quill('#editor', {
                 theme : 'snow',
@@ -129,12 +132,8 @@
 
             // 에디터 내용이 변경될 때, Vue 데이터를 업데이트
             quill.on('text-change', function(){
-                this.contents = quill.root.innerHTML;
+                self.content = quill.root.innerHTML;
             });
-
-            console.log(this.sessionId);
-            console.log(this.sessionStatus);
-            console.log(this.sessionNick);
         }
     });
     app.mount("#app");

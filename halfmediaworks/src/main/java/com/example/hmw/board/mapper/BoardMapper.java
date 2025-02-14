@@ -13,7 +13,7 @@ public interface BoardMapper {
 	List<BoardModelDto> getContents(HashMap<String, Object> map);
 
 	// 게시글 개수
-	int getTotalBoard();
+	int getTotalContents();
 	
 	// 게시글 카테고리 코드
 	List<BoardModelDto> getBoardCategory(HashMap<String, Object> categoryCodeName);
@@ -26,4 +26,7 @@ public interface BoardMapper {
 	
 	// 게시글 등록
 	void inputContents(HashMap<String, Object> registMap);
+	
+	// 코드별 게시글 호출
+//	List<BoardModelDto> clickCode(HashMap<String, Object> map);
 }

@@ -130,6 +130,7 @@
             },
 
             membersClick() {
+                // 회원탭
                 this.members = true;
                 this.requests = false;
                 this.GetUserListNumber();           // 회원 관리의 전체 페이지 수 다시 계산
@@ -137,6 +138,7 @@
             },
 
             requestsClick() {
+                // 의뢰탭
                 this.requests = true;
                 this.members = false;
                 this.GetRequest(0, this.pageSize);      // 의뢰 관리 테이블 새로 로드

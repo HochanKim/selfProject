@@ -10,7 +10,7 @@ public interface BoardService {
 	HashMap<String, Object> getContents(HashMap<String, Object> map);
 
 	// 게시글 개수
-	int getTotalBoard();
+	int getTotalContents();
 	
 	// 게시글 카테고리 코드
 	HashMap<String, Object> getBoardCategory(HashMap<String, Object> categoryCodeName);
@@ -23,4 +23,7 @@ public interface BoardService {
 	
 	// 게시글 등록
 	HashMap<String, Object> inputContents(HashMap<String, Object> registMap);
+
+	// 코드별 게시글 호출
+//	HashMap<String, Object> clickCode(HashMap<String, Object> map);
 }

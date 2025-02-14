@@ -89,7 +89,6 @@ public class AdminController {
 			int contCount = adminService.getTotalContact(); 
 			return new Gson().toJson(contCount);
 		} catch (Exception e) {
-			System.out.println("페이징 서버 에러");
 			e.printStackTrace();  // 구체적인 오류 로그 확인
 			return "error";       // 오류 발생 시 반환 값
 		}

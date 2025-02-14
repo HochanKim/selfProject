@@ -55,14 +55,15 @@ public class BoardController {
 	    }
 	}
 	
-	// 게시판 페이징 데이터
+	// 게시판 페이징 
 	@RequestMapping(value = "user/getBoardPageList.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public String getUserList(Model model) throws Exception { 
 		try {
-			int listCounts = boardService.getTotalBoard();
+			int listCounts = boardService.getTotalContents();
 			return new Gson().toJson(listCounts);
 	    } catch (Exception e) {
+	    	System.out.println("페이징 서버 에러");
 	        e.printStackTrace();  // 구체적인 오류 로그 확인
 	        return "error";       // 오류 발생 시 반환 값
 	    }
@@ -121,4 +122,22 @@ public class BoardController {
 	        return "error";       // 오류 발생 시 반환 값
 		}
 	}
+	
+	// 코드별 게시글 호출
+//	@RequestMapping(value = "user/getClickCode.dox", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+//	@ResponseBody
+//	public String clickCode(Model model, @RequestParam HashMap<String, Object> map, @RequestParam("start") String start, @RequestParam("size") String size) throws Exception { 
+//		// 리스트별 페이징 매개변수
+//		map.put("start", Integer.parseInt(start));
+//		map.put("size", Integer.parseInt(size));
+//		try {
+//			HashMap<String, Object> clickBoardLists = new HashMap<String, Object>();
+//			clickBoardLists = boardService.clickCode(map);
+//			return new Gson().toJson(clickBoardLists);
+//	    } catch (Exception e) {
+//	        e.printStackTrace();  // 구체적인 오류 로그 확인
+//	        return "error";       // 오류 발생 시 반환 값
+//	    }
+//	}
+	
 }

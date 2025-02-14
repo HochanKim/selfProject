@@ -9,7 +9,7 @@
     <title>HMW 게시판 & 커뮤니티</title>
 </head>
 <style>
-    /* 테이블블 */
+    /* 테이블 */
     table {
         width:100%;
         margin-bottom:20px;
@@ -79,7 +79,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="majorContent" colspan="3">{{item.content}}</td>
+                <td class="majorContent" colspan="3" v-html="item.content">{{item.content}}</td>
             </tr>
         </table>
         <button @click="backToBoard" class="exitView">목록보기</button>

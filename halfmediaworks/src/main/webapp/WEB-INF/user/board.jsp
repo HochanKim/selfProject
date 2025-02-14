@@ -17,7 +17,7 @@
     <div id="app">
         <h1>HMW COMMUNITY</h1>
         <div class="codeSelect">
-            <select v-model="kindName" @change="boardCodeLists">
+            <select v-model="kindNum" @change="boardCodeLists">
                 <option value="">:: 전체 ::</option>
                 <option v-for="code in boardCodes" :value="code.kindId">:: {{code.kindName}} ::</option>
             </select>
@@ -54,7 +54,7 @@
             </div>
         </div>
     </div>
-    <footer>
+    <footer style="margin-top: 60px;">
         <jsp:include page="${pageContext.request.contextPath}/WEB-INF/main/footer.jsp" flush="false" />
     </footer>
 </body>
@@ -63,12 +63,12 @@
     const app = Vue.createApp({
         data() {
             return {
-                contents : [],            // 게시글 데이터
-                boardCodes : [],          // 게시글 종류 코드 (가져온 데이터를 List 형태로 저장)
-                kindName : "",            // 게시글 종류 코드 (select 태그)
-                totalContents : 0,       // 게시판의 첫 인덱스
-                pageSize : 10,           // 한 페이지의 호출 리스트 개수
-                currentPage : 1,        // 페이지 첫 호출시 시작 페이지 번호
+                contents : [],              // 게시글 데이터
+                boardCodes : [],            // 게시글 종류 코드 (가져온 데이터를 List 형태로 저장)
+                kindNum : "",               // 게시글 종류 코드 (select 태그)
+                totalContents : 0,          // 게시판의 첫 인덱스
+                pageSize : 5,               // 한 페이지의 호출 리스트 개수
+                currentPage : 1,            // 페이지 첫 호출시 시작 페이지 번호
             };
         },
         methods: {
@@ -76,9 +76,8 @@
                 // DB에 저장된 컨텐츠 불러오기
                 var paramap = {
                     start : start,
-                    size : size
+                    size : size,
                 };
-
                 $.ajax({
                     url : "getBoard.dox",
                     dataType : "json",
@@ -93,7 +92,7 @@
             GetBoardList() {     // 게시판 페이징 메소드
                 $.ajax({	
                     url : "getBoardPageList.dox",
-                    dataType : "json",	
+                    dataType : "json",
                     type : "POST",
                     data : [],
                     success: (data) => {
@@ -108,6 +107,9 @@
                     this.currentPage = index;
                     var start = (this.currentPage - 1) * this.pageSize;
                     var size = this.pageSize;
+                
+                // 페이징 번호 클릭 시, 해당 데이터 불러오기
+                this.GetContents(start, size);
             },
 
             writeContent(){     // 글쓰기 페이지로 이동
@@ -140,17 +142,22 @@
                 });
             },
 
-            boardCodeLists(){       // 카테고리 함수 
+            boardCodeLists(){       // 카테고리 함수
+                var paramap = {
+                    kindId : this.kindNum
+                }
                 $.ajax({
+                    // 코드 리스트 불러오기
                     url : "getBoardCategory.dox",
                     dataType : "json",
                     type : "GET",
                     data : [],
                     success : (data) => {
-                        this.boardCodes = data.categoryLists; 
+                        this.boardCodes = data.categoryLists;
                     }
                 });
-            }
+            },
+
         },
         mounted() {
             this.GetContents(0, this.pageSize);

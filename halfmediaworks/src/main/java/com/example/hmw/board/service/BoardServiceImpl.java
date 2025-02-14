@@ -14,7 +14,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardMapper boardMapper;
 
-	// 게시글 호출
+	// 게시글 목록
 	@Override
 	public HashMap<String, Object> getContents(HashMap<String, Object> map) {
 		HashMap<String, Object> boardMap = new HashMap<>();
@@ -27,11 +27,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardMap;
 	}
 	
-	// 게시글 리스트 숫자
+	// 게시글 페이징
 	@Override
-	public int getTotalBoard() {
+	public int getTotalContents() {
 		try {
-	        int getBoardCount = boardMapper.getTotalBoard();
+	        int getBoardCount = boardMapper.getTotalContents();
 	        return getBoardCount;
 	    } catch (Exception e) {
 	        // 로깅 또는 예외 처리
@@ -88,4 +88,18 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return registContent;
 	}
+
+	// 코드별 게시글 호출
+//	@Override
+//	public HashMap<String, Object> clickCode(HashMap<String, Object> map) {
+//		HashMap<String, Object> choiceBoardMap = new HashMap<>();
+//		try {
+//			List<BoardModelDto> choiceBoardLists = boardMapper.getContents(map);
+//			choiceBoardMap.put("clickContents", choiceBoardLists);
+//		} catch (Exception e) {
+//			System.out.println("불러오는 중 에러 발생, 에러 이유 : "+e);
+//		}
+//		return choiceBoardMap;
+//	}
+
 }
