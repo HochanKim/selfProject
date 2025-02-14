@@ -16,12 +16,15 @@
     </header>
     <div id="app">
         <h1>HMW COMMUNITY</h1>
+        <!-- 분류 코드리스트 -->
         <div class="codeSelect">
             <select v-model="kindNum" @change="boardCodeLists">
                 <option value="">:: 전체 ::</option>
                 <option v-for="code in boardCodes" :value="code.kindId">:: {{code.kindName}} ::</option>
             </select>
         </div>
+
+        <!-- 게시글 테이블 -->
         <div>
             <table>
                 <tr>
@@ -78,6 +81,7 @@
                     start : start,
                     size : size,
                 };
+
                 $.ajax({
                     url : "getBoard.dox",
                     dataType : "json",
@@ -86,6 +90,9 @@
                     success : (data) => {
                         this.contents = data.getContents;
                     },
+                    error: (err) => {
+                        console.error('게시글 데이터를 가져오는 중 오류 발생:', err);
+                    }
                 });
             },
 
@@ -99,6 +106,9 @@
                         var totalBoardNumber = data;
                         this.totalContents = Math.ceil(totalBoardNumber / this.pageSize);    // 총 페이지 수 계산
                     },
+                    error: (err) => {
+                        console.error('게시글 데이터를 가져오는 중 오류 발생:', err);
+                    }
                 });
             },
 
@@ -110,6 +120,7 @@
                 
                 // 페이징 번호 클릭 시, 해당 데이터 불러오기
                 this.GetContents(start, size);
+                
             },
 
             writeContent(){     // 글쓰기 페이지로 이동
@@ -138,6 +149,9 @@
                     success : (data) => {
                         var contentId = number;
                         location.href=`/user/contentView.do?num=\${contentId}`;
+                    },
+                    error: (err) => {
+                        console.error('게시글 데이터를 가져오는 중 오류 발생:', err);
                     } 
                 });
             },
@@ -145,7 +159,7 @@
             boardCodeLists(){       // 카테고리 함수
                 var paramap = {
                     kindId : this.kindNum
-                }
+                };
                 $.ajax({
                     // 코드 리스트 불러오기
                     url : "getBoardCategory.dox",
@@ -154,8 +168,12 @@
                     data : [],
                     success : (data) => {
                         this.boardCodes = data.categoryLists;
+                    },
+                    error: (err) => {
+                        console.error('게시글 데이터를 가져오는 중 오류 발생:', err);
                     }
                 });
+
             },
 
         },

@@ -27,6 +27,4 @@ public interface BoardMapper {
 	// 게시글 등록
 	void inputContents(HashMap<String, Object> registMap);
 	
-	// 코드별 게시글 호출
-//	List<BoardModelDto> clickCode(HashMap<String, Object> map);
 }

@@ -89,17 +89,5 @@ public class BoardServiceImpl implements BoardService {
 		return registContent;
 	}
 
-	// 코드별 게시글 호출
-//	@Override
-//	public HashMap<String, Object> clickCode(HashMap<String, Object> map) {
-//		HashMap<String, Object> choiceBoardMap = new HashMap<>();
-//		try {
-//			List<BoardModelDto> choiceBoardLists = boardMapper.getContents(map);
-//			choiceBoardMap.put("clickContents", choiceBoardLists);
-//		} catch (Exception e) {
-//			System.out.println("불러오는 중 에러 발생, 에러 이유 : "+e);
-//		}
-//		return choiceBoardMap;
-//	}
 
 }

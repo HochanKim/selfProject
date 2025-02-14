@@ -23,7 +23,4 @@ public interface BoardService {
 	
 	// 게시글 등록
 	HashMap<String, Object> inputContents(HashMap<String, Object> registMap);
-
-	// 코드별 게시글 호출
-//	HashMap<String, Object> clickCode(HashMap<String, Object> map);
 }
